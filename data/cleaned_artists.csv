@@ -1,0 +1,501 @@
+artist_id,name,art_forms,genres,language,region,style,mood_tags,festivals,popularity,follower_count,verified,follower_count_norm
+A0000,Chitrasena,['drama'],['contemporary'],['english'],sabaragamuwa,['contemporary'],"['celebratory', 'reflective']",[],mid_tier,3559,True,0.7097823876347367
+A0001,Amila Rajapaksa,['dance'],['low_country'],['sinhala'],southern,['traditional'],"['romantic', 'energetic']",[],emerging,4007,False,0.8008948545861297
+A0002,Ruwan Kumara,['literature'],['contemporary'],['english'],central,['contemporary'],"['reflective', 'spiritual', 'patriotic']",[],mid_tier,2353,False,0.4645108806182632
+A0003,Navarasa,['crafts'],['contemporary'],['english'],north_western,['contemporary'],['patriotic'],[],mid_tier,4741,False,0.9501728696359569
+A0004,Nimesh Weerasinghe,['drama'],['sokari'],['sinhala'],sabaragamuwa,['contemporary'],"['intellectual', 'energetic', 'celebratory']",[],established,2693,False,0.5336587350010169
+A0005,Sandanari,['literature'],['traditional'],['sinhala'],southern,['contemporary'],['intellectual'],[],mid_tier,4645,False,0.930648769574944
+A0006,Nadeesha Ekanayake,['literature'],"['contemporary', 'traditional']",['sinhala'],north_central,['contemporary'],"['energetic', 'spiritual']",[],emerging,171,False,0.020744356314826115
+A0007,W.D. Amaradeva,['crafts'],['traditional'],['sinhala'],sabaragamuwa,['contemporary'],['intellectual'],[],emerging,2694,False,0.533862111043319
+A0008,Nanda Malini,['music'],"['folk_music', 'contemporary']",['sinhala'],uva,['contemporary'],"['celebratory', 'romantic', 'energetic']",['peradeniya_arts_festival'],mid_tier,1342,True,0.258897701850722
+A0009,Roshan Jayawardena,['literature'],['traditional'],['sinhala'],central,['contemporary'],"['energetic', 'reflective', 'devotional']",[],mid_tier,975,True,0.1842586943258084
+A0010,Rookantha Gunathilaka,['crafts'],['contemporary'],['english'],western,['contemporary'],"['reflective', 'celebratory']",['peradeniya_arts_festival'],emerging,4395,True,0.8798047589993899
+A0011,Ajith Ranasinghe,['drama'],['street_drama'],['sinhala'],eastern,['contemporary'],"['energetic', 'devotional', 'celebratory']",[],mid_tier,667,False,0.12161887329672565
+A0012,Sachini Samaraweera,['crafts'],['contemporary'],['sinhala'],north_central,['contemporary'],"['devotional', 'patriotic', 'reflective']",[],mid_tier,4800,False,0.9621720561317877
+A0013,Vel Kumar,['dance'],['bharatanatyam'],['tamil'],northern,['contemporary'],"['reflective', 'devotional']","['deepavali', 'thai_pongal']",emerging,3726,False,0.7437461866992068
+A0014,Ashanthi De Alwis,['dance'],['contemporary'],"['sinhala', 'english']",north_central,['contemporary'],"['romantic', 'celebratory', 'energetic']",[],mid_tier,4468,True,0.8946512100874517
+A0015,Lakshman Pathirana,['literature'],"['traditional', 'contemporary']","['sinhala', 'english']",north_central,['contemporary'],['reflective'],['independence_day'],emerging,4363,False,0.8732967256457189
+A0016,Ayesha Senanayake,['dance'],['kandyan'],['sinhala'],central,['traditional'],"['reflective', 'romantic']","['poson', 'vesak']",emerging,666,False,0.12141549725442342
+A0017,Iraj Weeraratne,['dance'],['contemporary'],['sinhala'],north_central,['contemporary'],['reflective'],['peradeniya_arts_festival'],emerging,321,False,0.051250762660158634
+A0018,Randhir,['dance'],['kandyan'],['sinhala'],central,['traditional'],"['celebratory', 'patriotic']",['esala_perahera'],established,2217,True,0.4368517388651617
+A0019,Umaria,['music'],['carnatic'],['tamil'],northern,['contemporary'],"['reflective', 'patriotic', 'intellectual']",[],mid_tier,4019,False,0.8033353670937563
+A0020,Thiru Dissanayake,['dance'],['bharatanatyam'],['tamil'],northern,['contemporary'],"['romantic', 'devotional', 'patriotic']","['deepavali', 'thai_pongal']",emerging,3113,True,0.619076672767948
+A0021,Chandani Hettiarachchi,['crafts'],['traditional'],['sinhala'],southern,['contemporary'],['intellectual'],[],emerging,4566,False,0.9145820622330689
+A0022,Annesley Malewana,['crafts'],['traditional'],['sinhala'],northern,['contemporary'],"['devotional', 'patriotic', 'energetic']",[],established,2455,True,0.4852552369330893
+A0023,Clarence Wijewardena,['drama'],['experimental'],['sinhala'],eastern,['contemporary'],['patriotic'],[],mid_tier,3530,True,0.7038844824079723
+A0024,H.R. Jothipala,['dance'],['fusion'],['sinhala'],uva,"['fusion', 'contemporary']","['romantic', 'patriotic']",[],emerging,3327,False,0.6625991458206223
+A0025,Gayan Selvam,['drama'],"['street_drama', 'experimental']",['sinhala'],southern,['contemporary'],['patriotic'],[],established,2087,False,0.4104128533658735
+A0026,Desmond de Silva,['drama'],"['nurti', 'experimental']",['sinhala'],southern,['contemporary'],['reflective'],[],emerging,3353,False,0.66788692292048
+A0027,Milton Mallawarachchi,['crafts'],"['contemporary', 'traditional']",['sinhala'],southern,['contemporary'],"['romantic', 'intellectual']",['independence_day'],emerging,2151,True,0.42342892007321536
+A0028,Dilshan Selvam,['crafts'],['traditional'],['sinhala'],north_central,['contemporary'],"['reflective', 'celebratory', 'energetic']",[],established,4712,False,0.9442749644091926
+A0029,Suresh Kumara,['music'],['devotional_hindu'],['tamil'],north_central,['contemporary'],"['spiritual', 'devotional']",[],established,4971,False,0.9969493593654668
+A0030,Nishani De Silva,['music'],['fusion'],['sinhala'],northern,"['fusion', 'contemporary']",['patriotic'],[],established,3325,False,0.6621923937360179
+A0031,Gunadasa Kapuge,['visual_arts'],"['contemporary', 'traditional']",['tamil'],north_central,['contemporary'],['romantic'],[],mid_tier,450,False,0.0774862721171446
+A0032,Buddhika Ekanayake,['drama'],"['experimental', 'sokari']",['sinhala'],central,['contemporary'],"['energetic', 'romantic']",[],mid_tier,1317,False,0.25381330079316655
+A0033,Dinesh Herath,['visual_arts'],['traditional'],['sinhala'],central,['contemporary'],"['romantic', 'celebratory']",[],emerging,3317,True,0.6605653853976001
+A0034,Karunarathna Divulgane,['crafts'],"['traditional', 'contemporary']","['sinhala', 'english']",western,['contemporary'],"['spiritual', 'intellectual']",['independence_day'],mid_tier,4759,False,0.9538336383973968
+A0035,Pandith Amaradeva,['music'],"['fusion', 'contemporary']","['sinhala', 'english']",western,"['fusion', 'contemporary']","['devotional', 'patriotic', 'reflective']",['peradeniya_arts_festival'],mid_tier,1159,True,0.2216798861094163
+A0036,Mohideen Baig,['dance'],['bharatanatyam'],['tamil'],northern,['contemporary'],"['reflective', 'celebratory', 'romantic']","['deepavali', 'thai_pongal']",emerging,1951,True,0.382753711612772
+A0037,Vani Sivarajah,['visual_arts'],"['contemporary', 'traditional']",['tamil'],sabaragamuwa,['contemporary'],"['devotional', 'spiritual', 'romantic']",[],emerging,1128,False,0.2153752287980476
+A0038,Angelo Kumara,['dance'],['sabaragamuwa'],['sinhala'],northern,['contemporary'],"['celebratory', 'energetic', 'romantic']",[],mid_tier,4734,False,0.9487492373398414
+A0039,Dharmadasa Walpola,['visual_arts'],['contemporary'],['sinhala'],eastern,['contemporary'],['romantic'],['peradeniya_arts_festival'],emerging,1897,False,0.3717714053284523
+A0040,Chandima Mendis,['literature'],['contemporary'],['english'],central,['contemporary'],['celebratory'],['peradeniya_arts_festival'],emerging,2914,True,0.5786048403498067
+A0041,Nishani Pathirana,['visual_arts'],['traditional'],['sinhala'],western,['contemporary'],['patriotic'],[],mid_tier,631,False,0.11429733577384583
+A0042,Uresha Ravihari,['crafts'],['traditional'],['sinhala'],uva,['contemporary'],['energetic'],[],emerging,2457,False,0.4856619890176937
+A0043,Nuwan Selvam,['drama'],['nurti'],['sinhala'],eastern,['contemporary'],"['celebratory', 'devotional', 'reflective']",[],mid_tier,4428,False,0.8865161683953631
+A0044,Shanthi Thiyagarajah,['music'],"['devotional_hindu', 'baila']",['tamil'],western,['contemporary'],"['spiritual', 'devotional']",[],emerging,634,False,0.11490746390075249
+A0045,Dilki Uresha,['literature'],['contemporary'],['sinhala'],uva,['contemporary'],"['energetic', 'patriotic', 'spiritual']",['independence_day'],emerging,2145,True,0.4222086638194021
+A0046,Thushara Joshep,['dance'],['sabaragamuwa'],['sinhala'],sabaragamuwa,['contemporary'],['patriotic'],[],mid_tier,831,False,0.1549725442342892
+A0047,Damith Asanka,['visual_arts'],['contemporary'],['tamil'],northern,['contemporary'],"['spiritual', 'energetic', 'celebratory']",['peradeniya_arts_festival'],emerging,4865,True,0.9753914988814317
+A0048,Samanthi Amarasinghe,['dance'],"['sabaragamuwa', 'fusion']",['sinhala'],central,"['fusion', 'contemporary']","['romantic', 'celebratory', 'spiritual']",[],emerging,717,False,0.13178767541183647
+A0049,Chathura Amarasinghe,['dance'],['contemporary'],['english'],north_central,['contemporary'],['celebratory'],[],emerging,2333,False,0.46044335977221884
+A0050,Isuru Dissanayake,['literature'],"['contemporary', 'traditional']","['sinhala', 'english']",north_central,['contemporary'],"['reflective', 'romantic']",['independence_day'],mid_tier,4967,True,0.9961358551962579
+A0051,Rajan Kumara,['music'],"['devotional_hindu', 'carnatic']",['tamil'],northern,['contemporary'],"['spiritual', 'devotional']",[],emerging,3887,True,0.7764897295098637
+A0052,Chaminda Ranasinghe,['dance'],['contemporary'],['sinhala'],north_central,['contemporary'],"['celebratory', 'romantic']",['independence_day'],mid_tier,4960,False,0.9947122229001424
+A0053,Nirmala Ranasinghe,['dance'],['bharatanatyam'],['tamil'],northern,['contemporary'],"['romantic', 'devotional', 'spiritual']","['deepavali', 'thai_pongal']",established,1239,False,0.23794996949359365
+A0054,Priya Mendis,['visual_arts'],['contemporary'],['tamil'],sabaragamuwa,['contemporary'],"['celebratory', 'reflective']",[],mid_tier,962,False,0.1816148057758796
+A0055,Ruwan Ranasinghe,['visual_arts'],['contemporary'],"['sinhala', 'english']",southern,['contemporary'],['patriotic'],[],emerging,3960,False,0.7913361805979255
+A0056,Dilshan Dissanayake,['drama'],"['nadagam', 'nurti']",['sinhala'],western,['contemporary'],"['reflective', 'patriotic', 'spiritual']",[],emerging,651,False,0.11836485661989017
+A0057,Kavinda Wijesinghe,['crafts'],['traditional'],['sinhala'],eastern,['contemporary'],"['intellectual', 'devotional']",[],established,1522,True,0.295505389465121
+A0058,Mala Fernando,['literature'],"['contemporary', 'traditional']",['tamil'],northern,['contemporary'],['reflective'],['independence_day'],emerging,4032,False,0.8059792556436852
+A0059,Nadeesha Wickremasinghe,['visual_arts'],['contemporary'],['english'],western,['contemporary'],"['celebratory', 'energetic']",[],emerging,118,False,0.009965426072808623
+A0060,Kumar Jayawardena,['music'],"['baila', 'carnatic']",['tamil'],northern,['contemporary'],"['celebratory', 'energetic']",[],mid_tier,1038,True,0.1970713849908481
+A0061,Nishani Wickremasinghe,['music'],['baila'],['sinhala'],southern,['contemporary'],"['celebratory', 'energetic']",[],mid_tier,1222,False,0.23449257677445598
+A0062,Gayan Selvam,['dance'],['sabaragamuwa'],['sinhala'],southern,['contemporary'],"['energetic', 'devotional', 'intellectual']",[],mid_tier,3053,True,0.606874110229815
+A0063,Chathura Thiyagarajah,['dance'],['fusion'],['sinhala'],southern,"['fusion', 'contemporary']","['celebratory', 'intellectual']",[],emerging,3846,False,0.7681513117754728
+A0064,Kamala Wickremasinghe,['visual_arts'],"['contemporary', 'traditional']",['tamil'],southern,['contemporary'],['patriotic'],['peradeniya_arts_festival'],mid_tier,1068,False,0.2031726662599146
+A0065,Muthu Rathnayake,['literature'],['contemporary'],['tamil'],north_western,['contemporary'],"['energetic', 'reflective', 'devotional']",['peradeniya_arts_festival'],emerging,3089,True,0.6141956477526948
+A0066,Kavinda Jayasuriya,['visual_arts'],['traditional'],['sinhala'],north_western,['contemporary'],"['devotional', 'energetic', 'celebratory']",[],mid_tier,1193,False,0.22859467154769167
+A0067,Nadeesha Fernando,['visual_arts'],['traditional'],['sinhala'],eastern,['contemporary'],"['reflective', 'devotional']",[],emerging,2944,False,0.5847061216188733
+A0068,Malsha Fernando,['dance'],['sabaragamuwa'],['sinhala'],western,['contemporary'],['patriotic'],[],emerging,1937,False,0.379906447020541
+A0069,Thilini Gunasekara,['literature'],"['contemporary', 'traditional']",['sinhala'],north_western,['contemporary'],"['celebratory', 'reflective']",['independence_day'],emerging,1763,True,0.34451901565995524
+A0070,Lahiru Liyanage,['drama'],['street_drama'],['sinhala'],eastern,['contemporary'],['devotional'],[],emerging,845,False,0.15781980882652025
+A0071,Nishani Perera,['drama'],['nurti'],['sinhala'],western,['contemporary'],"['intellectual', 'celebratory']",[],mid_tier,4348,False,0.8702460850111857
+A0072,Buddhika Samaraweera,['crafts'],['contemporary'],['english'],northern,['contemporary'],"['patriotic', 'energetic']",[],emerging,4104,True,0.8206223306894448
+A0073,Ajith De Silva,['literature'],['contemporary'],['sinhala'],north_western,['contemporary'],"['intellectual', 'celebratory', 'spiritual']",[],mid_tier,776,False,0.1437868619076673
+A0074,Madhavi Thiyagarajah,['music'],"['baila', 'elle']",['sinhala'],southern,['contemporary'],"['celebratory', 'energetic']",[],emerging,1827,True,0.35753508236729714
+A0075,Anusha Kumara,['music'],['contemporary'],"['sinhala', 'english']",southern,['contemporary'],['devotional'],['peradeniya_arts_festival'],emerging,2016,False,0.3959731543624161
+A0076,Samanthi Mendis,['visual_arts'],"['contemporary', 'traditional']","['sinhala', 'english']",eastern,['contemporary'],['intellectual'],['independence_day'],emerging,4432,False,0.8873296725645718
+A0077,Ajith Fernando,['literature'],['traditional'],['sinhala'],northern,['contemporary'],"['reflective', 'celebratory', 'romantic']",[],emerging,1597,True,0.31075859263778727
+A0078,Dilshan Jayawardena,['music'],['devotional_buddhist'],['sinhala'],southern,['traditional'],"['spiritual', 'devotional']",['esala_perahera'],mid_tier,1273,False,0.24486475493186902
+A0079,Ajith Kumar,['dance'],"['folk', 'sabaragamuwa']",['sinhala'],north_western,['contemporary'],['patriotic'],[],emerging,3236,True,0.6440919259711206
+A0080,Nadeesha Weerasinghe,['visual_arts'],['traditional'],['sinhala'],northern,['contemporary'],"['energetic', 'celebratory', 'devotional']",[],emerging,2064,True,0.4057352043929225
+A0081,Arun Rajapaksa,['music'],['carnatic'],['tamil'],northern,['contemporary'],"['reflective', 'spiritual', 'energetic']",[],emerging,667,False,0.12161887329672565
+A0082,Damith Fernando,['literature'],['traditional'],['sinhala'],north_central,['contemporary'],"['romantic', 'patriotic']",[],emerging,3011,True,0.5983323164531218
+A0083,Chaminda Senanayake,['visual_arts'],"['contemporary', 'traditional']","['sinhala', 'english']",sabaragamuwa,['contemporary'],"['reflective', 'patriotic']",['independence_day'],emerging,2487,False,0.4917632702867602
+A0084,Kavinda Wijesinghe,['music'],"['devotional_buddhist', 'classical_sinhala']",['sinhala'],north_central,['traditional'],"['spiritual', 'devotional']","['esala_perahera', 'vesak']",emerging,69,False,0.0
+A0085,Lahiru Perera,['visual_arts'],"['traditional', 'contemporary']","['sinhala', 'english']",north_central,['contemporary'],['patriotic'],['peradeniya_arts_festival'],emerging,3718,True,0.7421191783607891
+A0086,Malsha De Silva,['crafts'],['traditional'],['sinhala'],central,['contemporary'],"['energetic', 'romantic', 'patriotic']",[],mid_tier,4487,False,0.8985153548911938
+A0087,Kavinda Ekanayake,['crafts'],"['contemporary', 'traditional']",['sinhala'],north_western,['contemporary'],"['celebratory', 'devotional']",['independence_day'],established,2479,True,0.4901362619483425
+A0088,Mohan Amarasinghe,['music'],"['devotional_buddhist', 'carnatic']",['tamil'],northern,['traditional'],"['spiritual', 'devotional']",['vesak'],mid_tier,4421,False,0.8850925360992475
+A0089,Ajith Perera,['dance'],['kandyan'],['sinhala'],central,['traditional'],"['romantic', 'intellectual']","['vesak', 'esala_perahera']",emerging,3739,False,0.7463900752491357
+A0090,Roshan Mendis,['literature'],"['traditional', 'contemporary']","['sinhala', 'english']",sabaragamuwa,['contemporary'],"['romantic', 'energetic', 'reflective']",[],emerging,3827,False,0.7642871669717307
+A0091,Chathura Senanayake,['literature'],['traditional'],['sinhala'],southern,['contemporary'],['intellectual'],[],emerging,2751,False,0.5454545454545454
+A0092,Lahiru Gunasekara,['drama'],['street_drama'],['sinhala'],western,['contemporary'],"['spiritual', 'patriotic']",[],mid_tier,3081,False,0.612568639414277
+A0093,Malsha Amarasinghe,['visual_arts'],"['contemporary', 'traditional']",['sinhala'],north_western,['contemporary'],"['devotional', 'patriotic', 'energetic']",['peradeniya_arts_festival'],emerging,80,False,0.0022371364653243847
+A0094,Dilini Fernando,['visual_arts'],['contemporary'],['sinhala'],western,['contemporary'],"['celebratory', 'romantic', 'spiritual']",['independence_day'],emerging,2693,False,0.5336587350010169
+A0095,Tharindu Samaraweera,['drama'],"['contemporary', 'street_drama']",['english'],eastern,['contemporary'],"['intellectual', 'patriotic']",['peradeniya_arts_festival'],emerging,868,False,0.16249745779947122
+A0096,Ravi Selvam,['music'],['carnatic'],['tamil'],northern,['contemporary'],"['celebratory', 'intellectual']",[],emerging,3449,False,0.6874110229814928
+A0097,Danushka Kumar,['music'],['classical_sinhala'],['sinhala'],north_western,['traditional'],['devotional'],[],emerging,1484,False,0.2877770998576368
+A0098,Buddhika Rajapaksa,['drama'],['experimental'],['sinhala'],sabaragamuwa,['contemporary'],"['intellectual', 'reflective', 'celebratory']",[],mid_tier,4427,False,0.8863127923530608
+A0099,Dilshan Selvam,['dance'],['low_country'],['sinhala'],southern,['traditional'],"['intellectual', 'devotional']",[],emerging,2058,False,0.4045149481391092
+A0100,Chaminda Weerasinghe,['dance'],"['sabaragamuwa', 'fusion']",['sinhala'],southern,"['fusion', 'contemporary']",['devotional'],[],mid_tier,447,False,0.07687614399023796
+A0101,Kasun Bandara,['literature'],['traditional'],['sinhala'],eastern,['contemporary'],"['spiritual', 'intellectual', 'reflective']",[],mid_tier,592,False,0.10636567012405938
+A0102,Isuru Jayawardena,['visual_arts'],['contemporary'],"['sinhala', 'english']",eastern,['contemporary'],"['reflective', 'romantic']",['independence_day'],emerging,157,True,0.017897091722595078
+A0103,Kasun Bandara,['dance'],['sabaragamuwa'],['sinhala'],north_central,['contemporary'],"['intellectual', 'reflective', 'romantic']",[],emerging,1874,False,0.36709375635550134
+A0104,Chaminda Weerasinghe,['literature'],['contemporary'],['sinhala'],southern,['contemporary'],"['devotional', 'celebratory', 'spiritual']",['peradeniya_arts_festival'],emerging,787,False,0.14602399837299165
+A0105,Nalaka Wijesinghe,['crafts'],['traditional'],['sinhala'],north_western,['contemporary'],"['romantic', 'intellectual', 'celebratory']",[],emerging,839,False,0.15659955257270694
+A0106,Vel Gunawardena,['visual_arts'],['contemporary'],['tamil'],sabaragamuwa,['contemporary'],"['intellectual', 'reflective']",['independence_day'],established,2239,False,0.44132601179581044
+A0107,Nimesh Weerasinghe,['literature'],['traditional'],['sinhala'],northern,['contemporary'],['reflective'],[],mid_tier,3297,False,0.6564978645515558
+A0108,Yashodha Fernando,['drama'],['nurti'],['sinhala'],southern,['contemporary'],['energetic'],[],mid_tier,3003,False,0.5967053081147041
+A0109,Damith Rajapaksa,['visual_arts'],"['contemporary', 'traditional']",['english'],north_central,['contemporary'],"['romantic', 'intellectual']",[],mid_tier,3195,False,0.6357535082367297
+A0110,Shehan Wijesinghe,['crafts'],['traditional'],['sinhala'],north_western,['contemporary'],['spiritual'],[],emerging,1251,False,0.24039048200122026
+A0111,Ayesha Liyanage,['drama'],"['street_drama', 'nadagam']",['sinhala'],north_central,['contemporary'],"['celebratory', 'energetic', 'spiritual']",[],emerging,3931,True,0.7854382753711613
+A0112,Gayan Silva,['crafts'],['traditional'],['sinhala'],southern,['contemporary'],['energetic'],[],emerging,3559,False,0.7097823876347367
+A0113,Dilshan Senanayake,['drama'],"['contemporary', 'street_drama']",['english'],western,['contemporary'],"['romantic', 'devotional', 'energetic']",['peradeniya_arts_festival'],mid_tier,3496,False,0.696969696969697
+A0114,Ayesha Gunawardena,['drama'],['street_drama'],['sinhala'],central,['contemporary'],"['celebratory', 'devotional', 'energetic']",[],emerging,4827,True,0.9676632092739476
+A0115,Lakshmi Gunawardena,['visual_arts'],['contemporary'],['tamil'],sabaragamuwa,['contemporary'],"['devotional', 'spiritual', 'energetic']",[],emerging,1732,False,0.33821435834858654
+A0116,Vasanthi Jayasuriya,['music'],"['contemporary', 'carnatic']",['tamil'],northern,['contemporary'],['reflective'],[],emerging,4986,True,1.0
+A0117,Angelo Gunawardena,['drama'],"['street_drama', 'experimental']",['sinhala'],central,['contemporary'],['devotional'],[],mid_tier,267,False,0.040268456375838924
+A0118,Chathurika Bandara,['visual_arts'],['contemporary'],['english'],western,['contemporary'],['celebratory'],['independence_day'],mid_tier,3225,False,0.6418547895057962
+A0119,Amila Herath,['music'],['fusion'],['sinhala'],north_central,"['fusion', 'contemporary']","['romantic', 'intellectual', 'energetic']",[],emerging,3496,False,0.696969696969697
+A0120,Damith Wickremasinghe,['visual_arts'],['contemporary'],"['sinhala', 'english']",northern,['contemporary'],"['patriotic', 'intellectual']",['independence_day'],mid_tier,1449,False,0.2806589383770592
+A0121,Rajan Sivarajah,['literature'],"['traditional', 'contemporary']",['tamil'],north_western,['contemporary'],"['celebratory', 'patriotic']",['peradeniya_arts_festival'],emerging,816,False,0.15192190359975594
+A0122,Madhavi Gunawardena,['crafts'],['traditional'],['sinhala'],sabaragamuwa,['contemporary'],"['romantic', 'reflective']",[],mid_tier,907,False,0.17042912344925767
+A0123,Chandima Weerasinghe,['drama'],['nurti'],['sinhala'],western,['contemporary'],"['spiritual', 'devotional', 'intellectual']",[],emerging,453,True,0.07809640024405125
+A0124,Chathura Silva,['crafts'],"['traditional', 'contemporary']",['english'],sabaragamuwa,['contemporary'],"['spiritual', 'patriotic', 'celebratory']",['peradeniya_arts_festival'],established,1214,True,0.23286556843603823
+A0125,Senthil Wickremasinghe,['drama'],"['contemporary', 'nadagam']",['tamil'],north_central,['contemporary'],"['romantic', 'reflective', 'energetic']",['peradeniya_arts_festival'],mid_tier,3517,False,0.7012405938580435
+A0126,Shehan Ranasinghe,['visual_arts'],"['traditional', 'contemporary']",['english'],northern,['contemporary'],['patriotic'],['independence_day'],emerging,1025,False,0.19442749644091925
+A0127,Anusha Ekanayake,['visual_arts'],['traditional'],['sinhala'],southern,['contemporary'],"['intellectual', 'spiritual', 'celebratory']",[],mid_tier,359,True,0.05897905226764287
+A0128,Nalaka Perera,['dance'],['sabaragamuwa'],['sinhala'],eastern,['contemporary'],"['reflective', 'devotional', 'spiritual']",[],emerging,3104,True,0.617246288387228
+A0129,Nuwan Selvam,['drama'],['nadagam'],['sinhala'],sabaragamuwa,['contemporary'],['devotional'],[],established,2506,True,0.49562741509050234
+A0130,Hiruni Gunasekara,['visual_arts'],"['contemporary', 'traditional']","['sinhala', 'english']",central,['contemporary'],"['patriotic', 'romantic']",['independence_day'],mid_tier,991,False,0.18751271100264388
+A0131,Angelo Nadarajah,['visual_arts'],['traditional'],['sinhala'],southern,['contemporary'],['spiritual'],[],mid_tier,638,False,0.11572096806996136
+A0132,Ajith Samaraweera,['drama'],"['kolam', 'sokari']",['sinhala'],southern,['traditional'],"['romantic', 'patriotic']",[],emerging,4889,True,0.980272523896685
+A0133,Lakshman Ranasinghe,['crafts'],['contemporary'],['english'],eastern,['contemporary'],['reflective'],[],mid_tier,2027,False,0.3982102908277405
+A0134,Suresh Nadarajah,['dance'],"['folk', 'bharatanatyam']",['tamil'],northern,['contemporary'],"['celebratory', 'romantic']","['deepavali', 'thai_pongal']",mid_tier,1583,True,0.3079113280455562
+A0135,Nimesh Liyanage,['music'],['contemporary'],['english'],central,['contemporary'],"['devotional', 'energetic', 'intellectual']",['independence_day'],emerging,2020,True,0.396786658531625
+A0136,Sandani Amarasinghe,['dance'],['fusion'],['sinhala'],southern,"['fusion', 'contemporary']",['energetic'],[],emerging,1760,False,0.3439088875330486
+A0137,Roshan Dissanayake,['visual_arts'],['contemporary'],['english'],north_western,['contemporary'],"['celebratory', 'intellectual', 'energetic']",['independence_day'],emerging,3356,True,0.6684970510473867
+A0138,Nalaka Rathnayake,['drama'],['sokari'],['sinhala'],northern,['contemporary'],['patriotic'],[],emerging,3003,False,0.5967053081147041
+A0139,Amila De Silva,['drama'],['experimental'],['sinhala'],north_central,['contemporary'],['spiritual'],[],mid_tier,3159,True,0.6284319707138499
+A0140,Damith Nadarajah,['crafts'],['contemporary'],['english'],north_western,['contemporary'],"['reflective', 'patriotic']",[],established,2202,False,0.43380109823062846
+A0141,Thilini Liyanage,['drama'],['kolam'],['sinhala'],southern,['traditional'],['patriotic'],[],mid_tier,2862,True,0.5680292861500915
+A0142,Lakshmi Wickremasinghe,['literature'],"['contemporary', 'traditional']",['tamil'],sabaragamuwa,['contemporary'],"['intellectual', 'spiritual']",[],mid_tier,2513,False,0.4970510473866179
+A0143,Ruwan Dissanayake,['music'],"['baila', 'devotional_buddhist']",['sinhala'],north_western,['traditional'],"['spiritual', 'devotional']","['esala_perahera', 'vesak']",mid_tier,1671,True,0.32580841976815134
+A0144,Siva Kumar,['dance'],['bharatanatyam'],['tamil'],northern,['contemporary'],"['intellectual', 'romantic', 'devotional']","['deepavali', 'thai_pongal']",emerging,1147,False,0.21923937360178972
+A0145,Ravi Rajapaksa,['dance'],['contemporary'],['tamil'],eastern,['contemporary'],['intellectual'],['peradeniya_arts_festival'],emerging,4378,False,0.8763473662802522
+A0146,Sandani Perera,['crafts'],['traditional'],['sinhala'],sabaragamuwa,['contemporary'],"['energetic', 'celebratory']",[],emerging,581,True,0.104128533658735
+A0147,Angelo Silva,['visual_arts'],['contemporary'],"['sinhala', 'english']",central,['contemporary'],['intellectual'],[],mid_tier,3370,False,0.6713443156396176
+A0148,Chandima Pathirana,['drama'],['sokari'],['sinhala'],north_western,['contemporary'],"['celebratory', 'energetic']",[],emerging,3554,False,0.7087655074232255
+A0149,Kasun Nadarajah,['literature'],['traditional'],['sinhala'],north_western,['contemporary'],"['reflective', 'patriotic']",[],emerging,1562,True,0.3036404311572097
+A0150,Mohan Kumar,['music'],"['carnatic', 'devotional_hindu']",['tamil'],northern,['contemporary'],"['spiritual', 'devotional']",[],established,204,False,0.027455765710799267
+A0151,Chathurika Fernando,['music'],['baila'],['sinhala'],central,['contemporary'],"['celebratory', 'energetic']",[],emerging,3985,True,0.796420581655481
+A0152,Nadeesha Thiyagarajah,['drama'],['nadagam'],['sinhala'],southern,['contemporary'],['spiritual'],[],established,1735,False,0.3388244864754932
+A0153,Priya Rathnayake,['crafts'],['traditional'],['sinhala'],southern,['contemporary'],"['celebratory', 'intellectual']",[],established,1118,True,0.21334146837502543
+A0154,Vasanthi Liyanage,['music'],['carnatic'],['tamil'],northern,['contemporary'],['celebratory'],[],mid_tier,429,False,0.07321537522879805
+A0155,Muthu Sivarajah,['dance'],"['sabaragamuwa', 'contemporary']",['tamil'],northern,['contemporary'],['spiritual'],[],emerging,3153,False,0.6272117144600367
+A0156,Sachini Wijesinghe,['dance'],"['low_country', 'fusion']",['sinhala'],southern,['traditional'],"['romantic', 'reflective', 'energetic']",[],emerging,1571,False,0.30547081553792965
+A0157,Shehan Thiyagarajah,['drama'],"['nadagam', 'street_drama']",['sinhala'],uva,['contemporary'],"['celebratory', 'spiritual']",[],emerging,2242,True,0.44193613992271713
+A0158,Gayan Amarasinghe,['dance'],"['contemporary', 'sabaragamuwa']","['sinhala', 'english']",north_central,['contemporary'],"['intellectual', 'patriotic']",[],mid_tier,3003,True,0.5967053081147041
+A0159,Dilshan Gunasekara,['visual_arts'],"['contemporary', 'traditional']",['sinhala'],north_western,['contemporary'],"['reflective', 'energetic', 'devotional']",['peradeniya_arts_festival'],emerging,3245,False,0.6459223103518406
+A0160,Madhavi Wickremasinghe,['drama'],"['experimental', 'contemporary']",['sinhala'],north_central,['contemporary'],"['romantic', 'celebratory']",['peradeniya_arts_festival'],emerging,4814,False,0.9650193207240187
+A0161,Lakshmi Bandara,['music'],['contemporary'],['tamil'],north_central,['contemporary'],"['patriotic', 'intellectual']",[],mid_tier,3390,True,0.6754118364856619
+A0162,Sachini De Silva,['literature'],"['contemporary', 'traditional']","['sinhala', 'english']",eastern,['contemporary'],['devotional'],['independence_day'],emerging,3799,False,0.7585926377872687
+A0163,Vijay Wickremasinghe,['literature'],"['traditional', 'contemporary']",['tamil'],eastern,['contemporary'],['romantic'],['peradeniya_arts_festival'],mid_tier,264,False,0.03965832824893228
+A0164,Chathura Weerasinghe,['dance'],['contemporary'],"['sinhala', 'english']",eastern,['contemporary'],"['intellectual', 'romantic', 'patriotic']",[],mid_tier,3451,True,0.6878177750660972
+A0165,Shehan Senanayake,['music'],['fusion'],['sinhala'],central,"['fusion', 'contemporary']",['devotional'],[],emerging,3833,True,0.765507423225544
+A0166,Ajith Mendis,['music'],['folk_music'],['sinhala'],uva,['contemporary'],['devotional'],[],mid_tier,83,False,0.002847264592231035
+A0167,Saman Bandara,['drama'],['nurti'],['sinhala'],uva,['contemporary'],"['celebratory', 'romantic', 'spiritual']",[],emerging,1129,False,0.2155786048403498
+A0168,Saman Pathirana,['drama'],['sokari'],['sinhala'],eastern,['contemporary'],"['devotional', 'spiritual']",[],emerging,4786,False,0.9593247915395566
+A0169,Kavitha Kumara,['literature'],['contemporary'],['tamil'],north_central,['contemporary'],['energetic'],[],mid_tier,4872,False,0.9768151311775473
+A0170,Kavinda Herath,['drama'],['nurti'],['sinhala'],eastern,['contemporary'],"['spiritual', 'patriotic', 'celebratory']",[],established,2443,False,0.4828147244254627
+A0171,Thisara Jayasuriya,['dance'],['folk'],['sinhala'],western,['contemporary'],"['energetic', 'spiritual']",[],emerging,3241,True,0.6451088061826317
+A0172,Amila Bandara,['drama'],"['street_drama', 'kolam']",['sinhala'],southern,['traditional'],['devotional'],[],mid_tier,4843,True,0.970917225950783
+A0173,Dinesh Thiyagarajah,['dance'],['low_country'],['sinhala'],southern,['traditional'],"['romantic', 'spiritual']",[],mid_tier,1730,False,0.3378076062639821
+A0174,Ajith Gunasekara,['drama'],['kolam'],['sinhala'],southern,['traditional'],"['celebratory', 'devotional']",[],emerging,558,False,0.09945088468578402
+A0175,Lasith Jayasuriya,['visual_arts'],['traditional'],['sinhala'],western,['contemporary'],['romantic'],[],emerging,2367,False,0.4673581452104942
+A0176,Nadeeka Samaraweera,['literature'],['traditional'],['sinhala'],western,['contemporary'],['romantic'],[],established,1283,False,0.24689851535489118
+A0177,Buddhika Gunasekara,['visual_arts'],"['traditional', 'contemporary']",['sinhala'],central,['contemporary'],"['celebratory', 'spiritual', 'reflective']",[],mid_tier,2746,False,0.5444376652430344
+A0178,Ajith De Silva,['drama'],"['kolam', 'sokari']",['sinhala'],southern,['traditional'],"['energetic', 'celebratory']",[],mid_tier,837,False,0.1561928004881025
+A0179,Sanduni Rajapaksa,['crafts'],['contemporary'],['sinhala'],central,['contemporary'],"['intellectual', 'celebratory']",[],established,850,False,0.15883668903803133
+A0180,Dinesh Rathnayake,['drama'],"['experimental', 'kolam']",['sinhala'],southern,['traditional'],['romantic'],[],emerging,4316,False,0.8637380516575147
+A0181,Nalaka Kumar,['literature'],['traditional'],['sinhala'],central,['contemporary'],['intellectual'],[],emerging,4019,False,0.8033353670937563
+A0182,Buddhika Jayawardena,['dance'],"['contemporary', 'low_country']",['english'],southern,['traditional'],"['patriotic', 'energetic']",['peradeniya_arts_festival'],emerging,4589,False,0.9192597112060199
+A0183,Vasanthi Nadarajah,['dance'],['bharatanatyam'],['tamil'],northern,['contemporary'],"['romantic', 'intellectual']","['deepavali', 'thai_pongal']",emerging,4781,False,0.9583079113280456
+A0184,Amila Perera,['music'],['elle'],['sinhala'],central,['contemporary'],"['romantic', 'celebratory']",[],established,1834,False,0.35895871466341267
+A0185,Nimesh Mendis,['visual_arts'],['contemporary'],"['sinhala', 'english']",north_central,['contemporary'],['devotional'],['peradeniya_arts_festival'],mid_tier,4120,False,0.8238763473662802
+A0186,Vel Kumara,['dance'],['bharatanatyam'],['tamil'],northern,['contemporary'],"['romantic', 'energetic']","['deepavali', 'thai_pongal']",mid_tier,4832,False,0.9686800894854586
+A0187,Nuwan Sivarajah,['literature'],['contemporary'],['english'],north_central,['contemporary'],"['romantic', 'intellectual', 'devotional']",[],emerging,2841,False,0.5637583892617449
+A0188,Thilini Selvam,['drama'],"['nurti', 'sokari']",['sinhala'],north_western,['contemporary'],"['romantic', 'spiritual']",[],mid_tier,757,False,0.13992271710392515
+A0189,Dinesh Silva,['visual_arts'],['contemporary'],['english'],north_western,['contemporary'],['romantic'],['independence_day'],emerging,2298,True,0.45332519829164125
+A0190,Meena Herath,['music'],['carnatic'],['tamil'],northern,['contemporary'],"['devotional', 'intellectual', 'spiritual']",[],mid_tier,890,False,0.16697173073012
+A0191,Angelo De Silva,['dance'],"['fusion', 'folk']",['sinhala'],north_central,"['fusion', 'contemporary']","['celebratory', 'patriotic', 'reflective']",[],emerging,1202,True,0.23042505592841164
+A0192,Anusha Wijesinghe,['visual_arts'],['traditional'],['sinhala'],central,['contemporary'],"['reflective', 'spiritual']",[],emerging,4605,True,0.9225137278828553
+A0193,Thisara Bandara,['dance'],['folk'],['sinhala'],north_western,['contemporary'],['energetic'],[],mid_tier,311,True,0.049217002237136466
+A0194,Priya Sivarajah,['dance'],['fusion'],['sinhala'],sabaragamuwa,"['fusion', 'contemporary']","['intellectual', 'romantic']",[],established,883,False,0.16554809843400448
+A0195,Damith Kumara,['music'],['classical_sinhala'],['sinhala'],north_western,['traditional'],['patriotic'],[],emerging,4396,False,0.8800081350416921
+A0196,Thisara Ekanayake,['dance'],"['folk', 'sabaragamuwa']",['sinhala'],central,['contemporary'],"['patriotic', 'energetic', 'romantic']",[],emerging,2018,True,0.39637990644702054
+A0197,Samanthi Kumar,['crafts'],['traditional'],['sinhala'],western,['contemporary'],"['spiritual', 'romantic']",[],emerging,682,False,0.1246695139312589
+A0198,Anusha Thiyagarajah,['music'],"['fusion', 'baila']",['sinhala'],eastern,"['fusion', 'contemporary']","['celebratory', 'energetic']",[],mid_tier,2407,False,0.47549318690258285
+A0199,Priya Ekanayake,['literature'],['traditional'],['sinhala'],southern,['contemporary'],['energetic'],[],emerging,4631,False,0.9278015049827131
+A0200,Priya Pathirana,['dance'],['low_country'],['sinhala'],southern,['traditional'],"['spiritual', 'patriotic']",[],mid_tier,3692,True,0.7368314012609315
+A0201,Ragavan Kumara,['music'],"['carnatic', 'classical_sinhala']",['tamil'],northern,['traditional'],"['patriotic', 'romantic']",[],emerging,3098,False,0.6160260321334147
+A0202,Kasun Pathirana,['drama'],['kolam'],['sinhala'],southern,['traditional'],"['romantic', 'spiritual', 'intellectual']",[],emerging,3571,False,0.7122229001423632
+A0203,Mahela Nadarajah,['dance'],['sabaragamuwa'],['sinhala'],southern,['contemporary'],"['devotional', 'celebratory', 'energetic']",[],emerging,3815,True,0.7618466544641042
+A0204,Priya Thiyagarajah,['visual_arts'],"['contemporary', 'traditional']",['sinhala'],central,['contemporary'],"['patriotic', 'spiritual']",['peradeniya_arts_festival'],mid_tier,616,True,0.1112466951393126
+A0205,Nadeesha Dissanayake,['crafts'],['contemporary'],"['sinhala', 'english']",western,['contemporary'],"['romantic', 'spiritual', 'energetic']",['independence_day'],emerging,3816,False,0.7620500305064063
+A0206,Thilini Rajapaksa,['visual_arts'],"['traditional', 'contemporary']",['sinhala'],sabaragamuwa,['contemporary'],"['reflective', 'spiritual']",[],emerging,89,False,0.004067520846044336
+A0207,Nadeesha Jayawardena,['drama'],['contemporary'],"['sinhala', 'english']",eastern,['contemporary'],['patriotic'],['independence_day'],emerging,4429,False,0.8867195444376652
+A0208,Isuru Fernando,['visual_arts'],['traditional'],['sinhala'],north_central,['contemporary'],['intellectual'],[],emerging,1397,False,0.2700833841773439
+A0209,Sachini Ranasinghe,['dance'],['fusion'],['sinhala'],northern,"['fusion', 'contemporary']",['reflective'],[],mid_tier,2989,True,0.5938580435224731
+A0210,Rajan Gunasekara,['music'],"['devotional_hindu', 'elle']",['tamil'],sabaragamuwa,['contemporary'],"['spiritual', 'devotional']",[],emerging,1195,False,0.2290014236322961
+A0211,Nadeeka Jayawardena,['visual_arts'],['traditional'],['sinhala'],uva,['contemporary'],['spiritual'],[],emerging,1123,True,0.21435834858653652
+A0212,Isuru Jayawardena,['dance'],['contemporary'],"['sinhala', 'english']",central,['contemporary'],"['energetic', 'romantic']",[],emerging,90,False,0.004270896888346553
+A0213,Nalaka Amarasinghe,['music'],"['classical_sinhala', 'folk_music']",['sinhala'],central,['traditional'],['reflective'],[],mid_tier,2985,True,0.5930445393532642
+A0214,Amila Senanayake,['music'],['baila'],['sinhala'],western,['contemporary'],"['celebratory', 'energetic']",[],emerging,3111,False,0.6186699206833435
+A0215,Thilini Herath,['visual_arts'],['traditional'],['sinhala'],western,['contemporary'],['celebratory'],[],mid_tier,2848,False,0.5651820215578605
+A0216,Nalaka Fernando,['visual_arts'],['contemporary'],['english'],eastern,['contemporary'],"['intellectual', 'celebratory', 'romantic']",['peradeniya_arts_festival'],mid_tier,4796,False,0.9613585519625788
+A0217,Lasith Nadarajah,['music'],['devotional_buddhist'],['sinhala'],north_western,['traditional'],"['spiritual', 'devotional']",['vesak'],mid_tier,3889,False,0.7768964815944682
+A0218,Nishani Jayasuriya,['crafts'],"['contemporary', 'traditional']",['english'],eastern,['contemporary'],"['romantic', 'devotional']",[],mid_tier,2939,True,0.5836892414073622
+A0219,Samanthi Thiyagarajah,['crafts'],['traditional'],['sinhala'],central,['contemporary'],"['intellectual', 'energetic', 'devotional']",[],emerging,2872,True,0.5700630465731137
+A0220,Chandima Kumar,['visual_arts'],['contemporary'],['sinhala'],southern,['contemporary'],['reflective'],[],emerging,500,False,0.08765507423225544
+A0221,Ruwan Senanayake,['dance'],"['contemporary', 'kandyan']","['sinhala', 'english']",central,['traditional'],['energetic'],['poson'],mid_tier,3669,True,0.7321537522879805
+A0222,Shan Amarasinghe,['literature'],"['contemporary', 'traditional']",['tamil'],northern,['contemporary'],['reflective'],[],emerging,1322,True,0.25483018100467764
+A0223,Lasith Perera,['music'],['fusion'],['sinhala'],eastern,"['fusion', 'contemporary']","['patriotic', 'energetic', 'spiritual']",[],emerging,1297,False,0.24974577994712224
+A0224,Gayan Ekanayake,['music'],['classical_sinhala'],['sinhala'],northern,['traditional'],"['patriotic', 'devotional']",[],mid_tier,1266,False,0.24344112263575352
+A0225,Roshan Gunawardena,['literature'],['traditional'],['sinhala'],southern,['contemporary'],"['devotional', 'reflective']",[],established,3162,False,0.6290420988407566
+A0226,Hiruni Thiyagarajah,['music'],"['fusion', 'devotional_buddhist']",['sinhala'],central,['traditional'],"['spiritual', 'devotional']","['poson', 'vesak']",emerging,636,False,0.11531421598535692
+A0227,Dinesh Rathnayake,['drama'],"['street_drama', 'sokari']",['sinhala'],western,['contemporary'],['spiritual'],[],emerging,3227,False,0.6422615415904006
+A0228,Meena Samaraweera,['music'],"['carnatic', 'devotional_buddhist']",['tamil'],northern,['traditional'],"['spiritual', 'devotional']",['esala_perahera'],emerging,3071,True,0.6105348789912548
+A0229,Madhavi Ranasinghe,['music'],['devotional_buddhist'],['sinhala'],north_western,['traditional'],"['spiritual', 'devotional']","['vesak', 'poson']",emerging,3211,False,0.6390075249135652
+A0230,Siva Jayasuriya,['visual_arts'],['contemporary'],['tamil'],north_central,['contemporary'],['reflective'],['peradeniya_arts_festival'],emerging,3382,False,0.6737848281472443
+A0231,Sachini Rathnayake,['drama'],['nurti'],['sinhala'],southern,['contemporary'],"['devotional', 'reflective', 'energetic']",[],emerging,494,False,0.08643481797844214
+A0232,Suresh Ekanayake,['music'],"['carnatic', 'contemporary']",['tamil'],northern,['contemporary'],['energetic'],['independence_day'],emerging,2256,False,0.44478340451494813
+A0233,Buddhika Dissanayake,['dance'],['kandyan'],['sinhala'],central,['traditional'],"['devotional', 'intellectual']","['vesak', 'poson']",established,3830,False,0.7648972950986374
+A0234,Mala Herath,['literature'],"['traditional', 'contemporary']",['tamil'],uva,['contemporary'],"['intellectual', 'devotional', 'spiritual']",['independence_day'],mid_tier,3809,True,0.7606263982102909
+A0235,Malsha Pathirana,['music'],['fusion'],['sinhala'],southern,"['fusion', 'contemporary']",['romantic'],[],established,1229,False,0.23591620907057148
+A0236,Nadeesha De Silva,['music'],['elle'],['sinhala'],western,['contemporary'],"['romantic', 'reflective', 'celebratory']",[],emerging,3697,True,0.7378482814724425
+A0237,Dilini Samaraweera,['music'],['folk_music'],['sinhala'],southern,['contemporary'],"['devotional', 'spiritual', 'celebratory']",[],mid_tier,1291,True,0.24852552369330894
+A0238,Siva Gunasekara,['dance'],"['bharatanatyam', 'fusion']",['tamil'],northern,"['fusion', 'contemporary']","['romantic', 'intellectual', 'reflective']","['deepavali', 'thai_pongal']",mid_tier,4499,True,0.9009558673988204
+A0239,Roshan Perera,['music'],['contemporary'],['english'],western,['contemporary'],"['reflective', 'patriotic', 'romantic']",['peradeniya_arts_festival'],mid_tier,3172,True,0.6310758592637787
+A0240,Madhavi Kumara,['drama'],['nadagam'],['sinhala'],eastern,['contemporary'],"['reflective', 'celebratory']",[],emerging,4705,False,0.942851332113077
+A0241,Lasith Kumara,['dance'],['low_country'],['sinhala'],southern,['traditional'],['romantic'],[],mid_tier,1812,False,0.3544844417327639
+A0242,Hashini Herath,['literature'],"['traditional', 'contemporary']",['sinhala'],north_western,['contemporary'],"['devotional', 'celebratory']",['peradeniya_arts_festival'],mid_tier,541,False,0.09599349196664633
+A0243,Dilshan Sivarajah,['dance'],['contemporary'],['sinhala'],eastern,['contemporary'],"['spiritual', 'celebratory']",['independence_day'],emerging,4219,False,0.8440105755541997
+A0244,Ayesha Kumar,['literature'],['contemporary'],"['sinhala', 'english']",sabaragamuwa,['contemporary'],"['spiritual', 'reflective', 'romantic']",[],emerging,459,True,0.07931665649786455
+A0245,Hiruni Pathirana,['crafts'],['traditional'],['sinhala'],north_central,['contemporary'],"['patriotic', 'energetic', 'reflective']",[],mid_tier,4546,True,0.9105145413870246
+A0246,Yashodha Perera,['dance'],"['contemporary', 'kandyan']","['sinhala', 'english']",central,['traditional'],"['spiritual', 'energetic']",['esala_perahera'],emerging,4276,False,0.855603009965426
+A0247,Nadeeka Thiyagarajah,['visual_arts'],"['contemporary', 'traditional']",['sinhala'],uva,['contemporary'],"['intellectual', 'reflective']",[],emerging,391,False,0.0654870856213138
+A0248,Yashodha Kumar,['dance'],['contemporary'],"['sinhala', 'english']",north_western,['contemporary'],['romantic'],['independence_day'],emerging,1278,False,0.2458816351433801
+A0249,Dinesh Wijesinghe,['music'],['folk_music'],['sinhala'],northern,['contemporary'],"['reflective', 'intellectual', 'spiritual']",[],emerging,3998,False,0.7990644702054098
+A0250,Thisara Rathnayake,['dance'],['sabaragamuwa'],['sinhala'],sabaragamuwa,['contemporary'],"['devotional', 'energetic']",[],emerging,1708,True,0.3333333333333333
+A0251,Yashodha Bandara,['crafts'],['traditional'],['sinhala'],uva,['contemporary'],['intellectual'],[],mid_tier,1868,True,0.365873500101688
+A0252,Hashini Sivarajah,['dance'],['fusion'],['sinhala'],western,"['fusion', 'contemporary']",['patriotic'],[],established,3543,True,0.7065283709579011
+A0253,Gayan Kumara,['music'],['fusion'],['sinhala'],uva,"['fusion', 'contemporary']",['celebratory'],[],emerging,115,False,0.009355297945901973
+A0254,Sanduni Jayasuriya,['music'],['elle'],['sinhala'],uva,['contemporary'],"['intellectual', 'energetic']",[],established,4156,True,0.83119788488916
+A0255,Lasith Wijesinghe,['drama'],['contemporary'],['english'],sabaragamuwa,['contemporary'],"['energetic', 'celebratory']",[],emerging,1209,False,0.23184868822452714
+A0256,Tharindu Liyanage,['drama'],['nadagam'],['sinhala'],eastern,['contemporary'],"['energetic', 'patriotic']",[],mid_tier,3712,False,0.7408989221069758
+A0257,Ganesh De Silva,['dance'],"['fusion', 'bharatanatyam']",['tamil'],northern,"['fusion', 'contemporary']","['spiritual', 'patriotic']","['deepavali', 'thai_pongal']",emerging,3038,False,0.6038234695952817
+A0258,Saman Fernando,['visual_arts'],['contemporary'],['english'],uva,['contemporary'],"['romantic', 'celebratory']",['independence_day'],emerging,3053,True,0.606874110229815
+A0259,Vel Bandara,['drama'],"['contemporary', 'nurti']",['tamil'],northern,['contemporary'],"['energetic', 'patriotic']",[],emerging,2166,True,0.4264795607077486
+A0260,Kamala De Silva,['crafts'],"['contemporary', 'traditional']",['tamil'],eastern,['contemporary'],"['energetic', 'intellectual']",[],mid_tier,4856,True,0.9735611145007118
+A0261,Nuwan Gunawardena,['drama'],['contemporary'],['sinhala'],western,['contemporary'],['devotional'],[],emerging,3337,False,0.6646329062436445
+A0262,Vel Jayawardena,['crafts'],"['contemporary', 'traditional']",['tamil'],uva,['contemporary'],"['energetic', 'spiritual', 'reflective']",['independence_day'],emerging,2373,False,0.4685784014643075
+A0263,Nuwan Samaraweera,['visual_arts'],['contemporary'],['english'],northern,['contemporary'],"['devotional', 'patriotic', 'energetic']",['independence_day'],emerging,4103,False,0.8204189546471425
+A0264,Sandani Samaraweera,['literature'],['contemporary'],"['sinhala', 'english']",sabaragamuwa,['contemporary'],['romantic'],['peradeniya_arts_festival'],emerging,4130,False,0.8259101077893024
+A0265,Mahela Perera,['drama'],['experimental'],['sinhala'],western,['contemporary'],"['reflective', 'celebratory', 'romantic']",[],emerging,3138,False,0.6241610738255033
+A0266,Hiruni Samaraweera,['drama'],['kolam'],['sinhala'],southern,['traditional'],"['patriotic', 'reflective', 'spiritual']",[],emerging,1712,False,0.3341468375025422
+A0267,Ravi Nadarajah,['literature'],['traditional'],['sinhala'],northern,['contemporary'],"['devotional', 'intellectual']",[],mid_tier,1694,False,0.3304860687411023
+A0268,Ravi Jayasuriya,['dance'],"['kandyan', 'bharatanatyam']",['tamil'],central,['traditional'],['celebratory'],['vesak'],mid_tier,2587,False,0.5121008745169819
+A0269,Rajan Jayawardena,['crafts'],"['traditional', 'contemporary']",['tamil'],eastern,['contemporary'],['patriotic'],[],mid_tier,454,False,0.07829977628635347
+A0270,Chandima Fernando,['literature'],['contemporary'],['english'],north_central,['contemporary'],['energetic'],['peradeniya_arts_festival'],mid_tier,724,True,0.133211307707952
+A0271,Arun Samaraweera,['music'],['carnatic'],['tamil'],northern,['contemporary'],"['spiritual', 'reflective', 'romantic']",[],mid_tier,2150,False,0.42322554403091317
+A0272,Ragavan Ranasinghe,['dance'],"['bharatanatyam', 'low_country']",['tamil'],southern,['traditional'],['spiritual'],"['deepavali', 'thai_pongal']",mid_tier,1787,False,0.34940004067520847
+A0273,Sandani Jayasuriya,['literature'],['contemporary'],['english'],northern,['contemporary'],"['intellectual', 'romantic', 'devotional']",['independence_day'],mid_tier,1196,False,0.22920479967459834
+A0274,Shan Gunawardena,['crafts'],['contemporary'],['tamil'],western,['contemporary'],"['spiritual', 'energetic', 'devotional']",['peradeniya_arts_festival'],emerging,3311,False,0.6593451291437868
+A0275,Dinesh Ranasinghe,['music'],['fusion'],['sinhala'],northern,"['fusion', 'contemporary']","['energetic', 'intellectual']",[],emerging,769,False,0.14236322961155176
+A0276,Ajith Gunawardena,['visual_arts'],"['traditional', 'contemporary']",['english'],southern,['contemporary'],"['reflective', 'spiritual', 'energetic']",['peradeniya_arts_festival'],emerging,1645,False,0.32052064266829366
+A0277,Priya Weerasinghe,['visual_arts'],['contemporary'],['tamil'],southern,['contemporary'],['celebratory'],['peradeniya_arts_festival'],emerging,4436,True,0.8881431767337807
+A0278,Thisara Pathirana,['drama'],['nurti'],['sinhala'],uva,['contemporary'],"['reflective', 'energetic']",[],emerging,2477,True,0.48972950986373803
+A0279,Vel Kumara,['music'],"['devotional_hindu', 'classical_sinhala']",['tamil'],north_western,['traditional'],"['spiritual', 'devotional']",[],mid_tier,2433,True,0.4807809640024405
+A0280,Vani Sivarajah,['visual_arts'],['contemporary'],['tamil'],uva,['contemporary'],"['energetic', 'romantic', 'celebratory']",[],established,2924,False,0.5806386007728289
+A0281,Chandima Sivarajah,['crafts'],['traditional'],['sinhala'],central,['contemporary'],"['devotional', 'celebratory']",[],mid_tier,85,False,0.003254016676835469
+A0282,Mahela Senanayake,['music'],['elle'],['sinhala'],sabaragamuwa,['contemporary'],"['intellectual', 'reflective']",[],emerging,186,False,0.023794996949359364
+A0283,Chandima Gunawardena,['crafts'],['traditional'],['sinhala'],central,['contemporary'],"['reflective', 'intellectual', 'patriotic']",[],emerging,345,False,0.05613178767541183
+A0284,Buddhika Thiyagarajah,['music'],['classical_sinhala'],['sinhala'],north_central,['traditional'],"['patriotic', 'spiritual', 'devotional']",[],mid_tier,1025,False,0.19442749644091925
+A0285,Danushka Weerasinghe,['dance'],['kandyan'],['sinhala'],central,['traditional'],['intellectual'],['vesak'],emerging,3203,False,0.6373805165751475
+A0286,Mohan Perera,['visual_arts'],['contemporary'],['tamil'],northern,['contemporary'],"['romantic', 'celebratory']",['peradeniya_arts_festival'],mid_tier,2319,False,0.4575960951799878
+A0287,Nalaka Gunasekara,['literature'],"['contemporary', 'traditional']",['english'],eastern,['contemporary'],['devotional'],['independence_day'],established,1842,True,0.3605857230018304
+A0288,Saman Gunawardena,['literature'],['contemporary'],['english'],sabaragamuwa,['contemporary'],"['devotional', 'reflective', 'romantic']",[],emerging,2480,False,0.49033963799064473
+A0289,Ganesh Mendis,['music'],['devotional_hindu'],['tamil'],sabaragamuwa,['contemporary'],"['spiritual', 'devotional']",[],established,4101,True,0.8200122025625382
+A0290,Thisara Dissanayake,['visual_arts'],"['contemporary', 'traditional']","['sinhala', 'english']",western,['contemporary'],"['intellectual', 'energetic', 'reflective']",['independence_day'],emerging,3396,False,0.6766320927394753
+A0291,Senthil Liyanage,['crafts'],['contemporary'],['tamil'],northern,['contemporary'],"['devotional', 'romantic', 'patriotic']",['independence_day'],mid_tier,2664,False,0.5277608297742525
+A0292,Nadeeka Liyanage,['drama'],"['kolam', 'street_drama']",['sinhala'],southern,['traditional'],['romantic'],[],mid_tier,468,False,0.0811470408785845
+A0293,Nishani De Silva,['drama'],['experimental'],['sinhala'],northern,['contemporary'],"['celebratory', 'patriotic', 'energetic']",[],established,4885,False,0.9794590197274761
+A0294,Tharindu Jayasuriya,['literature'],"['contemporary', 'traditional']","['sinhala', 'english']",sabaragamuwa,['contemporary'],['spiritual'],['independence_day'],emerging,1136,False,0.21700223713646533
+A0295,Dilini Kumara,['literature'],['contemporary'],['sinhala'],southern,['contemporary'],"['spiritual', 'reflective', 'intellectual']",['independence_day'],emerging,2219,False,0.4372584909497661
+A0296,Lahiru Liyanage,['literature'],['traditional'],['sinhala'],northern,['contemporary'],"['patriotic', 'spiritual']",[],established,964,True,0.18202155786048405
+A0297,Ayesha Pathirana,['literature'],['traditional'],['sinhala'],eastern,['contemporary'],['devotional'],[],emerging,4566,False,0.9145820622330689
+A0298,Hiruni Wickremasinghe,['literature'],['traditional'],['sinhala'],north_western,['contemporary'],['celebratory'],[],mid_tier,4588,False,0.9190563351637178
+A0299,Roshan Perera,['drama'],['nadagam'],['sinhala'],central,['contemporary'],"['devotional', 'celebratory']",[],mid_tier,2705,True,0.5360992475086435
+A0300,Vijay Wijesinghe,['visual_arts'],['contemporary'],['tamil'],north_western,['contemporary'],"['energetic', 'patriotic']",['independence_day'],emerging,4504,False,0.9019727476103315
+A0301,Dilini Rathnayake,['visual_arts'],['traditional'],['sinhala'],uva,['contemporary'],"['devotional', 'celebratory']",[],emerging,2650,False,0.5249135651820216
+A0302,Hashini Jayasuriya,['drama'],"['contemporary', 'experimental']","['sinhala', 'english']",north_central,['contemporary'],"['spiritual', 'intellectual']",['independence_day'],mid_tier,3671,False,0.7325605043725849
+A0303,Amila Kumara,['dance'],['kandyan'],['sinhala'],central,['traditional'],"['energetic', 'celebratory']","['vesak', 'poson']",mid_tier,2802,False,0.5558267236119585
+A0304,Thiru Kumara,['visual_arts'],"['traditional', 'contemporary']",['tamil'],western,['contemporary'],"['patriotic', 'intellectual', 'romantic']",[],mid_tier,3480,False,0.6937156802928615
+A0305,Ganesh Wijesinghe,['literature'],"['traditional', 'contemporary']",['tamil'],northern,['contemporary'],"['celebratory', 'reflective', 'romantic']",['independence_day'],emerging,3075,False,0.6113483831604637
+A0306,Thiru Amarasinghe,['music'],['devotional_hindu'],['tamil'],western,['contemporary'],"['spiritual', 'devotional']",[],emerging,1995,True,0.39170225747406956
+A0307,Vindya Perera,['drama'],['nadagam'],['sinhala'],north_western,['contemporary'],"['devotional', 'energetic']",[],emerging,2763,True,0.5478950579621721
+A0308,Mohan Rajapaksa,['dance'],"['bharatanatyam', 'sabaragamuwa']",['tamil'],northern,['contemporary'],['spiritual'],"['deepavali', 'thai_pongal']",mid_tier,2087,False,0.4104128533658735
+A0309,Sanduni Ranasinghe,['crafts'],['traditional'],['sinhala'],western,['contemporary'],"['reflective', 'patriotic', 'romantic']",[],mid_tier,2677,True,0.5304047183241815
+A0310,Isuru Samaraweera,['music'],['baila'],['sinhala'],uva,['contemporary'],"['celebratory', 'energetic']",[],mid_tier,2833,False,0.5621313809233273
+A0311,Vindya Perera,['visual_arts'],['traditional'],['sinhala'],sabaragamuwa,['contemporary'],['devotional'],[],mid_tier,4174,False,0.8348586536506
+A0312,Dilshan Weerasinghe,['crafts'],['traditional'],['sinhala'],sabaragamuwa,['contemporary'],['devotional'],[],emerging,1834,False,0.35895871466341267
+A0313,Durga Liyanage,['visual_arts'],"['traditional', 'contemporary']",['tamil'],southern,['contemporary'],"['intellectual', 'energetic', 'celebratory']",['peradeniya_arts_festival'],mid_tier,713,False,0.1309741712426276
+A0314,Thilini Fernando,['music'],['devotional_buddhist'],['sinhala'],north_western,['traditional'],"['spiritual', 'devotional']",['vesak'],emerging,3140,False,0.6245678259101078
+A0315,Nimesh Gunawardena,['crafts'],['contemporary'],['sinhala'],northern,['contemporary'],"['romantic', 'patriotic', 'reflective']",[],emerging,3298,True,0.656701240593858
+A0316,Chathura Herath,['literature'],"['contemporary', 'traditional']","['sinhala', 'english']",eastern,['contemporary'],"['intellectual', 'patriotic']",['peradeniya_arts_festival'],mid_tier,2016,False,0.3959731543624161
+A0317,Dilshan Silva,['crafts'],['traditional'],['sinhala'],central,['contemporary'],['reflective'],[],established,2618,True,0.5184055318283506
+A0318,Amila Amarasinghe,['music'],['classical_sinhala'],['sinhala'],central,['traditional'],"['romantic', 'spiritual', 'devotional']",[],mid_tier,1434,False,0.27760829774252593
+A0319,Sanduni Liyanage,['music'],['fusion'],['sinhala'],northern,"['fusion', 'contemporary']","['spiritual', 'devotional', 'patriotic']",[],mid_tier,3417,True,0.6809029896278218
+A0320,Shehan Bandara,['dance'],['contemporary'],['sinhala'],uva,['contemporary'],['devotional'],[],mid_tier,4032,False,0.8059792556436852
+A0321,Samanthi Jayasuriya,['music'],['classical_sinhala'],['sinhala'],north_western,['traditional'],['spiritual'],[],mid_tier,3932,False,0.7856416514134635
+A0322,Dinesh Amarasinghe,['visual_arts'],['traditional'],['sinhala'],eastern,['contemporary'],"['patriotic', 'devotional', 'celebratory']",[],mid_tier,2676,True,0.5302013422818792
+A0323,Sandani Ekanayake,['music'],['fusion'],['sinhala'],north_western,"['fusion', 'contemporary']",['spiritual'],[],emerging,2219,False,0.4372584909497661
+A0324,Sachini Nadarajah,['drama'],['nadagam'],['sinhala'],north_central,['contemporary'],"['intellectual', 'spiritual', 'romantic']",[],mid_tier,4965,True,0.9957291031116534
+A0325,Shehan Gunawardena,['visual_arts'],['traditional'],['sinhala'],uva,['contemporary'],"['spiritual', 'patriotic']",[],emerging,1208,False,0.23164531218222492
+A0326,Senthil Pathirana,['music'],['carnatic'],['tamil'],northern,['contemporary'],['reflective'],[],emerging,3659,False,0.7301199918649584
+A0327,Hashini De Silva,['dance'],['folk'],['sinhala'],northern,['contemporary'],"['spiritual', 'intellectual']",[],mid_tier,431,True,0.07362212731340248
+A0328,Nadeesha Samaraweera,['music'],['devotional_buddhist'],['sinhala'],north_central,['traditional'],"['spiritual', 'devotional']",['esala_perahera'],emerging,4098,False,0.8194020744356315
+A0329,Thilini Senanayake,['literature'],['contemporary'],['sinhala'],central,['contemporary'],"['devotional', 'intellectual']",[],mid_tier,3118,True,0.620093552979459
+A0330,Isuru Kumar,['crafts'],['contemporary'],['english'],northern,['contemporary'],"['romantic', 'energetic']",[],emerging,4681,False,0.9379703070978239
+A0331,Thisara Kumara,['crafts'],"['traditional', 'contemporary']",['english'],sabaragamuwa,['contemporary'],"['energetic', 'celebratory', 'devotional']",['independence_day'],mid_tier,3339,False,0.665039658328249
+A0332,Saman Perera,['literature'],"['contemporary', 'traditional']","['sinhala', 'english']",central,['contemporary'],"['reflective', 'energetic', 'celebratory']",['peradeniya_arts_festival'],emerging,2214,True,0.436241610738255
+A0333,Sanduni Gunawardena,['literature'],"['traditional', 'contemporary']",['sinhala'],sabaragamuwa,['contemporary'],"['reflective', 'spiritual']",[],emerging,766,False,0.14175310148464512
+A0334,Sandani Jayawardena,['visual_arts'],['contemporary'],['sinhala'],uva,['contemporary'],"['intellectual', 'romantic']",['peradeniya_arts_festival'],emerging,4967,True,0.9961358551962579
+A0335,Saman Amarasinghe,['music'],"['elle', 'baila']",['sinhala'],uva,['contemporary'],"['celebratory', 'energetic']",[],established,2800,False,0.5554199715273541
+A0336,Ravi Senanayake,['drama'],['kolam'],['sinhala'],southern,['traditional'],"['spiritual', 'celebratory', 'energetic']",[],mid_tier,2617,False,0.5182021557860484
+A0337,Arun Sivarajah,['music'],['carnatic'],['tamil'],northern,['contemporary'],['spiritual'],[],mid_tier,3725,False,0.7435428106569046
+A0338,Ravi Gunawardena,['literature'],"['contemporary', 'traditional']",['english'],eastern,['contemporary'],"['devotional', 'spiritual', 'energetic']",[],established,4883,False,0.9790522676428717
+A0339,Kasun De Silva,['crafts'],['traditional'],['sinhala'],western,['contemporary'],['energetic'],[],emerging,4094,False,0.8185885702664226
+A0340,Sanduni Weerasinghe,['literature'],['traditional'],['sinhala'],north_central,['contemporary'],['energetic'],[],mid_tier,679,False,0.12405938580435225
+A0341,Nadeeka Jayawardena,['crafts'],['traditional'],['sinhala'],western,['contemporary'],"['celebratory', 'spiritual']",[],emerging,2473,False,0.4889160056945292
+A0342,Saman Liyanage,['drama'],['nadagam'],['sinhala'],north_central,['contemporary'],['spiritual'],[],emerging,1312,True,0.25279642058165547
+A0343,Ajith Liyanage,['drama'],"['nadagam', 'kolam']",['sinhala'],southern,['traditional'],"['romantic', 'celebratory']",[],emerging,4618,False,0.9251576164327843
+A0344,Angelo Pathirana,['dance'],['fusion'],['sinhala'],eastern,"['fusion', 'contemporary']","['devotional', 'spiritual']",[],mid_tier,1542,False,0.29957291031116534
+A0345,Anusha Gunasekara,['visual_arts'],"['traditional', 'contemporary']","['sinhala', 'english']",eastern,['contemporary'],"['romantic', 'celebratory']",[],emerging,818,False,0.15232865568436038
+A0346,Vindya Silva,['music'],"['folk_music', 'classical_sinhala']",['sinhala'],uva,['traditional'],"['devotional', 'romantic', 'patriotic']",[],mid_tier,3561,False,0.7101891397193411
+A0347,Lahiru Silva,['drama'],['experimental'],['sinhala'],sabaragamuwa,['contemporary'],"['reflective', 'patriotic']",[],mid_tier,1490,False,0.28899735611145005
+A0348,Dilshan Samaraweera,['visual_arts'],['traditional'],['sinhala'],north_western,['contemporary'],"['spiritual', 'energetic', 'devotional']",[],emerging,3904,True,0.7799471222290014
+A0349,Thilini Dissanayake,['visual_arts'],['contemporary'],"['sinhala', 'english']",central,['contemporary'],"['energetic', 'patriotic']",['independence_day'],emerging,1456,False,0.2820825706731747
+A0350,Nalaka Samaraweera,['literature'],"['contemporary', 'traditional']","['sinhala', 'english']",western,['contemporary'],"['energetic', 'spiritual']",[],emerging,4508,True,0.9027862517795404
+A0351,Nuwan Mendis,['drama'],['sokari'],['sinhala'],eastern,['contemporary'],"['romantic', 'spiritual', 'patriotic']",[],mid_tier,2054,False,0.4037014439699003
+A0352,Lasith Jayasuriya,['drama'],['street_drama'],['sinhala'],eastern,['contemporary'],"['devotional', 'reflective']",[],mid_tier,4266,False,0.8535692495424039
+A0353,Buddhika Jayawardena,['dance'],"['folk', 'sabaragamuwa']",['sinhala'],western,['contemporary'],"['romantic', 'celebratory', 'reflective']",[],mid_tier,582,False,0.10433190970103721
+A0354,Thilini Nadarajah,['visual_arts'],['contemporary'],"['sinhala', 'english']",eastern,['contemporary'],"['spiritual', 'patriotic']",[],established,628,True,0.1136872076469392
+A0355,Suresh Bandara,['music'],['devotional_hindu'],['tamil'],eastern,['contemporary'],"['spiritual', 'devotional']",[],established,338,False,0.05470815537929632
+A0356,Vijay Jayawardena,['music'],['carnatic'],['tamil'],northern,['contemporary'],"['devotional', 'energetic', 'romantic']",[],emerging,1425,False,0.27577791336180596
+A0357,Vel Senanayake,['music'],['carnatic'],['tamil'],northern,['contemporary'],['romantic'],[],mid_tier,1621,False,0.3156396176530405
+A0358,Chathurika Dissanayake,['dance'],"['fusion', 'low_country']",['sinhala'],southern,['traditional'],"['reflective', 'intellectual']",[],emerging,3528,False,0.7034777303233679
+A0359,Angelo Liyanage,['crafts'],"['contemporary', 'traditional']","['sinhala', 'english']",northern,['contemporary'],"['energetic', 'spiritual']",['independence_day'],mid_tier,3623,False,0.7227984543420785
+A0360,Anusha Mendis,['drama'],"['street_drama', 'nurti']",['sinhala'],north_western,['contemporary'],"['reflective', 'intellectual']",[],emerging,1144,False,0.21862924547488305
+A0361,Nadeeka Ekanayake,['drama'],['nadagam'],['sinhala'],northern,['contemporary'],"['celebratory', 'romantic']",[],established,4334,False,0.8673988204189547
+A0362,Thisara Rathnayake,['drama'],['nurti'],['sinhala'],western,['contemporary'],['devotional'],[],established,2371,False,0.46817164937970307
+A0363,Sanduni Weerasinghe,['drama'],['experimental'],['sinhala'],uva,['contemporary'],"['patriotic', 'celebratory']",[],mid_tier,1699,True,0.3315029489526134
+A0364,Hashini Thiyagarajah,['crafts'],"['contemporary', 'traditional']","['sinhala', 'english']",sabaragamuwa,['contemporary'],"['intellectual', 'spiritual', 'reflective']",['peradeniya_arts_festival'],emerging,4875,False,0.9774252593044539
+A0365,Chandima Fernando,['crafts'],['traditional'],['sinhala'],north_central,['contemporary'],"['spiritual', 'energetic', 'patriotic']",[],established,3599,False,0.7179174293268253
+A0366,Nadeesha De Silva,['dance'],"['contemporary', 'folk']",['sinhala'],central,['contemporary'],['energetic'],['peradeniya_arts_festival'],mid_tier,3481,False,0.6939190563351637
+A0367,Hiruni Ranasinghe,['drama'],['nadagam'],['sinhala'],central,['contemporary'],"['devotional', 'celebratory', 'patriotic']",[],emerging,4661,False,0.9339027862517796
+A0368,Saman Kumar,['literature'],['contemporary'],"['sinhala', 'english']",north_western,['contemporary'],"['devotional', 'romantic', 'intellectual']",['independence_day'],mid_tier,186,False,0.023794996949359364
+A0369,Samanthi Liyanage,['visual_arts'],['traditional'],['sinhala'],uva,['contemporary'],"['romantic', 'celebratory']",[],established,1507,False,0.29245474883058775
+A0370,Dilini Kumar,['visual_arts'],['traditional'],['sinhala'],north_western,['contemporary'],"['spiritual', 'reflective']",[],emerging,2021,False,0.3969900345739272
+A0371,Lakshman Bandara,['literature'],"['contemporary', 'traditional']",['english'],eastern,['contemporary'],"['spiritual', 'patriotic', 'energetic']",[],emerging,3385,False,0.6743949562741509
+A0372,Lasith Fernando,['dance'],['low_country'],['sinhala'],southern,['traditional'],"['patriotic', 'spiritual']",[],mid_tier,1207,False,0.23144193613992273
+A0373,Samanthi De Silva,['crafts'],['contemporary'],['sinhala'],northern,['contemporary'],['romantic'],['independence_day'],emerging,4344,False,0.8694325808419768
+A0374,Buddhika Liyanage,['visual_arts'],['traditional'],['sinhala'],north_central,['contemporary'],"['devotional', 'spiritual']",[],emerging,2128,False,0.4187512711002644
+A0375,Amila Wickremasinghe,['drama'],['street_drama'],['sinhala'],eastern,['contemporary'],"['devotional', 'patriotic']",[],emerging,639,False,0.11592434411226357
+A0376,Vel De Silva,['music'],['devotional_hindu'],['tamil'],uva,['contemporary'],"['spiritual', 'devotional']",[],mid_tier,441,False,0.07565588773642465
+A0377,Vijay Samaraweera,['music'],"['contemporary', 'devotional_buddhist']",['tamil'],north_western,['traditional'],"['spiritual', 'devotional']","['esala_perahera', 'poson']",emerging,2057,False,0.404311572096807
+A0378,Hiruni Ekanayake,['visual_arts'],['traditional'],['sinhala'],sabaragamuwa,['contemporary'],"['intellectual', 'devotional', 'energetic']",[],established,2283,False,0.450274557657108
+A0379,Siva Rathnayake,['literature'],['contemporary'],['tamil'],southern,['contemporary'],"['patriotic', 'devotional', 'spiritual']",['peradeniya_arts_festival'],emerging,2016,False,0.3959731543624161
+A0380,Vel Dissanayake,['visual_arts'],['contemporary'],['tamil'],western,['contemporary'],"['reflective', 'celebratory']",['peradeniya_arts_festival'],mid_tier,2923,True,0.5804352247305268
+A0381,Sandani Silva,['dance'],['fusion'],['sinhala'],uva,"['fusion', 'contemporary']",['energetic'],[],mid_tier,431,False,0.07362212731340248
+A0382,Amila Liyanage,['drama'],"['experimental', 'nurti']",['sinhala'],north_western,['contemporary'],"['patriotic', 'intellectual']",[],emerging,2207,False,0.43481797844213954
+A0383,Vijay Silva,['crafts'],"['contemporary', 'traditional']",['tamil'],northern,['contemporary'],"['reflective', 'spiritual']",[],mid_tier,160,False,0.018507219849501728
+A0384,Dinesh Sivarajah,['dance'],['kandyan'],['sinhala'],central,['traditional'],"['spiritual', 'celebratory', 'devotional']",['esala_perahera'],mid_tier,687,True,0.12568639414276997
+A0385,Damith Weerasinghe,['literature'],"['contemporary', 'traditional']",['sinhala'],central,['contemporary'],"['spiritual', 'patriotic', 'reflective']",[],established,3341,False,0.6654464104128534
+A0386,Dinesh Fernando,['drama'],"['nurti', 'experimental']",['sinhala'],north_central,['contemporary'],['devotional'],[],emerging,3831,False,0.7651006711409396
+A0387,Thisara Bandara,['visual_arts'],['contemporary'],"['sinhala', 'english']",western,['contemporary'],"['patriotic', 'intellectual', 'spiritual']",['peradeniya_arts_festival'],emerging,4365,False,0.8737034777303234
+A0388,Thilini Bandara,['dance'],['low_country'],['sinhala'],southern,['traditional'],"['energetic', 'patriotic', 'spiritual']",[],mid_tier,4116,False,0.8230628431970713
+A0389,Chathurika Perera,['drama'],"['nadagam', 'experimental']",['sinhala'],uva,['contemporary'],"['energetic', 'romantic', 'devotional']",[],emerging,2954,True,0.5867398820418954
+A0390,Amila Rajapaksa,['dance'],['folk'],['sinhala'],western,['contemporary'],"['intellectual', 'reflective']",[],mid_tier,789,True,0.1464307504575961
+A0391,Kamala Jayawardena,['literature'],"['contemporary', 'traditional']",['tamil'],uva,['contemporary'],"['romantic', 'devotional']",[],emerging,894,True,0.16778523489932887
+A0392,Hiruni De Silva,['literature'],"['traditional', 'contemporary']",['english'],northern,['contemporary'],"['spiritual', 'romantic']",['peradeniya_arts_festival'],emerging,1719,True,0.33557046979865773
+A0393,Shehan Sivarajah,['music'],"['baila', 'folk_music']",['sinhala'],western,['contemporary'],"['celebratory', 'energetic']",[],emerging,3477,False,0.6931055521659548
+A0394,Meena Jayawardena,['crafts'],"['contemporary', 'traditional']",['tamil'],southern,['contemporary'],"['spiritual', 'energetic', 'romantic']",['peradeniya_arts_festival'],emerging,4779,False,0.9579011592434411
+A0395,Thilini Rajapaksa,['literature'],"['traditional', 'contemporary']",['english'],north_western,['contemporary'],"['spiritual', 'energetic']",['peradeniya_arts_festival'],mid_tier,845,False,0.15781980882652025
+A0396,Chathura Perera,['drama'],['street_drama'],['sinhala'],central,['contemporary'],"['celebratory', 'patriotic', 'intellectual']",[],mid_tier,3205,True,0.6377872686597519
+A0397,Madhavi Bandara,['music'],"['elle', 'devotional_buddhist']",['sinhala'],southern,['traditional'],"['spiritual', 'devotional']",['poson'],emerging,2033,False,0.3994305470815538
+A0398,Mala Perera,['dance'],"['bharatanatyam', 'kandyan']",['tamil'],central,['traditional'],['spiritual'],"['vesak', 'esala_perahera']",established,2472,False,0.48871262965222695
+A0399,Nimesh Wickremasinghe,['dance'],['kandyan'],['sinhala'],central,['traditional'],"['patriotic', 'reflective']",['vesak'],emerging,532,False,0.09416310758592637
+A0400,Vindya Samaraweera,['drama'],['nurti'],['sinhala'],sabaragamuwa,['contemporary'],['spiritual'],[],mid_tier,3003,False,0.5967053081147041
+A0401,Yashodha Wickremasinghe,['drama'],['nadagam'],['sinhala'],north_western,['contemporary'],"['devotional', 'patriotic']",[],mid_tier,2552,False,0.5049827130364043
+A0402,Thisara Gunasekara,['drama'],['street_drama'],['sinhala'],southern,['contemporary'],"['spiritual', 'intellectual', 'energetic']",[],emerging,501,False,0.08785845027455766
+A0403,Chandima Nadarajah,['literature'],['traditional'],['sinhala'],western,['contemporary'],"['spiritual', 'patriotic']",[],mid_tier,814,True,0.15151515151515152
+A0404,Ravi Kumara,['literature'],"['traditional', 'contemporary']",['tamil'],southern,['contemporary'],"['spiritual', 'energetic', 'romantic']",[],emerging,735,False,0.1354484441732764
+A0405,Hiruni Bandara,['visual_arts'],['contemporary'],"['sinhala', 'english']",north_central,['contemporary'],"['devotional', 'spiritual', 'celebratory']",[],mid_tier,757,False,0.13992271710392515
+A0406,Dilini Amarasinghe,['dance'],['low_country'],['sinhala'],southern,['traditional'],['patriotic'],[],mid_tier,452,False,0.07789302420174904
+A0407,Dilini Gunasekara,['music'],['classical_sinhala'],['sinhala'],uva,['traditional'],"['patriotic', 'romantic']",[],mid_tier,4608,False,0.9231238560097621
+A0408,Chaminda Kumar,['dance'],['sabaragamuwa'],['sinhala'],central,['contemporary'],"['patriotic', 'spiritual']",[],mid_tier,4242,False,0.8486882245271506
+A0409,Lakshman Amarasinghe,['literature'],['traditional'],['sinhala'],sabaragamuwa,['contemporary'],"['celebratory', 'devotional']",[],emerging,1540,True,0.2991661582265609
+A0410,Vel Senanayake,['visual_arts'],"['contemporary', 'traditional']",['tamil'],uva,['contemporary'],"['patriotic', 'celebratory']",[],mid_tier,4837,False,0.9696969696969697
+A0411,Dilini Wickremasinghe,['visual_arts'],['contemporary'],"['sinhala', 'english']",western,['contemporary'],['devotional'],['peradeniya_arts_festival'],mid_tier,4081,False,0.8159446817164938
+A0412,Thiru Samaraweera,['crafts'],['contemporary'],['tamil'],north_central,['contemporary'],"['energetic', 'celebratory', 'spiritual']",['independence_day'],established,4896,True,0.9816961561928005
+A0413,Deepa De Silva,['dance'],"['fusion', 'bharatanatyam']",['tamil'],northern,"['fusion', 'contemporary']",['devotional'],"['deepavali', 'thai_pongal']",mid_tier,2319,False,0.4575960951799878
+A0414,Lahiru Gunasekara,['visual_arts'],"['traditional', 'contemporary']","['sinhala', 'english']",sabaragamuwa,['contemporary'],['energetic'],['independence_day'],established,4318,False,0.8641448037421192
+A0415,Sanduni Gunasekara,['drama'],"['street_drama', 'sokari']",['sinhala'],eastern,['contemporary'],"['spiritual', 'romantic']",[],emerging,4665,False,0.9347162904209884
+A0416,Nishani Thiyagarajah,['drama'],['nurti'],['sinhala'],southern,['contemporary'],"['energetic', 'romantic', 'reflective']",[],emerging,511,False,0.08989221069757983
+A0417,Sachini Nadarajah,['drama'],"['sokari', 'contemporary']",['english'],uva,['contemporary'],['romantic'],['peradeniya_arts_festival'],mid_tier,1272,False,0.24466137888956682
+A0418,Kasun Ekanayake,['music'],['fusion'],['sinhala'],southern,"['fusion', 'contemporary']",['reflective'],[],mid_tier,4366,True,0.8739068537726256
+A0419,Malsha Pathirana,['music'],['classical_sinhala'],['sinhala'],north_central,['traditional'],"['patriotic', 'energetic', 'romantic']",[],emerging,3404,False,0.678259101077893
+A0420,Shanthi Kumar,['crafts'],['contemporary'],['tamil'],north_western,['contemporary'],"['energetic', 'intellectual', 'reflective']",['peradeniya_arts_festival'],emerging,1942,False,0.3809233272320521
+A0421,Mohan Jayawardena,['music'],['contemporary'],['tamil'],north_western,['contemporary'],"['patriotic', 'romantic', 'intellectual']",[],emerging,4452,False,0.8913971934106162
+A0422,Sanduni Pathirana,['drama'],['contemporary'],['sinhala'],eastern,['contemporary'],"['devotional', 'patriotic', 'spiritual']",['peradeniya_arts_festival'],mid_tier,1015,False,0.19239373601789708
+A0423,Senthil Senanayake,['crafts'],['contemporary'],['tamil'],northern,['contemporary'],"['devotional', 'reflective']",['independence_day'],emerging,964,False,0.18202155786048405
+A0424,Sanduni Nadarajah,['visual_arts'],['contemporary'],"['sinhala', 'english']",western,['contemporary'],['energetic'],['independence_day'],mid_tier,358,True,0.058775676225340655
+A0425,Dinesh Jayawardena,['literature'],['contemporary'],"['sinhala', 'english']",southern,['contemporary'],"['reflective', 'spiritual']",['independence_day'],emerging,3175,False,0.6316859873906854
+A0426,Meena Rajapaksa,['dance'],['contemporary'],['tamil'],north_central,['contemporary'],"['celebratory', 'intellectual', 'patriotic']",[],emerging,2507,False,0.49583079113280454
+A0427,Hashini Nadarajah,['dance'],"['sabaragamuwa', 'low_country']",['sinhala'],southern,['traditional'],"['energetic', 'reflective']",[],emerging,4031,True,0.805775879601383
+A0428,Chathurika Samaraweera,['drama'],['nadagam'],['sinhala'],north_central,['contemporary'],['patriotic'],[],emerging,3633,False,0.7248322147651006
+A0429,Nishani Rajapaksa,['drama'],"['experimental', 'nurti']",['sinhala'],southern,['contemporary'],"['reflective', 'celebratory']",[],emerging,2498,False,0.4940004067520846
+A0430,Kavitha Senanayake,['dance'],['bharatanatyam'],['tamil'],northern,['contemporary'],['patriotic'],"['deepavali', 'thai_pongal']",established,1307,False,0.2517795403701444
+A0431,Chandima Pathirana,['drama'],"['sokari', 'kolam']",['sinhala'],southern,['traditional'],"['patriotic', 'intellectual']",[],mid_tier,4613,True,0.9241407362212731
+A0432,Isuru Mendis,['dance'],['folk'],['sinhala'],north_western,['contemporary'],"['reflective', 'celebratory']",[],emerging,1832,False,0.3585519625788082
+A0433,Siva Kumar,['drama'],['contemporary'],['tamil'],eastern,['contemporary'],"['devotional', 'celebratory', 'energetic']",[],emerging,4658,False,0.9332926581248729
+A0434,Ajith Gunasekara,['dance'],['kandyan'],['sinhala'],central,['traditional'],"['intellectual', 'reflective']","['vesak', 'poson']",emerging,2563,False,0.5072198495017287
+A0435,Vindya Amarasinghe,['music'],['baila'],['sinhala'],north_central,['contemporary'],"['celebratory', 'energetic']",[],emerging,2053,False,0.4034980679275981
+A0436,Rajan De Silva,['literature'],['contemporary'],['tamil'],uva,['contemporary'],"['devotional', 'reflective']",['peradeniya_arts_festival'],emerging,2721,False,0.5393532641854789
+A0437,Dinesh De Silva,['crafts'],['traditional'],['sinhala'],eastern,['contemporary'],['devotional'],[],emerging,3413,False,0.680089485458613
+A0438,Sanduni Sivarajah,['music'],"['classical_sinhala', 'devotional_buddhist']",['sinhala'],western,['traditional'],"['spiritual', 'devotional']","['esala_perahera', 'vesak']",emerging,4913,False,0.9851535489119382
+A0439,Vani Wickremasinghe,['dance'],"['bharatanatyam', 'kandyan']",['tamil'],central,['traditional'],['spiritual'],"['poson', 'esala_perahera']",mid_tier,2203,True,0.43400447427293065
+A0440,Ragavan Selvam,['dance'],"['bharatanatyam', 'sabaragamuwa']",['tamil'],northern,['contemporary'],"['intellectual', 'spiritual', 'devotional']","['deepavali', 'thai_pongal']",established,2808,False,0.5570469798657718
+A0441,Chandima Sivarajah,['dance'],['sabaragamuwa'],['sinhala'],uva,['contemporary'],"['spiritual', 'energetic']",[],emerging,2622,True,0.5192190359975595
+A0442,Siva Ekanayake,['music'],['devotional_hindu'],['tamil'],north_western,['contemporary'],"['spiritual', 'devotional']",[],mid_tier,4818,False,0.9658328248932275
+A0443,Kavinda Nadarajah,['drama'],['street_drama'],['sinhala'],eastern,['contemporary'],"['patriotic', 'romantic']",[],emerging,4399,False,0.8806182631685987
+A0444,Ravi Liyanage,['drama'],['kolam'],['sinhala'],southern,['traditional'],['devotional'],[],mid_tier,2523,False,0.49908480780964004
+A0445,Damith Senanayake,['drama'],['kolam'],['sinhala'],southern,['traditional'],"['devotional', 'intellectual']",[],mid_tier,2134,False,0.41997152735407767
+A0446,Hashini Herath,['visual_arts'],['contemporary'],"['sinhala', 'english']",eastern,['contemporary'],['patriotic'],['peradeniya_arts_festival'],emerging,2371,False,0.46817164937970307
+A0447,Vindya Ranasinghe,['visual_arts'],['contemporary'],['sinhala'],northern,['contemporary'],"['devotional', 'celebratory', 'intellectual']",[],emerging,372,False,0.06162294081757169
+A0448,Kamala Kumar,['visual_arts'],"['contemporary', 'traditional']",['tamil'],western,['contemporary'],"['devotional', 'patriotic']",[],mid_tier,3309,False,0.6589383770591825
+A0449,Senthil Weerasinghe,['music'],['devotional_hindu'],['tamil'],northern,['contemporary'],"['spiritual', 'devotional']",[],established,3525,False,0.7028676021964613
+A0450,Tharindu Herath,['literature'],['traditional'],['sinhala'],north_central,['contemporary'],"['energetic', 'reflective']",[],mid_tier,3388,True,0.6750050844010576
+A0451,Priya Weerasinghe,['dance'],['low_country'],['sinhala'],southern,['traditional'],"['energetic', 'reflective', 'celebratory']",[],emerging,922,False,0.17347976408379093
+A0452,Nalaka Jayawardena,['crafts'],['contemporary'],"['sinhala', 'english']",western,['contemporary'],"['intellectual', 'devotional', 'reflective']",[],emerging,3369,False,0.6711409395973155
+A0453,Kumar Rajapaksa,['music'],['carnatic'],['tamil'],northern,['contemporary'],"['spiritual', 'patriotic']",[],mid_tier,140,False,0.014439699003457393
+A0454,Chathurika Nadarajah,['visual_arts'],['traditional'],['sinhala'],north_western,['contemporary'],"['devotional', 'intellectual', 'reflective']",[],mid_tier,4257,True,0.851738865161684
+A0455,Shehan Rathnayake,['drama'],['contemporary'],['english'],northern,['contemporary'],"['intellectual', 'devotional', 'romantic']",['independence_day'],mid_tier,3247,False,0.646329062436445
+A0456,Roshan Ranasinghe,['crafts'],['traditional'],['sinhala'],southern,['contemporary'],['reflective'],[],emerging,1353,False,0.2611348383160464
+A0457,Saman Nadarajah,['dance'],"['contemporary', 'folk']","['sinhala', 'english']",north_western,['contemporary'],"['romantic', 'energetic', 'reflective']",['peradeniya_arts_festival'],established,1809,True,0.35387431360585725
+A0458,Damith Rajapaksa,['literature'],"['contemporary', 'traditional']",['sinhala'],central,['contemporary'],"['spiritual', 'devotional', 'patriotic']",['independence_day'],mid_tier,199,False,0.026438885499288182
+A0459,Lahiru Thiyagarajah,['music'],['fusion'],['sinhala'],sabaragamuwa,"['fusion', 'contemporary']",['energetic'],[],mid_tier,866,False,0.16209070571486678
+A0460,Dilshan Gunasekara,['drama'],"['kolam', 'nadagam']",['sinhala'],southern,['traditional'],"['reflective', 'spiritual']",[],mid_tier,2047,True,0.40227781167378485
+A0461,Nadeeka Amarasinghe,['drama'],['kolam'],['sinhala'],southern,['traditional'],['spiritual'],[],emerging,3238,True,0.644498678055725
+A0462,Gayan Fernando,['dance'],['fusion'],['sinhala'],north_central,"['fusion', 'contemporary']","['intellectual', 'energetic']",[],established,4008,False,0.801098230628432
+A0463,Dilshan Senanayake,['crafts'],['contemporary'],['english'],southern,['contemporary'],"['patriotic', 'celebratory', 'energetic']",['peradeniya_arts_festival'],emerging,818,False,0.15232865568436038
+A0464,Gayan Wickremasinghe,['dance'],['contemporary'],['english'],sabaragamuwa,['contemporary'],['romantic'],[],emerging,1375,False,0.2656091112466951
+A0465,Sandani Jayawardena,['drama'],['experimental'],['sinhala'],north_central,['contemporary'],"['devotional', 'energetic']",[],emerging,353,False,0.05775879601382957
+A0466,Kamala Pathirana,['literature'],"['traditional', 'contemporary']",['tamil'],western,['contemporary'],"['intellectual', 'patriotic', 'celebratory']",[],mid_tier,987,False,0.18669920683343502
+A0467,Angelo Rajapaksa,['crafts'],['traditional'],['sinhala'],central,['contemporary'],"['spiritual', 'patriotic', 'reflective']",[],emerging,4513,True,0.9038031319910514
+A0468,Amila Perera,['visual_arts'],['traditional'],['sinhala'],uva,['contemporary'],"['reflective', 'celebratory']",[],mid_tier,3310,False,0.6591417531014846
+A0469,Gayan Liyanage,['drama'],"['nurti', 'kolam']",['sinhala'],southern,['traditional'],['reflective'],[],established,255,False,0.037827943868212324
+A0470,Nalaka Rajapaksa,['crafts'],['contemporary'],['sinhala'],southern,['contemporary'],"['energetic', 'spiritual', 'reflective']",[],mid_tier,727,True,0.13382143583485864
+A0471,Danushka Nadarajah,['drama'],['experimental'],['sinhala'],north_western,['contemporary'],['intellectual'],[],mid_tier,2877,True,0.5710799267846248
+A0472,Lasith Bandara,['music'],"['devotional_buddhist', 'classical_sinhala']",['sinhala'],central,['traditional'],"['spiritual', 'devotional']",['poson'],emerging,4254,False,0.8511287370347773
+A0473,Mohan Fernando,['crafts'],"['traditional', 'contemporary']",['tamil'],uva,['contemporary'],['intellectual'],['independence_day'],emerging,2879,False,0.5714866788692292
+A0474,Danushka Amarasinghe,['visual_arts'],"['contemporary', 'traditional']","['sinhala', 'english']",eastern,['contemporary'],"['devotional', 'celebratory', 'reflective']",[],mid_tier,4598,False,0.9210900955867399
+A0475,Siva Nadarajah,['music'],['carnatic'],['tamil'],northern,['contemporary'],"['romantic', 'celebratory', 'intellectual']",[],emerging,3618,False,0.7217815741305674
+A0476,Sandani Weerasinghe,['dance'],['low_country'],['sinhala'],southern,['traditional'],"['patriotic', 'intellectual']",[],mid_tier,1960,False,0.38458409599349197
+A0477,Hiruni Samaraweera,['literature'],"['traditional', 'contemporary']","['sinhala', 'english']",northern,['contemporary'],['romantic'],['peradeniya_arts_festival'],established,2837,True,0.5629448850925362
+A0478,Damith Liyanage,['dance'],['sabaragamuwa'],['sinhala'],sabaragamuwa,['contemporary'],['romantic'],[],mid_tier,1009,False,0.1911734797640838
+A0479,Thisara Ekanayake,['drama'],['experimental'],['sinhala'],north_western,['contemporary'],"['reflective', 'energetic']",[],mid_tier,2998,False,0.595688427903193
+A0480,Damith Sivarajah,['literature'],"['contemporary', 'traditional']",['sinhala'],central,['contemporary'],['celebratory'],['peradeniya_arts_festival'],emerging,2926,False,0.5810453528574334
+A0481,Malsha Fernando,['visual_arts'],['contemporary'],"['sinhala', 'english']",southern,['contemporary'],"['energetic', 'reflective']",['peradeniya_arts_festival'],mid_tier,4801,True,0.9623754321740899
+A0482,Ganesh Herath,['crafts'],['contemporary'],['tamil'],north_central,['contemporary'],['devotional'],['independence_day'],established,604,True,0.10880618263168598
+A0483,Chandima Rajapaksa,['music'],"['fusion', 'contemporary']",['sinhala'],uva,"['fusion', 'contemporary']","['intellectual', 'energetic']",['peradeniya_arts_festival'],mid_tier,3378,True,0.6729713239780354
+A0484,Damith Ekanayake,['music'],['elle'],['sinhala'],uva,['contemporary'],['spiritual'],[],emerging,2979,True,0.5918242830994509
+A0485,Chandima Kumara,['crafts'],['traditional'],['sinhala'],southern,['contemporary'],"['celebratory', 'energetic', 'romantic']",[],emerging,1702,True,0.33211307707952004
+A0486,Priya Gunasekara,['music'],['folk_music'],['sinhala'],western,['contemporary'],['energetic'],[],emerging,234,False,0.03355704697986577
+A0487,Damith Amarasinghe,['literature'],"['contemporary', 'traditional']","['sinhala', 'english']",western,['contemporary'],"['patriotic', 'intellectual']",[],established,2696,False,0.5342688631279235
+A0488,Mahela Silva,['crafts'],['traditional'],['sinhala'],sabaragamuwa,['contemporary'],"['energetic', 'intellectual']",[],mid_tier,2220,True,0.43746186699206835
+A0489,Ragavan Sivarajah,['crafts'],['contemporary'],['tamil'],northern,['contemporary'],['spiritual'],[],established,1222,False,0.23449257677445598
+A0490,Nuwan De Silva,['dance'],['folk'],['sinhala'],north_central,['contemporary'],"['reflective', 'intellectual']",[],mid_tier,3525,False,0.7028676021964613
+A0491,Dilshan Kumara,['literature'],"['contemporary', 'traditional']","['sinhala', 'english']",western,['contemporary'],['reflective'],[],emerging,812,False,0.15110839943054707
+A0492,Hashini De Silva,['literature'],"['contemporary', 'traditional']","['sinhala', 'english']",southern,['contemporary'],"['intellectual', 'romantic', 'devotional']",['independence_day'],emerging,674,True,0.12304250559284116
+A0493,Siva Jayasuriya,['music'],"['devotional_hindu', 'carnatic']",['tamil'],northern,['contemporary'],"['spiritual', 'devotional']",[],emerging,4780,False,0.9581045352857434
+A0494,Chathura Amarasinghe,['drama'],['kolam'],['sinhala'],southern,['traditional'],['energetic'],[],mid_tier,3908,True,0.7807606263982103
+A0495,Malsha Perera,['drama'],['kolam'],['sinhala'],southern,['traditional'],['intellectual'],[],emerging,223,True,0.03131991051454139
+A0496,Madhavi Gunasekara,['music'],"['classical_sinhala', 'baila']",['sinhala'],uva,['traditional'],"['celebratory', 'energetic']",[],emerging,2306,False,0.454952206630059
+A0497,Ayesha Kumar,['crafts'],['traditional'],['sinhala'],western,['contemporary'],"['devotional', 'energetic']",[],mid_tier,196,False,0.025828757372381533
+A0498,Lahiru Nadarajah,['drama'],['contemporary'],['english'],eastern,['contemporary'],"['reflective', 'devotional']",[],emerging,4429,False,0.8867195444376652
+A0499,Madhavi Gunawardena,['drama'],['street_drama'],['sinhala'],northern,['contemporary'],['celebratory'],[],established,1211,False,0.2322554403091316

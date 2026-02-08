@@ -3,17 +3,21 @@
 This project scaffolds a hybrid recommendation system combining knowledge-based, graph-based, and trend-based approaches. Data is expected as CSV files under the `data/` directory.
 
 ## Prerequisites
+
 - Python 3.10+
 - pip (or another PEP 517 compatible installer)
 
 ## Setup
+
 1. Create and activate a virtual environment (recommended).
 2. Install the project in editable mode:
+
    ```bash
    pip install -e .[dev]
    ```
 
 ## Project Layout
+
 - `data/`: place source CSV files here (e.g., interactions, items, users).
 - `src/`: Python source (packaged with src-layout).
   - `knowledge_based/`: rule and constraint-driven recommenders.
@@ -24,6 +28,7 @@ This project scaffolds a hybrid recommendation system combining knowledge-based,
 - `notebooks/`: exploratory analysis and experiments.
 
 ## Development Notes
+
 - Stubs illustrate expected interfaces: `fit(...)` to ingest data, `recommend(user_id, top_k)` to produce ranked items.
 - Extend or replace stubs with domain logic; add tests alongside new modules.
 - Update dependencies in `pyproject.toml` if you introduce new libraries.
@@ -33,31 +38,38 @@ This project scaffolds a hybrid recommendation system combining knowledge-based,
 1. Ensure data CSVs are in `data/` (`users.csv`, `events.csv`, `attends.csv`, `follows.csv`, `artists.csv`). Cleaned versions (`cleaned_*.csv`) are used automatically if present.
 
 2. Create and activate a virtual environment, then install dependencies:
+
    ```bash
    python -m venv .venv
    ```
-   
+
    Activate the virtual environment:
    - **Windows (PowerShell):**
+
      ```powershell
      .\.venv\Scripts\activate
      ```
+
    - **Linux / macOS:**
+
      ```bash
      source .venv/bin/activate
      ```
-   
+
    Install the project:
+
    ```bash
    pip install -e .[dev]
    ```
 
 3. Run the recommendation system:
+
    ```bash
    python run_recommend.py
    ```
 
 4. Select an option from the menu:
+
    ```
    === Hybrid Recommendation System ===
    1. Hybrid recommendations (knowledge + graph + trend)
@@ -77,6 +89,7 @@ This project scaffolds a hybrid recommendation system combining knowledge-based,
 | **4** | Hybrid with custom explanations: lets you specify interests and region for tailored explanation text. |
 
 ### Example Session
+
 ```
 python run_recommend.py
 

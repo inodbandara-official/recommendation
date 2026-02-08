@@ -1,0 +1,63 @@
+Hybrid Recommendation System
+----------------------------
+
+What is this?
+- It is a helper that suggests fun events for people.
+- It looks at what you like, what people like you enjoy, and what is popular now.
+
+The data it reads
+- users.csv: who the people are and what they like.
+- events.csv: the list of events and their details.
+- attends.csv: which users went to which events and when.
+- follows.csv: which users follow which artists.
+- artists.csv: info about the artists.
+
+Three brains working together
+1) Knowledge brain (profile match):
+   - Matches your interests (like music or dance) and your region to event types and regions.
+   - Gives each event a KnowledgeScore.
+
+2) Graph brain (friends-of-friends):
+   - Builds a network of users, events, and artists.
+   - Finds users like you and recommends events they enjoyed.
+   - Gives each event a GraphScore.
+
+3) Trend brain (what is hot now):
+   - Looks at recent attend data (last days/weeks).
+   - Picks events that are getting more visits.
+   - Gives each event a TrendScore.
+
+The hybrid blender
+- Mixes KnowledgeScore, GraphScore, and TrendScore.
+- Uses different weights depending on how active you are:
+  * New/cold user: trusts profile more.
+  * Active user: trusts similar users more.
+  * Trending focus: trusts the trend brain more.
+- Creates a FinalScore and sorts events.
+
+Explanations
+- Each suggested event comes with a short reason, like:
+  * "Matches your interests"
+  * "Popular among similar users"
+  * "Trending this week near you"
+
+How to run (easy version)
+- Make sure your CSV files are in the data/ folder.
+- In a terminal, run:
+  python run_recommend.py
+- Pick a menu option:
+  1) Hybrid (all brains together)
+  2) Trend only
+  3) Graph only
+  4) Hybrid with custom explanations
+- Enter a user id (for options that need it) and how many results you want.
+- You will see a list of event ids, scores, and reasons.
+
+What you can change
+- Add more user interests or regions in users.csv.
+- Tune the weights in the hybrid blender if you want a different mix.
+- Change the time window for trends to be shorter or longer.
+
+Remember
+- The system does not change your CSV files; it only reads them.
+- The better the data, the better the suggestions.

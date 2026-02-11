@@ -1,10 +1,10 @@
 """
 =============================================================
   RECOMMENDATION SYSTEM: Graph-Based Recommendation Engine
-  Step 3 — Basic Recommendation Analysis
+  Basic Recommendation Analysis
 =============================================================
 
-Run:  python pipeline/step3_basic_reco.py
+Run:  python pipeline/3_basic_reco.py
 """
 from __future__ import annotations
 
@@ -21,6 +21,7 @@ USER_COLOR = "#4A90D9"
 EVENT_COLOR = "#E8A838"
 CATEGORY_COLOR = "#50C878"
 RECO_COLOR = "#E05555"
+ARTIST_COLOR = "#FF8C42"
 
 
 def to_tokens(val: object) -> set[str]:
@@ -49,10 +50,12 @@ def main() -> None:
     users = pd.read_csv(DATA_DIR / "users.csv")
     events = pd.read_csv(DATA_DIR / "events.csv")
     attends = pd.read_csv(DATA_DIR / "attends.csv")
+    artists = pd.read_csv(DATA_DIR / "artists.csv")
+    follows = pd.read_csv(DATA_DIR / "follows.csv")
 
     # ── Select a user ────────────────────────────────────────
     user_counts = attends.groupby("user_id").size().sort_values(ascending=False)
-    print_banner("STEP 3: Basic Recommendation Analysis")
+    print_banner("3: Basic Recommendation Analysis")
 
     active = user_counts.head(20)
     print("    Active users (by attendance count):")
@@ -159,10 +162,59 @@ def main() -> None:
         print(f"       Path: {sample_user} → shared events → similar users → {eid}")
     print()
 
+    # ── Method 3: Artist Recommendations ─────────────────────
+    print_section("Method 3 — Artist Recommendations")
+    print("    Logic A: Profile matching — user art_interests vs artist art_forms/genres")
+    print("    Logic B: Collaborative — artists followed by similar users")
+    print()
+
+    followed_ids = set(follows.loc[follows["user_id"] == sample_user, "artist_id"])
+    user_interests = to_tokens(user_row.get("art_interests", ""))
+
+    # A) Profile-matched artists
+    artist_profile_scores: dict[str, tuple[float, list[str]]] = {}
+    for _, art in artists.iterrows():
+        aid = art["artist_id"]
+        if aid in followed_ids:
+            continue
+        art_cats = set()
+        for col in ("art_forms", "genres"):
+            art_cats.update(to_tokens(art.get(col)))
+        overlap = user_interests & art_cats
+        if overlap and user_interests:
+            artist_profile_scores[aid] = (len(overlap) / len(user_interests), sorted(overlap))
+
+    profile_artist_recs = sorted(artist_profile_scores.items(), key=lambda kv: kv[1][0], reverse=True)[:5]
+
+    print("    A) Profile-Matched Artists:")
+    for rank, (aid, (score, cats)) in enumerate(profile_artist_recs, 1):
+        art_name = artists.loc[artists["artist_id"] == aid, "name"].iloc[0]
+        shared = ", ".join(cats)
+        print(f"    {rank}. {aid}  {art_name:<40s}  score={score:.2f}  [{shared}]")
+    print()
+
+    # B) Artists followed by similar users (but not by this user)
+    sim_artist_scores: dict[str, float] = {}
+    for uid, sim in top_sim_users[:10]:
+        their_artists = set(follows.loc[follows["user_id"] == uid, "artist_id"])
+        new_artists = their_artists - followed_ids
+        for aid in new_artists:
+            sim_artist_scores[aid] = sim_artist_scores.get(aid, 0.0) + sim
+
+    collab_artist_recs = sorted(sim_artist_scores.items(), key=lambda kv: kv[1], reverse=True)[:5]
+
+    print("    B) Artists Followed by Similar Users:")
+    for rank, (aid, score) in enumerate(collab_artist_recs, 1):
+        art_name = artists.loc[artists["artist_id"] == aid, "name"]
+        name = art_name.iloc[0] if not art_name.empty else "?"
+        print(f"    {rank}. {aid}  {name:<40s}  score={score:.3f}")
+        print(f"       Path: {sample_user} → shared events → similar users → follows → {aid}")
+    print()
+
     # ── Visualise recommendation paths ───────────────────────
-    fig, axes = plt.subplots(1, 2, figsize=(18, 8))
+    fig, axes = plt.subplots(1, 3, figsize=(24, 8))
     fig.suptitle(
-        f"Step 3 — Basic Recommendations for {sample_user}",
+        f"Basic Recommendations for {sample_user}",
         fontsize=14,
         fontweight="bold",
     )
@@ -273,6 +325,60 @@ def main() -> None:
     nx.draw_networkx_labels(G2, pos2, font_size=7, font_weight="bold", ax=ax)
     ax.axis("off")
 
+    # --- Third panel: artist recommendations ---
+    ax = axes[2]
+    ax.set_title("Artist Recommendations", fontsize=11, fontweight="bold")
+
+    G3 = nx.DiGraph()
+    G3.add_node(sample_user, kind="user")
+
+    # Add user interest categories as nodes
+    for cat in list(user_interests)[:4]:
+        cn = f"cat:{cat}"
+        G3.add_node(cn, kind="category")
+        G3.add_edge(sample_user, cn, relation="interested_in")
+
+    # Profile-matched artist nodes
+    for aid, (score, cats) in profile_artist_recs[:3]:
+        G3.add_node(aid, kind="artist")
+        for cat in cats[:2]:
+            cn = f"cat:{cat}"
+            if cn in G3:
+                G3.add_edge(cn, aid, relation="recommends")
+
+    # Collaborative artist nodes
+    for aid, score in collab_artist_recs[:3]:
+        if aid not in G3:
+            G3.add_node(aid, kind="artist")
+        # Link via similar users
+        for uid, _ in top_sim_users[:2]:
+            their_artists = set(follows.loc[follows["user_id"] == uid, "artist_id"])
+            if aid in their_artists:
+                if uid not in G3:
+                    G3.add_node(uid, kind="similar_user")
+                    G3.add_edge(sample_user, uid, relation="similar_to")
+                G3.add_edge(uid, aid, relation="recommends")
+                break
+
+    pos3 = nx.spring_layout(G3, seed=77, k=2.0)
+    for kind, color, size in [
+        ("user", USER_COLOR, 800),
+        ("category", CATEGORY_COLOR, 400),
+        ("similar_user", "#9B59B6", 600),
+        ("artist", ARTIST_COLOR, 600),
+    ]:
+        nodes = [n for n, d in G3.nodes(data=True) if d.get("kind") == kind]
+        nx.draw_networkx_nodes(G3, pos3, nodelist=nodes, node_color=color, node_size=size, edgecolors="white", linewidths=1.2, ax=ax)
+
+    normal_edges3 = [(u, v) for u, v, d in G3.edges(data=True) if d.get("relation") != "recommends"]
+    reco_edges3 = [(u, v) for u, v, d in G3.edges(data=True) if d.get("relation") == "recommends"]
+    nx.draw_networkx_edges(G3, pos3, edgelist=normal_edges3, edge_color="#999", width=1.2, alpha=0.5, arrows=True, ax=ax)
+    nx.draw_networkx_edges(G3, pos3, edgelist=reco_edges3, edge_color=ARTIST_COLOR, width=2.0, alpha=0.8, style="dashed", arrows=True, ax=ax)
+
+    labels3 = {n: n.replace("cat:", "") for n in G3.nodes()}
+    nx.draw_networkx_labels(G3, pos3, labels3, font_size=7, font_weight="bold", ax=ax)
+    ax.axis("off")
+
     # Legend
     legend_handles = [
         mpatches.Patch(color=USER_COLOR, label="Target user"),
@@ -280,15 +386,16 @@ def main() -> None:
         mpatches.Patch(color=CATEGORY_COLOR, label="Category"),
         mpatches.Patch(color="#9B59B6", label="Similar user"),
         mpatches.Patch(color=RECO_COLOR, label="Recommended event"),
+        mpatches.Patch(color=ARTIST_COLOR, label="Recommended artist"),
     ]
-    fig.legend(handles=legend_handles, loc="lower center", ncol=5, fontsize=9, framealpha=0.9)
+    fig.legend(handles=legend_handles, loc="lower center", ncol=6, fontsize=9, framealpha=0.9)
     plt.tight_layout(rect=[0, 0.06, 1, 0.95])
 
-    out_path = Path("pipeline") / "step3_basic_reco.png"
+    out_path = Path("pipeline") / "3_basic_reco.png"
     fig.savefig(out_path, dpi=150, bbox_inches="tight")
     print(f"    Graph saved to:  {out_path}")
 
-    print_banner("End of Step 3")
+    print_banner("End of Section 3")
     print()
     plt.show()
 

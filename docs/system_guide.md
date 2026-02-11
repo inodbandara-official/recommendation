@@ -8,14 +8,14 @@
    - [Option 2: Trend-Only Recommendations](#option-2-trend-only-recommendations)
    - [Option 3: Graph-Only Recommendations](#option-3-graph-only-recommendations)
    - [Option 4: Hybrid with Custom Explanations](#option-4-hybrid-with-custom-explanations)
-3. [Recommendation System — Step Navigator](#recommendation-system--step-navigator)
-   - [Step 1: Dataset Overview](#step-1-dataset-overview)
-   - [Step 2: Build & Visualise Graph](#step-2-build--visualise-graph)
-   - [Step 3: Basic Recommendation Analysis](#step-3-basic-recommendation-analysis)
-   - [Step 4: Full Model Pipeline + Evaluation](#step-4-full-model-pipeline--evaluation)
-   - [Step 5: Highlight Recommendation Paths](#step-5-highlight-recommendation-paths)
-   - [Step 6: Interactive Dynamic Input](#step-6-interactive-dynamic-input)
-   - [Step 7: Advanced Graph + Scoreboard](#step-7-advanced-graph--scoreboard)
+3. [Recommendation System — Pipeline Navigator](#recommendation-system--pipeline-navigator)
+   - [1: Dataset Overview](#1-dataset-overview)
+   - [2: Build & Visualise Graph](#2-build--visualise-graph)
+   - [3: Basic Recommendation Analysis](#3-basic-recommendation-analysis)
+   - [4: Full Model Pipeline + Evaluation](#4-full-model-pipeline--evaluation)
+   - [5: Highlight Recommendation Paths](#5-highlight-recommendation-paths)
+   - [6: Interactive Dynamic Input](#6-interactive-dynamic-input)
+   - [7: Advanced Graph + Scoreboard](#7-advanced-graph--scoreboard)
 
 ---
 
@@ -28,7 +28,7 @@ The system can be used in two ways:
 | Entry Point | Command | Purpose |
 |---|---|---|
 | Interactive Menu | `python run_recommend.py` | Directly generate recommendations for a given user |
-| Step Navigator | `python run_pipeline.py` | Walk through the full system pipeline step-by-step |
+| Pipeline Navigator | `python run_pipeline.py` | Walk through the full system pipeline section-by-section |
 
 ---
 
@@ -125,17 +125,17 @@ The interactive menu exposes four distinct recommendation modes. Each mode promp
 
 ---
 
-## Recommendation System — Step Navigator
+## Recommendation System — Pipeline Navigator
 
 **Command:** `python run_pipeline.py`
 
-The step navigator provides a structured 7-step walkthrough of the entire recommendation pipeline. Each step is a self-contained Python script in the `pipeline/` folder that can be run individually or sequentially. The navigator sets up the correct Python path and environment automatically.
+The pipeline navigator provides a structured 7-section walkthrough of the entire recommendation pipeline. Each section is a self-contained Python script in the `pipeline/` folder that can be run individually or sequentially. The navigator sets up the correct Python path and environment automatically.
 
 ---
 
-### Step 1: Dataset Overview
+### 1: Dataset Overview
 
-**Script:** `pipeline/step1_load_data.py`
+**Script:** `pipeline/1_load_data.py`
 
 Loads all five CSV datasets (users, events, artists, attends, follows) and prints a comprehensive overview of the data:
 
@@ -150,9 +150,9 @@ Loads all five CSV datasets (users, events, artists, attends, follows) and print
 
 ---
 
-### Step 2: Build & Visualise Graph
+### 2: Build & Visualise Graph
 
-**Script:** `pipeline/step2_build_graph.py`
+**Script:** `pipeline/2_build_graph.py`
 
 Constructs the heterogeneous graph that powers the graph-based recommender:
 
@@ -163,13 +163,13 @@ Constructs the heterogeneous graph that powers the graph-based recommender:
 
 **Purpose:** Makes the abstract graph structure tangible. Demonstrates that the system models relationships between users, events, and artists as a connected network — the foundation for collaborative filtering.
 
-**Output:** Saves `pipeline/step2_graph.png`.
+**Output:** Saves `pipeline/2_graph.png`.
 
 ---
 
-### Step 3: Basic Recommendation Analysis
+### 3: Basic Recommendation Analysis
 
-**Script:** `pipeline/step3_basic_reco.py`
+**Script:** `pipeline/3_basic_reco.py`
 
 Generates two types of baseline recommendations and visualises the recommendation paths:
 
@@ -179,13 +179,13 @@ Generates two types of baseline recommendations and visualises the recommendatio
 
 **Purpose:** Shows the two fundamental recommendation strategies (content-based and collaborative) before the hybrid model is introduced. Provides visual intuition for how graph traversal produces recommendations.
 
-**Output:** Saves `pipeline/step3_basic_reco.png`.
+**Output:** Saves `pipeline/3_basic_reco.png`.
 
 ---
 
-### Step 4: Full Model Pipeline + Evaluation
+### 4: Full Model Pipeline + Evaluation
 
-**Script:** `pipeline/step4_run_model.py`
+**Script:** `pipeline/4_run_model.py`
 
 Runs the complete hybrid recommendation pipeline and evaluates it with offline metrics:
 
@@ -199,15 +199,15 @@ Runs the complete hybrid recommendation pipeline and evaluates it with offline m
   - **Coverage** — Proportion of the total event catalogue that appears in at least one user's recommendations.
   - **Diversity** — Average pairwise dissimilarity among recommended events (based on genre/category features).
 
-**Purpose:** Proves the system works end-to-end and provides quantitative evidence of recommendation quality. This is the core technical validation step.
+**Purpose:** Proves the system works end-to-end and provides quantitative evidence of recommendation quality. This is the core technical validation section.
 
 **Output:** Console only (metrics printed as a summary table).
 
 ---
 
-### Step 5: Highlight Recommendation Paths
+### 5: Highlight Recommendation Paths
 
-**Script:** `pipeline/step5_highlight_paths.py`
+**Script:** `pipeline/5_highlight_paths.py`
 
 Traces and visualises the specific paths through the graph that connect a user to each recommended event:
 
@@ -215,15 +215,15 @@ Traces and visualises the specific paths through the graph that connect a user t
 - **Colour-coded paths** — Each recommendation gets a unique colour. The paths are overlaid on the graph so you can see exactly which intermediate nodes (shared artists, similar users, common categories) connect the user to the event.
 - **Legend and annotations** — Each path is labelled with the event name and the reason for the recommendation.
 
-**Purpose:** Provides explainability at the graph level. Instead of just showing a score, this step visually answers "why was this event recommended?" by showing the structural connections. Particularly effective for communicating the value of graph-based recommendations.
+**Purpose:** Provides explainability at the graph level. Instead of just showing a score, this section visually answers "why was this event recommended?" by showing the structural connections. Particularly effective for communicating the value of graph-based recommendations.
 
-**Output:** Saves `pipeline/step5_paths.png`.
+**Output:** Saves `pipeline/5_paths.png`.
 
 ---
 
-### Step 6: Interactive Dynamic Input
+### 6: Interactive Dynamic Input
 
-**Script:** `pipeline/step6_dynamic_input.py`
+**Script:** `pipeline/6_dynamic_input.py`
 
 An interactive mode where the presenter can explore the system live:
 
@@ -234,15 +234,15 @@ An interactive mode where the presenter can explore the system live:
 
 **Purpose:** Turns the system into a live, interactive tool during presentation. The panel can request specific scenarios ("What would you recommend for a user in the Western province who likes traditional dance?") and see results immediately.
 
-**Output:** Saves visualisations as `pipeline/step6_*.png` (multiple files depending on interactions).
+**Output:** Saves visualisations as `pipeline/6_*.png` (multiple files depending on interactions).
 
 ---
 
-### Step 7: Advanced Graph + Scoreboard
+### 7: Advanced Graph + Scoreboard
 
-**Script:** `pipeline/step7_advanced_graph.py`
+**Script:** `pipeline/7_advanced_graph.py`
 
-The final capstone step combining advanced graph analysis with a consolidated scoreboard:
+The final capstone section combining advanced graph analysis with a consolidated scoreboard:
 
 - **Multi-path graph** — Visualises multiple recommendation paths simultaneously on a single graph, showing how different models (knowledge, graph, trend) each contribute paths to the same set of recommendations.
 - **Combined scoreboard** — Displays a ranked table of recommended events with all three model scores, the final blended score, and the weight strategy used. Presented as a formatted console table.
@@ -250,7 +250,7 @@ The final capstone step combining advanced graph analysis with a consolidated sc
 
 **Purpose:** Demonstrates the full sophistication of the system — multiple models, graph analysis, and structured output all working together. The scoreboard provides a clear, presentable summary of what the system produces, while the centrality analysis shows deeper network insights.
 
-**Output:** Saves `pipeline/step7_advanced_graph.png`.
+**Output:** Saves `pipeline/7_advanced_graph.png`.
 
 ---
 
@@ -262,4 +262,4 @@ The final capstone step combining advanced graph analysis with a consolidated sc
 | `python run_recommend.py` → Option 2 | Global trending events (no user needed) |
 | `python run_recommend.py` → Option 3 | Graph-only collaborative filtering for one user |
 | `python run_recommend.py` → Option 4 | Hybrid + custom interest/region explanations |
-| `python run_pipeline.py` → Steps 1–7 | Complete system walkthrough with visuals and metrics |
+| `python run_pipeline.py` → Sections 1–7 | Complete system walkthrough with visuals and metrics |

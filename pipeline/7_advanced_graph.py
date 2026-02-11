@@ -1,14 +1,14 @@
 """
 =============================================================
   RECOMMENDATION SYSTEM: Graph-Based Recommendation Engine
-  Step 7 — Advanced Graph View
+  Advanced Graph View
 =============================================================
 
 Shows a comprehensive multi-path graph for the top-N
 recommendations with full path traces, node importance
 (degree centrality), and a summary scoreboard.
 
-Run:  python pipeline/step7_advanced_graph.py
+Run:  python pipeline/7_advanced_graph.py
 """
 from __future__ import annotations
 
@@ -28,6 +28,7 @@ EVENT_COLOR = "#E8A838"
 CATEGORY_COLOR = "#50C878"
 RECO_COLOR = "#E05555"
 SIM_USER_COLOR = "#9B59B6"
+ARTIST_COLOR = "#FF8C42"
 PATH_COLORS = [
     "#FF6B6B", "#4ECDC4", "#45B7D1",
     "#96CEB4", "#FFEAA7", "#DDA0DD",
@@ -67,10 +68,11 @@ def main() -> None:
     events = pd.read_csv(DATA_DIR / "events.csv")
     attends = pd.read_csv(DATA_DIR / "attends.csv")
     follows = pd.read_csv(DATA_DIR / "follows.csv")
+    artists = pd.read_csv(DATA_DIR / "artists.csv")
 
     # ── Select a user ────────────────────────────────────────
     user_counts = attends.groupby("user_id").size().sort_values(ascending=False)
-    print_banner("STEP 7: Advanced Graph View")
+    print_banner("7: Advanced Graph View")
 
     active = user_counts.head(20)
     print("    Active users (by attendance count):")
@@ -158,6 +160,44 @@ def main() -> None:
 
     ranked = sorted(combined.values(), key=lambda d: d["final_score"], reverse=True)[:TOP_N]
 
+    # ── Artist scoring ────────────────────────────────────
+    followed_ids = set(follows.loc[follows["user_id"] == sample_user, "artist_id"])
+    user_interests = to_tokens(user_row.get("art_interests", ""))
+
+    artist_profile: dict[str, tuple[float, list[str]]] = {}
+    for _, art in artists.iterrows():
+        aid = art["artist_id"]
+        if aid in followed_ids:
+            continue
+        art_cats: set[str] = set()
+        for col in ("art_forms", "genres"):
+            art_cats.update(to_tokens(art.get(col)))
+        overlap = user_interests & art_cats
+        if overlap and user_interests:
+            artist_profile[aid] = (len(overlap) / len(user_interests), sorted(overlap))
+
+    sim_artist_scores: dict[str, float] = {}
+    for uid, sim in top_sim:
+        their_artists = set(follows.loc[follows["user_id"] == uid, "artist_id"])
+        for aid in their_artists - followed_ids:
+            sim_artist_scores[aid] = sim_artist_scores.get(aid, 0.0) + sim
+
+    all_artist_candidates = set(artist_profile.keys()) | set(sim_artist_scores.keys())
+    artist_combined: dict[str, dict] = {}
+    for aid in all_artist_candidates:
+        prof_s, prof_cats = artist_profile.get(aid, (0.0, []))
+        collab_s = sim_artist_scores.get(aid, 0.0)
+        final = 0.5 * prof_s + 0.5 * collab_s
+        artist_combined[aid] = {
+            "artist_id": aid,
+            "prof_score": prof_s,
+            "collab_score": collab_s,
+            "final_score": final,
+            "categories": prof_cats,
+        }
+
+    artist_ranked = sorted(artist_combined.values(), key=lambda d: d["final_score"], reverse=True)[:TOP_N]
+
     # ── Print scoreboard ─────────────────────────────────────
     print_section(f"Top-{TOP_N} Recommendations (Combined)")
     print(f"    {'#':<3} {'Event':<8} {'Name':<38s} {'Cat':>5} {'Sim':>5} {'Final':>6}  Via")
@@ -170,6 +210,19 @@ def main() -> None:
         print(
             f"    {i:<3} {eid:<8} {name:<38s} "
             f"{rec['cat_score']:>5.2f} {rec['sim_score']:>5.3f} {rec['final_score']:>6.3f}  {via}"
+        )
+
+    print_section(f"Top-{TOP_N} Artist Recommendations")
+    print(f"    {'#':<3} {'Artist':<8} {'Name':<38s} {'Prof':>5} {'Collab':>7} {'Final':>6}  Shared")
+    print("    " + "-" * 90)
+    for i, rec in enumerate(artist_ranked, 1):
+        aid = rec["artist_id"]
+        art_name = artists.loc[artists["artist_id"] == aid, "name"]
+        name = (art_name.iloc[0] if not art_name.empty else "?")[:37]
+        shared = ", ".join(rec["categories"][:3]) if rec["categories"] else "-"
+        print(
+            f"    {i:<3} {aid:<8} {name:<38s} "
+            f"{rec['prof_score']:>5.2f} {rec['collab_score']:>7.3f} {rec['final_score']:>6.3f}  {shared}"
         )
 
     # ── Build comprehensive graph ────────────────────────────
@@ -255,7 +308,6 @@ def main() -> None:
                 G.add_edge(cn, eid, relation="recommends")
                 edges_this.append((cn, eid))
                 nodes_this.add(cn)
-                # Find bridge event
                 for ae in shown_attended:
                     if G.has_edge(ae, cn):
                         edges_this.append((sample_user, ae))
@@ -277,6 +329,24 @@ def main() -> None:
             "nodes": nodes_this,
         })
 
+    # Recommended artists
+    for idx, rec in enumerate(artist_ranked[:4]):
+        aid = rec["artist_id"]
+        G.add_node(aid, kind="artist")
+
+        # Category path for artists
+        for cat in rec["categories"][:2]:
+            cn = f"cat:{cat}"
+            if cn in G:
+                G.add_edge(cn, aid, relation="recommends")
+
+        # Similar-user path for artists
+        for uid, sim in top_sim[:5]:
+            their_artists = set(follows.loc[follows["user_id"] == uid, "artist_id"])
+            if aid in their_artists and uid in G:
+                G.add_edge(uid, aid, relation="recommends")
+                break
+
     # ── Degree centrality ────────────────────────────────────
     centrality = nx.degree_centrality(G)
 
@@ -290,7 +360,7 @@ def main() -> None:
     # ── Visualise ────────────────────────────────────────────
     fig, axes = plt.subplots(1, 2, figsize=(22, 10))
     fig.suptitle(
-        f"Step 7 — Advanced Graph View for {sample_user}",
+        f"Advanced Graph View for {sample_user}",
         fontsize=15,
         fontweight="bold",
     )
@@ -325,6 +395,7 @@ def main() -> None:
         ("category", CATEGORY_COLOR, 400),
         ("similar_user", SIM_USER_COLOR, 500),
         ("recommended", RECO_COLOR, 600),
+        ("artist", ARTIST_COLOR, 600),
     ]:
         nl = [n for n, d in G.nodes(data=True) if d.get("kind") == kind]
         if not nl:
@@ -401,10 +472,34 @@ def main() -> None:
         )
         y -= line_h
 
+    y -= line_h * 0.5
+    ax2.text(
+        0.02, y, "Artist Recommendations:",
+        transform=ax2.transAxes,
+        fontsize=10, fontweight="bold", va="top",
+    )
+    y -= line_h * 0.8
+
+    for i, rec in enumerate(artist_ranked[:4]):
+        aid = rec["artist_id"]
+        art_name = artists.loc[artists["artist_id"] == aid, "name"]
+        name = (art_name.iloc[0] if not art_name.empty else "?")[:30]
+        shared = ", ".join(rec["categories"][:2]) if rec["categories"] else "-"
+
+        art_text = f"  {i + 1}. {name}  (score={rec['final_score']:.3f})  [{shared}]"
+        ax2.text(
+            0.02, y, art_text,
+            transform=ax2.transAxes,
+            fontsize=7, va="top",
+            fontfamily="monospace",
+            color=ARTIST_COLOR,
+        )
+        y -= line_h * 0.7
+
     # Path summary below scoreboard
     y -= line_h * 0.5
     ax2.text(
-        0.02, y, "Path Traces:",
+        0.02, y, "Event Path Traces:",
         transform=ax2.transAxes,
         fontsize=10, fontweight="bold", va="top",
     )
@@ -435,7 +530,8 @@ def main() -> None:
         mpatches.Patch(color=EVENT_COLOR, label="Attended event"),
         mpatches.Patch(color=CATEGORY_COLOR, label="Category"),
         mpatches.Patch(color=SIM_USER_COLOR, label="Similar user"),
-        mpatches.Patch(color=RECO_COLOR, label="Recommended"),
+        mpatches.Patch(color=RECO_COLOR, label="Recommended event"),
+        mpatches.Patch(color=ARTIST_COLOR, label="Recommended artist"),
     ]
     for i in range(min(TOP_N, len(PATH_COLORS))):
         legend_handles.append(mpatches.Patch(color=PATH_COLORS[i], label=f"Path {i + 1}"))
@@ -446,7 +542,7 @@ def main() -> None:
     )
     plt.tight_layout(rect=[0, 0.07, 1, 0.94])
 
-    out_path = Path("pipeline") / "step7_advanced_graph.png"
+    out_path = Path("pipeline") / "7_advanced_graph.png"
     fig.savefig(out_path, dpi=150, bbox_inches="tight")
     print(f"\n    Graph saved to:  {out_path}")
 
@@ -457,12 +553,13 @@ def main() -> None:
     print(f"    Total nodes         :  {G.number_of_nodes()}")
     print(f"    Total edges         :  {G.number_of_edges()}")
     print(f"    Recommended events  :  {len(ranked)}")
+    print(f"    Recommended artists :  {len(artist_ranked)}")
     print(f"    Unique categories   :  {len(shown_cats)}")
     print(f"    Similar users shown :  {len(shown_sim_users)}")
     print(f"    Avg. centrality     :  {np.mean(list(centrality.values())):.4f}")
     print(f"    Max centrality node :  {top_central[0][0]}  ({top_central[0][1]:.3f})")
 
-    print_banner("End of Step 7")
+    print_banner("End of Section 7")
     print()
 
 

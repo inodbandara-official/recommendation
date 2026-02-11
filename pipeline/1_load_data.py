@@ -1,10 +1,10 @@
 """
 =============================================================
   RECOMMENDATION SYSTEM: Graph-Based Recommendation Engine
-  Step 1 — Load and Understand the Real Dataset
+  Load and Understand the Real Dataset
 =============================================================
 
-Run:  python pipeline/step1_load_data.py
+Run:  python pipeline/1_load_data.py
 """
 from __future__ import annotations
 
@@ -69,7 +69,7 @@ def main() -> None:
     follows = data["follows"]
 
     # ── Banner ──────────────────────────────────────────────
-    print_banner("STEP 1: Dataset Overview")
+    print_banner("1: Dataset Overview")
 
     # ── Node summary ────────────────────────────────────────
     categories = extract_categories(events)
@@ -120,7 +120,7 @@ def main() -> None:
         chunk = sorted_cats[i : i + 5]
         print("    " + ",  ".join(chunk))
 
-    print_banner("End of Step 1")
+    print_banner("End of Section 1")
     print()
 
 

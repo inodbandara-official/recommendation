@@ -1,10 +1,10 @@
 """
 =============================================================
   RECOMMENDATION SYSTEM: Graph-Based Recommendation Engine
-  Step 2 — Build the Basic Graph Structure
+  Build the Basic Graph Structure
 =============================================================
 
-Run:  python pipeline/step2_build_graph.py
+Run:  python pipeline/2_build_graph.py
 """
 from __future__ import annotations
 
@@ -90,7 +90,7 @@ def main() -> None:
     attend_edges = [(u, v) for u, v, d in G.edges(data=True) if d.get("relation") == "attended"]
     belongs_edges = [(u, v) for u, v, d in G.edges(data=True) if d.get("relation") == "belongs_to"]
 
-    print_banner("STEP 2: Basic Graph Structure")
+    print_banner("2: Basic Graph Structure")
 
     print_section("Full Graph Summary")
     print(f"    User nodes          :  {len(user_nodes):,}")
@@ -205,7 +205,7 @@ def main() -> None:
     # ── Draw ────────────────────────────────────────────────
     fig, ax = plt.subplots(figsize=(14, 9))
     ax.set_title(
-        "Step 2 — Basic Graph: Users → Events → Categories",
+        "Basic Graph: Users → Events → Categories",
         fontsize=15,
         fontweight="bold",
         pad=16,
@@ -247,13 +247,13 @@ def main() -> None:
     ax.axis("off")
     plt.tight_layout()
 
-    out_path = Path("pipeline") / "step2_graph.png"
+    out_path = Path("pipeline") / "2_graph.png"
     fig.savefig(out_path, dpi=150, bbox_inches="tight")
     print(f"\n    Graph saved to:  {out_path}")
 
     plt.show()
 
-    print_banner("End of Step 2")
+    print_banner("End of Section 2")
     print()
 
 

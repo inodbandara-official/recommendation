@@ -144,3 +144,53 @@ def recommend_from_similar_users(
 
     ranked = sorted(scores.items(), key=lambda kv: kv[1], reverse=True)[:top_n]
     return pd.DataFrame(ranked, columns=["event_id", "GraphScore"])
+
+
+def recommend_artists_from_similar_users(
+    attends: pd.DataFrame,
+    follows: pd.DataFrame,
+    target_user: str,
+    top_users: int = 20,
+    top_n: int = 10,
+    alpha: float = 0.5,
+) -> pd.DataFrame:
+    """Recommend artists based on similar users' follow behaviour.
+
+    Uses the same Jaccard + Adamic-Adar similarity as event recommendations,
+    but scores artists followed by similar users (excluding already-followed).
+    """
+    j_scores = jaccard_similar_users(attends, follows, target_user)
+    aa_scores = adamic_adar_similar_users(attends, target_user)
+    merged = merge_similarity(j_scores, aa_scores, alpha=alpha)
+
+    if not merged:
+        return pd.DataFrame(columns=["artist_id", "ArtistGraphScore"])
+
+    sorted_users = sorted(merged.items(), key=lambda kv: kv[1], reverse=True)[:top_users]
+    sim_users = [u for u, _ in sorted_users]
+    sim_map = dict(sorted_users)
+
+    target_followed: set = set()
+    if follows is not None:
+        target_followed = set(follows.loc[follows["user_id"] == target_user, "artist_id"].astype(str))
+
+    scores: Dict[str, float] = {}
+    if follows is not None:
+        for _, row in follows.iterrows():
+            u = row.get("user_id")
+            a = row.get("artist_id")
+            if pd.isna(u) or pd.isna(a):
+                continue
+            u_str = str(u)
+            a_str = str(a)
+            if u_str not in sim_map:
+                continue
+            if a_str in target_followed:
+                continue
+            scores[a_str] = scores.get(a_str, 0.0) + sim_map[u_str]
+
+    if not scores:
+        return pd.DataFrame(columns=["artist_id", "ArtistGraphScore"])
+
+    ranked = sorted(scores.items(), key=lambda kv: kv[1], reverse=True)[:top_n]
+    return pd.DataFrame(ranked, columns=["artist_id", "ArtistGraphScore"])

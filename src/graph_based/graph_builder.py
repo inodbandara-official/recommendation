@@ -106,6 +106,35 @@ class HeteroGraphRecommender:
         event_scores.sort(key=lambda kv: kv[1], reverse=True)
         return event_scores[:top_k]
 
+    def recommend_artists_for_user(self, user_id: str, top_k: int = 10, exclude_followed: bool = True) -> list[tuple[str, float]]:
+        """Recommend artists via personalized PageRank, excluding already-followed artists."""
+        if not self.graph:
+            raise RuntimeError("Graph is empty. Build the graph before recommending.")
+
+        user_node = self._user_node(str(user_id))
+        if user_node not in self.graph:
+            return []
+
+        personalization = {node: 0.0 for node in self.graph.nodes}
+        personalization[user_node] = 1.0
+
+        scores = nx.pagerank(self.graph, alpha=self.alpha, personalization=personalization)
+
+        followed = set()
+        if exclude_followed:
+            for nbr in self.graph.successors(user_node):
+                if nbr.startswith(self.artist_prefix):
+                    followed.add(nbr)
+
+        artist_scores = [
+            (node, score)
+            for node, score in scores.items()
+            if node.startswith(self.artist_prefix) and node not in followed
+        ]
+
+        artist_scores.sort(key=lambda kv: kv[1], reverse=True)
+        return artist_scores[:top_k]
+
 
 def load_graph_from_csvs(
     data_dir: Path = Path("data"),

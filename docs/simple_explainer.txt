@@ -61,37 +61,37 @@ A) Recommendation Engine:
    - Enter a user id and how many results you want
    - See scores and explanations
 
-B) System Pipeline (step navigator):
+B) System Pipeline (navigator):
    python run_pipeline.py
-   - Just type a step number (1-7) and press Enter
-   - Type 8 to run all steps one after another
+   - Just type a number (1-7) and press Enter
+   - Type 8 to run all sections one after another
    - Type 0 to quit
    - No need to type long file paths!
 
-System Pipeline Steps
----------------------
+System Pipeline Sections
+------------------------
 
-  Step 1: Dataset Overview
+  1: Dataset Overview
     Shows how many users, events, artists, and connections there are.
 
-  Step 2: Build & Visualise Graph
+  2: Build & Visualise Graph
     Builds the graph and draws a small piece of it.
-    Saves: pipeline/step2_graph.png
+    Saves: pipeline/2_graph.png
 
-  Step 3: Basic Recommendations
+  3: Basic Recommendations
     Picks a user and shows two ways to recommend:
     a) Through shared categories (User -> Event -> Category -> New Event)
     b) Through similar users (User -> shared events -> Similar User -> New Event)
-    Saves: pipeline/step3_basic_reco.png
+    Saves: pipeline/3_basic_reco.png
 
-  Step 4: Full Model Pipeline + Evaluation
+  4: Full Model Pipeline + Evaluation
     Runs all three brains, blends them, adds explanations and checks how accurate the system is.
 
-  Step 5: Highlight Recommendation Paths
+  5: Highlight Recommendation Paths
     Shows the exact path from the user to each recommended event with colour-coded arrows.
-    Saves: pipeline/step5_paths.png
+    Saves: pipeline/5_paths.png
 
-  Step 6: Interactive Dynamic Input
+  6: Interactive Dynamic Input
     Interactive! You can:
     - Pick any user
     - Filter by category (like "music" or "dance")
@@ -99,10 +99,10 @@ System Pipeline Steps
     - See who the most active users are
     Saves pictures for each query.
 
-  Step 7: Advanced Graph + Scoreboard
+  7: Advanced Graph + Scoreboard
     The big picture: shows many recommendation paths at once,
     a scoreboard, and which nodes are most important.
-    Saves: pipeline/step7_advanced_graph.png
+    Saves: pipeline/7_advanced_graph.png
 
 - Tip: If the picture window blocks, set MPLBACKEND=Agg before running.
 

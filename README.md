@@ -76,7 +76,7 @@ python run_pipeline.py
 
 ```
 ==============================================================
-   RECOMMENDATION SYSTEM — Step Navigator
+   RECOMMENDATION SYSTEM — Pipeline Navigator
 ==============================================================
 
     1. Dataset Overview
@@ -96,25 +96,25 @@ Just type a number and press Enter — no need to type full file paths.
 
 ---
 
-## System Pipeline (Steps 1–7)
+## System Pipeline (1–7)
 
-The `pipeline/` folder contains a 7-step walkthrough for the recommendation engine. Use the **step navigator** to run any step by number:
+The `pipeline/` folder contains a 7-section walkthrough for the recommendation engine. Use the **pipeline navigator** to run any section by number:
 
 ```bash
 python run_pipeline.py
 ```
 
-### What Each Step Does
+### What Each Section Does
 
-| Step | What It Does | Output |
-|------|--------------|--------|
+| # | What It Does | Output |
+|---|--------------|--------|
 | **1** | Loads all 5 CSVs, prints node/edge counts, sample rows, and discovered categories | Console only |
-| **2** | Builds heterogeneous graph (2,527 nodes, 10,417 edges), visualises a subset | `pipeline/step2_graph.png` |
-| **3** | Category-path and similar-user recommendations with dual-panel visualisation | `pipeline/step3_basic_reco.png` |
+| **2** | Builds heterogeneous graph (2,527 nodes, 10,417 edges), visualises a subset | `pipeline/2_graph.png` |
+| **3** | Category-path and similar-user recommendations with dual-panel visualisation | `pipeline/3_basic_reco.png` |
 | **4** | Runs all 3 models, hybrid blend, explanations, offline evaluation metrics | Console only |
-| **5** | Traces colour-coded paths from user to each recommendation | `pipeline/step5_paths.png` |
-| **6** | **Interactive:** pick users, filter categories, compare two users side-by-side | `pipeline/step6_*.png` |
-| **7** | Multi-path graph + combined scoreboard + degree centrality analysis | `pipeline/step7_advanced_graph.png` |
+| **5** | Traces colour-coded paths from user to each recommendation | `pipeline/5_paths.png` |
+| **6** | **Interactive:** pick users, filter categories, compare two users side-by-side | `pipeline/6_*.png` |
+| **7** | Multi-path graph + combined scoreboard + degree centrality analysis | `pipeline/7_advanced_graph.png` |
 
 ### Tips
 
@@ -123,5 +123,5 @@ python run_pipeline.py
   $env:MPLBACKEND="Agg"   # PowerShell
   export MPLBACKEND=Agg    # Bash
   ```
-- Select **8** in the navigator to run all 7 steps sequentially.
+- Select **8** in the navigator to run all 7 sections sequentially.
 - All PNG visualisations are saved in the `pipeline/` folder.

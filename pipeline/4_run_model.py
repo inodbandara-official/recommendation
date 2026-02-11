@@ -1,10 +1,10 @@
 """
 =============================================================
   RECOMMENDATION SYSTEM: Graph-Based Recommendation Engine
-  Step 4 — Run the Actual Recommendation Model
+  Run the Actual Recommendation Model
 =============================================================
 
-Run:  python pipeline/step4_run_model.py
+Run:  python pipeline/4_run_model.py
 """
 from __future__ import annotations
 
@@ -13,7 +13,7 @@ from pathlib import Path
 import pandas as pd
 
 from src.knowledge_based import KnowledgeMatcher
-from src.graph_based import recommend_from_similar_users
+from src.graph_based import recommend_from_similar_users, recommend_artists_from_similar_users
 from src.trend_based import TrendWindowRecommender
 from src.hybrid.hybrid_ranker import HybridRanker
 from src.hybrid.explanations import attach_explanations
@@ -49,6 +49,7 @@ def main() -> None:
     events = pd.read_csv(DATA_DIR / "events.csv")
     attends = pd.read_csv(DATA_DIR / "attends.csv")
     follows = pd.read_csv(DATA_DIR / "follows.csv")
+    artists = pd.read_csv(DATA_DIR / "artists.csv")
 
     # ── Train / Test split (time-based) ─────────────────────
     attends["timestamp"] = pd.to_datetime(attends["timestamp"])
@@ -58,7 +59,7 @@ def main() -> None:
 
     # ── Select a user ────────────────────────────────────────
     user_counts = train.groupby("user_id").size().sort_values(ascending=False)
-    print_banner("STEP 4: Run the Actual Recommendation Model")
+    print_banner("4: Run the Actual Recommendation Model")
 
     active = user_counts.head(20)
     print("    Active users (by training interactions):")
@@ -74,7 +75,7 @@ def main() -> None:
     sample_user = chosen
     user_row = users.loc[users["user_id"] == sample_user].iloc[0]
 
-    print_banner("STEP 4: Run the Actual Recommendation Model")
+    print_banner("4: Run the Actual Recommendation Model")
 
     print_section(f"Selected User: {sample_user}")
     print(f"    Name             :  {user_row['name']}")
@@ -175,6 +176,64 @@ def main() -> None:
         )
 
     # ── 5) Accuracy metrics ─────────────────────────────────
+    print_section("Artist Recommendations")
+    print("    Combining profile matching + collaborative filtering for artists")
+    print()
+
+    followed_ids = set(follows.loc[follows["user_id"] == sample_user, "artist_id"])
+    user_interests = to_tokens(user_row.get("art_interests", ""))
+
+    # A) Profile-matched artists
+    artist_profile: dict[str, tuple[float, list[str]]] = {}
+    for _, art in artists.iterrows():
+        aid = art["artist_id"]
+        if aid in followed_ids:
+            continue
+        art_cats: set[str] = set()
+        for col in ("art_forms", "genres"):
+            art_cats.update(to_tokens(art.get(col)))
+        overlap = user_interests & art_cats
+        if overlap and user_interests:
+            artist_profile[aid] = (len(overlap) / len(user_interests), sorted(overlap))
+
+    profile_recs = sorted(artist_profile.items(), key=lambda kv: kv[1][0], reverse=True)[:TOP_N]
+
+    # B) Collaborative artist recs
+    collab_artist_df = recommend_artists_from_similar_users(
+        attends=train, follows=follows,
+        target_user=sample_user, top_users=50, top_n=TOP_N, alpha=0.5,
+    )
+
+    # Merge scores
+    artist_final: dict[str, dict] = {}
+    for aid, (score, cats) in profile_recs:
+        artist_final[aid] = {"artist_id": aid, "ProfileScore": score, "CollabScore": 0.0, "shared": cats}
+    for _, row in collab_artist_df.iterrows():
+        aid = row["artist_id"]
+        if aid in artist_final:
+            artist_final[aid]["CollabScore"] = row["ArtistGraphScore"]
+        else:
+            artist_final[aid] = {"artist_id": aid, "ProfileScore": 0.0, "CollabScore": row["ArtistGraphScore"], "shared": []}
+
+    for d in artist_final.values():
+        d["FinalArtistScore"] = 0.5 * d["ProfileScore"] + 0.5 * d["CollabScore"]
+
+    artist_ranked = sorted(artist_final.values(), key=lambda d: d["FinalArtistScore"], reverse=True)[:TOP_N]
+
+    print(f"    {'#':<3} {'Artist':<8} {'Name':<38s} {'Prof':>5} {'Collab':>7} {'Final':>7}  Shared Categories")
+    print("    " + "-" * 100)
+    for i, rec in enumerate(artist_ranked, 1):
+        aid = rec["artist_id"]
+        art_name = artists.loc[artists["artist_id"] == aid, "name"]
+        name = (art_name.iloc[0] if not art_name.empty else "?")[:37]
+        shared = ", ".join(rec["shared"][:3]) if rec["shared"] else "-"
+        print(
+            f"    {i:<3} {aid:<8} {name:<38s} "
+            f"{rec['ProfileScore']:>5.2f} {rec['CollabScore']:>7.3f} {rec['FinalArtistScore']:>7.3f}  {shared}"
+        )
+    print()
+
+    # ── 6) Accuracy metrics ─────────────────────────────────
     print_section("Accuracy Metrics (Offline Evaluation)")
 
     # Evaluate across a sample of users with holdout
@@ -230,7 +289,7 @@ def main() -> None:
     print(f"    NDCG@{TOP_N:<3}           :  {avg_n:.4f}")
     print(f"    Catalog coverage    :  {cov:.4f}  ({int(cov * len(catalog))}/{len(catalog)} events)")
 
-    print_banner("End of Step 4")
+    print_banner("End of Section 4")
     print()
 
 

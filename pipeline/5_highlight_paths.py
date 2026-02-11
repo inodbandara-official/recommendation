@@ -1,7 +1,7 @@
 """
 =============================================================
   RECOMMENDATION SYSTEM: Graph-Based Recommendation Engine
-  Step 5 — Highlight Recommendation Paths
+  Highlight Recommendation Paths
 =============================================================
 
 For each recommended event we trace the path through the graph
@@ -11,7 +11,7 @@ Two path families are shown:
   A)  User ─attended─➤ Event ─belongs_to─➤ Category ─belongs_to─➤ Recommended Event
   B)  User ─attended─➤ Event ←─attended─ Similar User ─attended─➤ Recommended Event
 
-Run:  python pipeline/step5_highlight_paths.py
+Run:  python pipeline/5_highlight_paths.py
 """
 from __future__ import annotations
 
@@ -30,6 +30,7 @@ EVENT_COLOR = "#E8A838"
 CATEGORY_COLOR = "#50C878"
 RECO_COLOR = "#E05555"
 SIM_USER_COLOR = "#9B59B6"
+ARTIST_COLOR = "#FF8C42"
 PATH_COLORS = ["#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4", "#FFEAA7"]
 FADED = "#D0D0D0"
 
@@ -64,10 +65,12 @@ def main() -> None:
     users = pd.read_csv(DATA_DIR / "users.csv")
     events = pd.read_csv(DATA_DIR / "events.csv")
     attends = pd.read_csv(DATA_DIR / "attends.csv")
+    artists = pd.read_csv(DATA_DIR / "artists.csv")
+    follows = pd.read_csv(DATA_DIR / "follows.csv")
 
     # ── Select a user ────────────────────────────────────────
     user_counts = attends.groupby("user_id").size().sort_values(ascending=False)
-    print_banner("STEP 5: Highlight Recommendation Paths")
+    print_banner("5: Highlight Recommendation Paths")
 
     active = user_counts.head(20)
     print("    Active users (by attendance count):")
@@ -218,11 +221,62 @@ def main() -> None:
         print(f"       {via_user} ──attended──➜ {shared_event}  (shared)")
         print(f"       {via_user} ──attended──➜ {eid}  (recommendation)")
         print()
+    # ── Artist path traces ─────────────────────────────────
+    followed_ids = set(follows.loc[follows["user_id"] == sample_user, "artist_id"])
+    user_interests = to_tokens(user_row.get("art_interests", ""))
 
+    # Profile-matched artist recs
+    artist_profile_scores: dict[str, tuple[float, list[str]]] = {}
+    for _, art in artists.iterrows():
+        aid = art["artist_id"]
+        if aid in followed_ids:
+            continue
+        art_cats: set[str] = set()
+        for col in ("art_forms", "genres"):
+            art_cats.update(to_tokens(art.get(col)))
+        overlap = user_interests & art_cats
+        if overlap and user_interests:
+            artist_profile_scores[aid] = (len(overlap) / len(user_interests), sorted(overlap))
+
+    profile_artist_recs = sorted(artist_profile_scores.items(), key=lambda kv: kv[1][0], reverse=True)[:3]
+
+    # Collaborative artist recs
+    sim_artist_scores: dict[str, tuple[float, str]] = {}
+    for uid, sim in top_sim:
+        their_artists = set(follows.loc[follows["user_id"] == uid, "artist_id"])
+        for aid in their_artists - followed_ids:
+            if aid not in sim_artist_scores or sim > sim_artist_scores[aid][0]:
+                sim_artist_scores[aid] = (sim, uid)
+    collab_artist_recs = sorted(sim_artist_scores.items(), key=lambda kv: kv[1][0], reverse=True)[:3]
+
+    print_section("Artist Path Traces (Profile → Category → Artist)")
+    for rank, (aid, (score, cats)) in enumerate(profile_artist_recs, 1):
+        art_name = artists.loc[artists["artist_id"] == aid, "name"]
+        name = art_name.iloc[0] if not art_name.empty else "?"
+        shared = cats[0] if cats else "?"
+        print(f"    {rank}. {name}  (score={score:.2f})")
+        print(f"       {sample_user} ──interests──➤ [{shared}]")
+        print(f"       [{shared}] ──matches──➤ {aid}")
+        print()
+
+    print_section("Artist Path Traces (User → SimUser → follows → Artist)")
+    for rank, (aid, (sim, via_user)) in enumerate(collab_artist_recs, 1):
+        art_name = artists.loc[artists["artist_id"] == aid, "name"]
+        name = art_name.iloc[0] if not art_name.empty else "?"
+        shared_event = None
+        via_attended = set(attends.loc[attends["user_id"] == via_user, "event_id"])
+        for ae in attended_ids & via_attended:
+            shared_event = ae
+            break
+        print(f"    {rank}. {name}  (similarity={sim:.3f})")
+        print(f"       {sample_user} ──attended──➤ {shared_event}  (shared)")
+        print(f"       {via_user} ──attended──➤ {shared_event}  (shared)")
+        print(f"       {via_user} ──follows──➤ {aid}")
+        print()
     # ── Visualise highlighted paths ──────────────────────────
-    fig, axes = plt.subplots(1, 2, figsize=(20, 9))
+    fig, axes = plt.subplots(1, 3, figsize=(28, 9))
     fig.suptitle(
-        f"Step 5 — Recommendation Paths for {sample_user}",
+        f"Recommendation Paths for {sample_user}",
         fontsize=14,
         fontweight="bold",
     )
@@ -383,6 +437,94 @@ def main() -> None:
     nx.draw_networkx_labels(Gs, pos_s, lbl_s, font_size=7, font_weight="bold", ax=ax)
     ax.axis("off")
 
+    # ---- THIRD PANEL: Artist paths ----
+    ax = axes[2]
+    ax.set_title("Artist Recommendation Paths", fontsize=11, fontweight="bold")
+
+    Ga = nx.DiGraph()
+    Ga.add_node(sample_user, kind="user")
+
+    art_path_nodes: list[set] = []
+    art_path_edges: list[list[tuple]] = []
+
+    # Profile-matched artist paths
+    for idx, (aid, (score, cats)) in enumerate(profile_artist_recs):
+        Ga.add_node(aid, kind="artist")
+        shared = cats[0] if cats else None
+        if shared:
+            cn = f"cat:{shared}"
+            Ga.add_node(cn, kind="category")
+            edges = [(sample_user, cn), (cn, aid)]
+            nodes = {sample_user, cn, aid}
+        else:
+            edges = [(sample_user, aid)]
+            nodes = {sample_user, aid}
+        for u, v in edges:
+            Ga.add_edge(u, v)
+        art_path_nodes.append(nodes)
+        art_path_edges.append(edges)
+
+    # Collaborative artist paths
+    for idx, (aid, (sim, via_user)) in enumerate(collab_artist_recs):
+        if aid not in Ga:
+            Ga.add_node(aid, kind="artist")
+        Ga.add_node(via_user, kind="similar_user")
+
+        via_attended = set(attends.loc[attends["user_id"] == via_user, "event_id"])
+        shared_event = None
+        for ae in attended_ids & via_attended:
+            shared_event = ae
+            break
+
+        if shared_event is not None:
+            Ga.add_node(shared_event, kind="event")
+            edges = [(sample_user, shared_event), (via_user, shared_event), (via_user, aid)]
+            nodes = {sample_user, shared_event, via_user, aid}
+        else:
+            edges = [(sample_user, via_user), (via_user, aid)]
+            nodes = {sample_user, via_user, aid}
+
+        for u, v in edges:
+            Ga.add_edge(u, v)
+        art_path_nodes.append(nodes)
+        art_path_edges.append(edges)
+
+    pos_a = nx.spring_layout(Ga, seed=55, k=2.5)
+
+    nx.draw_networkx_edges(Ga, pos_a, edge_color=FADED, width=1, alpha=0.3, ax=ax, arrows=True)
+
+    for idx, (edges, nodes) in enumerate(zip(art_path_edges, art_path_nodes)):
+        color = PATH_COLORS[idx % len(PATH_COLORS)]
+        nx.draw_networkx_edges(
+            Ga, pos_a, edgelist=edges,
+            edge_color=color, width=3.0, alpha=0.85,
+            arrows=True, arrowstyle="-|>", arrowsize=15, ax=ax,
+        )
+
+    for kind, color, size in [
+        ("user", USER_COLOR, 900),
+        ("event", EVENT_COLOR, 500),
+        ("category", CATEGORY_COLOR, 500),
+        ("similar_user", SIM_USER_COLOR, 700),
+        ("artist", ARTIST_COLOR, 700),
+    ]:
+        nl = [n for n, d in Ga.nodes(data=True) if d.get("kind") == kind]
+        nx.draw_networkx_nodes(
+            Ga, pos_a, nodelist=nl, node_color=color,
+            node_size=size, edgecolors="white", linewidths=1.5, ax=ax,
+        )
+
+    lbl_a = {}
+    for n in Ga.nodes():
+        if n == sample_user:
+            lbl_a[n] = f"YOU\n{n}"
+        elif str(n).startswith("cat:"):
+            lbl_a[n] = n.replace("cat:", "")
+        else:
+            lbl_a[n] = str(n)
+    nx.draw_networkx_labels(Ga, pos_a, lbl_a, font_size=7, font_weight="bold", ax=ax)
+    ax.axis("off")
+
     # ── Legend ───────────────────────────────────────────────
     legend_handles = [
         mpatches.Patch(color=USER_COLOR, label="Target user (YOU)"),
@@ -390,6 +532,7 @@ def main() -> None:
         mpatches.Patch(color=CATEGORY_COLOR, label="Category bridge"),
         mpatches.Patch(color=SIM_USER_COLOR, label="Similar user"),
         mpatches.Patch(color=RECO_COLOR, label="Recommended event"),
+        mpatches.Patch(color=ARTIST_COLOR, label="Recommended artist"),
     ]
     for i, (eid, _) in enumerate(cat_recs):
         legend_handles.append(
@@ -401,12 +544,12 @@ def main() -> None:
     )
     plt.tight_layout(rect=[0, 0.08, 1, 0.94])
 
-    out_path = Path("pipeline") / "step5_paths.png"
+    out_path = Path("pipeline") / "5_paths.png"
     fig.savefig(out_path, dpi=150, bbox_inches="tight")
     print(f"\n    Graph saved to:  {out_path}")
 
     plt.show()
-    print_banner("End of Step 5")
+    print_banner("End of Section 5")
     print()
 
 

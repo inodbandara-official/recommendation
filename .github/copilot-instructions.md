@@ -38,21 +38,21 @@ pip install -e .[dev]
 python run_recommend.py        # Interactive menu
 ```
 
-## System Pipeline (Steps 1–7)
+## System Pipeline (1–7)
 
-The `pipeline/` folder contains a 7-step walkthrough for the recommendation engine:
+The `pipeline/` folder contains a 7-section walkthrough for the recommendation engine:
 
-| Step | Script | Purpose |
-|------|--------|---------|
-| 1 | `pipeline/step1_load_data.py` | Dataset overview: node/edge counts, samples |
-| 2 | `pipeline/step2_build_graph.py` | Build and visualise graph structure |
-| 3 | `pipeline/step3_basic_reco.py` | Category-path and similar-user recommendations |
-| 4 | `pipeline/step4_run_model.py` | Full model pipeline + offline evaluation |
-| 5 | `pipeline/step5_highlight_paths.py` | Colour-coded recommendation path traces |
-| 6 | `pipeline/step6_dynamic_input.py` | Interactive: pick users, filter categories, compare |
-| 7 | `pipeline/step7_advanced_graph.py` | Multi-path graph + scoreboard + centrality |
+| # | Script | Purpose |
+|---|--------|---------|
+| 1 | `pipeline/1_load_data.py` | Dataset overview: node/edge counts, samples |
+| 2 | `pipeline/2_build_graph.py` | Build and visualise graph structure |
+| 3 | `pipeline/3_basic_reco.py` | Category-path and similar-user recommendations |
+| 4 | `pipeline/4_run_model.py` | Full model pipeline + offline evaluation |
+| 5 | `pipeline/5_highlight_paths.py` | Colour-coded recommendation path traces |
+| 6 | `pipeline/6_dynamic_input.py` | Interactive: pick users, filter categories, compare |
+| 7 | `pipeline/7_advanced_graph.py` | Multi-path graph + scoreboard + centrality |
 
-Step 4 requires `PYTHONPATH` set to the project root (or `pip install -e .`).
+Section 4 requires `PYTHONPATH` set to the project root (or `pip install -e .`).
 
 ## Conventions
 

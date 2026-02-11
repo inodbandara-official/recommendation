@@ -5,6 +5,7 @@ from .graph_similarity import (
 	jaccard_similar_users,
 	merge_similarity,
 	recommend_from_similar_users,
+	recommend_artists_from_similar_users,
 )
 
 __all__ = [
@@ -15,4 +16,5 @@ __all__ = [
 	"adamic_adar_similar_users",
 	"merge_similarity",
 	"recommend_from_similar_users",
+	"recommend_artists_from_similar_users",
 ]

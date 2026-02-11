@@ -1,108 +1,127 @@
 # Hybrid Recommendation System
 
-This project scaffolds a hybrid recommendation system combining knowledge-based, graph-based, and trend-based approaches. Data is expected as CSV files under the `data/` directory.
+A hybrid cultural event recommendation system for Sri Lanka, combining knowledge-based, graph-based, and trend-based approaches.
 
-## Prerequisites
+---
 
-- Python 3.10+
-- pip (or another PEP 517 compatible installer)
+## Getting Started (From Scratch)
 
-## Setup
+### Step 1 — Clone the Repository
 
-1. Create and activate a virtual environment (recommended).
-2. Install the project in editable mode:
+```bash
+git clone https://github.com/<your-username>/Recommendation.git
+cd Recommendation
+```
 
-   ```bash
-   pip install -e .[dev]
-   ```
+### Step 2 — Create a Virtual Environment
 
-## Project Layout
+```bash
+python -m venv .venv
+```
 
-- `data/`: place source CSV files here (e.g., interactions, items, users).
-- `src/`: Python source (packaged with src-layout).
-  - `knowledge_based/`: rule and constraint-driven recommenders.
-  - `graph_based/`: network-based recommendation logic.
-  - `trend_based/`: popularity/time-based recommenders.
-  - `hybrid/`: ensemble and blending utilities.
-  - `data_loader.py`: helpers to load and validate CSV input.
-- `notebooks/`: exploratory analysis and experiments.
+### Step 3 — Activate the Virtual Environment
 
-## Development Notes
+**Windows (PowerShell):**
+```powershell
+.\.venv\Scripts\activate
+```
 
-- Stubs illustrate expected interfaces: `fit(...)` to ingest data, `recommend(user_id, top_k)` to produce ranked items.
-- Extend or replace stubs with domain logic; add tests alongside new modules.
-- Update dependencies in `pyproject.toml` if you introduce new libraries.
+**Linux / macOS:**
+```bash
+source .venv/bin/activate
+```
 
-## Running Recommendations
+### Step 4 — Install Dependencies
 
-1. Ensure data CSVs are in `data/` (`users.csv`, `events.csv`, `attends.csv`, `follows.csv`, `artists.csv`). Cleaned versions (`cleaned_*.csv`) are used automatically if present.
+```bash
+pip install -e .[dev]
+```
 
-2. Create and activate a virtual environment, then install dependencies:
+### Step 5 — Verify Data Files
 
-   ```bash
-   python -m venv .venv
-   ```
+Ensure these 5 CSV files exist in the `data/` folder:
 
-   Activate the virtual environment:
-   - **Windows (PowerShell):**
+| File | Description |
+|------|-------------|
+| `users.csv` | 1,501 users with art_interests, region_preference |
+| `events.csv` | 1,001 events with art_forms, genres, region, ticket_price |
+| `artists.csv` | 501 artists with art_forms, genres, popularity |
+| `attends.csv` | 7,197 user-event attendance records |
+| `follows.csv` | 12,961 user-artist follow records |
 
-     ```powershell
-     .\.venv\Scripts\activate
-     ```
+### Step 6 — Run the System
 
-   - **Linux / macOS:**
+You have **two entry points**:
 
-     ```bash
-     source .venv/bin/activate
-     ```
+#### Option A: Recommendation Engine (Interactive Menu)
 
-   Install the project:
-
-   ```bash
-   pip install -e .[dev]
-   ```
-
-3. Run the recommendation system:
-
-   ```bash
-   python run_recommend.py
-   ```
-
-4. Select an option from the menu:
-
-   ```
-   === Hybrid Recommendation System ===
-   1. Hybrid recommendations (knowledge + graph + trend)
-   2. Trend-only recommendations
-   3. Graph-only recommendations (similar users)
-   4. Hybrid with custom explanations
-   0. Exit
-   ```
-
-### Menu Options
-
-| Option | Description |
-|--------|-------------|
-| **1** | Full hybrid blend combining knowledge-based, graph-based, and trend-based scores with auto-selected weights based on user activity level. |
-| **2** | Trend-only: shows trending events based on recent attendance and growth rate. No user required. |
-| **3** | Graph-only: recommends events attended by similar users (Jaccard + Adamic-Adar similarity). |
-| **4** | Hybrid with custom explanations: lets you specify interests and region for tailored explanation text. |
-
-### Example Session
+```bash
+python run_recommend.py
+```
 
 ```
-python run_recommend.py
-
 === Hybrid Recommendation System ===
 1. Hybrid recommendations (knowledge + graph + trend)
-...
-Select an option [1-4, 0 to exit]: 1
-Enter user_id (e.g. U0008): U0006
-Enter top_n (default 10): 10
-
-Generating top 10 hybrid recommendations for U0006...
-
-  event_id  KnowledgeScore  GraphScore  TrendScore  FinalScore  Explanations
-0    E0123            0.70        0.45        0.60        0.58  [Matches your interests, Trending this week]
-...
+2. Trend-only recommendations
+3. Graph-only recommendations (similar users)
+4. Hybrid with custom explanations
+0. Exit
 ```
+
+#### Option B: System Pipeline (7-Step Walkthrough)
+
+```bash
+python run_pipeline.py
+```
+
+```
+==============================================================
+   RECOMMENDATION SYSTEM — Step Navigator
+==============================================================
+
+    1. Dataset Overview
+    2. Build & Visualise Graph
+    3. Basic Recommendations
+    4. Full Model Pipeline + Evaluation
+    5. Highlight Recommendation Paths
+    6. Interactive Dynamic Input
+    7. Advanced Graph + Scoreboard
+    8. Run ALL steps (1-7) sequentially
+    0. Exit
+
+    Select step [1-7], 8 for all, 0 to exit:
+```
+
+Just type a number and press Enter — no need to type full file paths.
+
+---
+
+## System Pipeline (Steps 1–7)
+
+The `pipeline/` folder contains a 7-step walkthrough for the recommendation engine. Use the **step navigator** to run any step by number:
+
+```bash
+python run_pipeline.py
+```
+
+### What Each Step Does
+
+| Step | What It Does | Output |
+|------|--------------|--------|
+| **1** | Loads all 5 CSVs, prints node/edge counts, sample rows, and discovered categories | Console only |
+| **2** | Builds heterogeneous graph (2,527 nodes, 10,417 edges), visualises a subset | `pipeline/step2_graph.png` |
+| **3** | Category-path and similar-user recommendations with dual-panel visualisation | `pipeline/step3_basic_reco.png` |
+| **4** | Runs all 3 models, hybrid blend, explanations, offline evaluation metrics | Console only |
+| **5** | Traces colour-coded paths from user to each recommendation | `pipeline/step5_paths.png` |
+| **6** | **Interactive:** pick users, filter categories, compare two users side-by-side | `pipeline/step6_*.png` |
+| **7** | Multi-path graph + combined scoreboard + degree centrality analysis | `pipeline/step7_advanced_graph.png` |
+
+### Tips
+
+- If the plot window blocks your terminal, set `MPLBACKEND=Agg` before running:
+  ```powershell
+  $env:MPLBACKEND="Agg"   # PowerShell
+  export MPLBACKEND=Agg    # Bash
+  ```
+- Select **8** in the navigator to run all 7 steps sequentially.
+- All PNG visualisations are saved in the `pipeline/` folder.

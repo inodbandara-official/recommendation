@@ -1,92 +1,61 @@
-<!-- Use this file to provide workspace-specific custom instructions to Copilot. For more details, visit https://code.visualstudio.com/docs/copilot/copilot-customization#_use-a-githubcopilotinstructionsmd-file -->
-- [x] Verify that the copilot-instructions.md file in the .github directory is created.
+# Hybrid Recommendation System — Workspace Instructions
 
-- [x] Clarify Project Requirements
-	<!-- Ask for project type, language, and frameworks if not specified. Skip if already provided. -->
+## Project Overview
 
-- [x] Scaffold the Project
-	<!--
-	Ensure that the previous step has been marked as completed.
-	Call project setup tool with projectType parameter.
-	Run scaffolding command to create project files and folders.
-	Use '.' as the working directory.
-	If no appropriate projectType is available, search documentation using available tools.
-	Otherwise, create the project structure manually using available file creation tools.
-	-->
+- **Language:** Python 3.12
+- **Environment:** Virtual environment (`.venv`)
+- **Package manager:** pip with pyproject.toml (src-layout)
+- **Key libraries:** pandas, numpy, scikit-learn, networkx, scipy, matplotlib
+- **Domain:** Cultural event recommendation system for Sri Lanka
 
-- [x] Customize the Project
-	<!--
-	Verify that all previous steps have been completed successfully and you have marked the step as completed.
-	Develop a plan to modify codebase according to user requirements.
-	Apply modifications using appropriate tools and user-provided references.
-	Skip this step for "Hello World" projects.
-	-->
+## Architecture
 
-- [x] Install Required Extensions
-	<!-- ONLY install extensions provided mentioned in the get_project_setup_info. Skip this step otherwise and mark as completed. -->
+Three recommendation models are blended by a hybrid ranker:
+- **Knowledge-based** (`src/knowledge_based/`): Profile matching using art_interests, region_preference vs event art_forms, genres, region.
+- **Graph-based** (`src/graph_based/`): Heterogeneous graph with PageRank + Jaccard/Adamic-Adar user similarity.
+- **Trend-based** (`src/trend_based/`): Windowed attendance counts and growth rate scoring.
+- **Hybrid** (`src/hybrid/`): Dynamic weight selection (cold_start / active / trending strategies), explanations.
+- **Evaluation** (`src/evaluation/`): Precision@K, Recall@K, NDCG, MAP, coverage, diversity.
 
-- [ ] Compile the Project
-	<!--
-	Verify that all previous steps have been completed.
-	Install any missing dependencies.
-	Run diagnostics and resolve any issues.
-	Check for markdown files in project folder for relevant instructions on how to do this.
-	-->
+## Data Files (in `data/`)
 
-- [ ] Create and Run Task
-	<!--
-	Verify that all previous steps have been completed.
-	Check https://code.visualstudio.com/docs/debugtest/tasks to determine if the project needs a task. If so, use the create_and_run_task to create and launch a task based on package.json, README.md, and project structure.
-	Skip this step otherwise.
-	 -->
+| File | Rows | Key Columns |
+|------|------|-------------|
+| users.csv | 1,501 | user_id, name, art_interests, region_preference, culture_preferences |
+| events.csv | 1,001 | event_id, name, art_forms, genres, region, ticket_price |
+| artists.csv | 501 | artist_id, name, art_forms, genres, popularity |
+| attends.csv | 7,197 | user_id, event_id, timestamp, rsvp_status, compatibility_score |
+| follows.csv | 12,961 | user_id, artist_id, timestamp, compatibility_score |
 
-- [ ] Launch the Project
-	<!--
-	Verify that all previous steps have been completed.
-	Prompt user for debug mode, launch only if confirmed.
-	 -->
+**Important:** Do not add or modify CSV files. Use actual column names from the data (not generic names).
 
-- [ ] Ensure Documentation is Complete
-	<!--
-	Verify that all previous steps have been completed.
-	Verify that README.md and the copilot-instructions.md file in the .github directory exists and contains current project information.
-	Clean up the copilot-instructions.md file in the .github directory by removing all HTML comments.
-	 -->
+## Running
 
-<!--
-## Execution Guidelines
-PROGRESS TRACKING:
-- If any tools are available to manage the above todo list, use it to track progress through this checklist.
-- After completing each step, mark it complete and add a summary.
-- Read current todo list status before starting each new step.
+```bash
+python -m venv .venv
+.venv\Scripts\activate        # Windows
+pip install -e .[dev]
+python run_recommend.py        # Interactive menu
+```
 
-COMMUNICATION RULES:
-- Avoid verbose explanations or printing full command outputs.
-- If a step is skipped, state that briefly (e.g. "No extensions needed").
-- Do not explain project structure unless asked.
-- Keep explanations concise and focused.
+## System Pipeline (Steps 1–7)
 
-DEVELOPMENT RULES:
-- Use '.' as the working directory unless user specifies otherwise.
-- Avoid adding media or external links unless explicitly requested.
-- Use placeholders only with a note that they should be replaced.
-- If the user has not specified project details, assume they want a "Hello World" project as a starting point.
-- Avoid adding links of any type (URLs, files, folders, etc.) or integrations that are not explicitly required.
-- Avoid generating images, videos, or any other media files unless explicitly requested.
-- If you need to use any media assets as placeholders, let the user know that these are placeholders and should be replaced with the actual assets later.
-- Ensure all generated components serve a clear purpose within the user's requested workflow.
-- If a feature is assumed but not confirmed, prompt the user for clarification before including it.
-- If you are working on a VS Code extension, use the VS Code API tool with a query to find relevant VS Code API references and samples related to that query.
+The `pipeline/` folder contains a 7-step walkthrough for the recommendation engine:
 
-TASK COMPLETION RULES:
-- Your task is complete when:
-  - Project is successfully scaffolded and compiled without errors
-  - copilot-instructions.md file in the .github directory exists in the project
-  - README.md file exists and is up to date
-  - User is provided with clear instructions to debug/launch the project
+| Step | Script | Purpose |
+|------|--------|---------|
+| 1 | `pipeline/step1_load_data.py` | Dataset overview: node/edge counts, samples |
+| 2 | `pipeline/step2_build_graph.py` | Build and visualise graph structure |
+| 3 | `pipeline/step3_basic_reco.py` | Category-path and similar-user recommendations |
+| 4 | `pipeline/step4_run_model.py` | Full model pipeline + offline evaluation |
+| 5 | `pipeline/step5_highlight_paths.py` | Colour-coded recommendation path traces |
+| 6 | `pipeline/step6_dynamic_input.py` | Interactive: pick users, filter categories, compare |
+| 7 | `pipeline/step7_advanced_graph.py` | Multi-path graph + scoreboard + centrality |
 
-Before starting a new task in the above plan, update progress in the plan.
--->
-- Work through each checklist item systematically.
-- Keep communication concise and focused.
-- Follow development best practices.
+Step 4 requires `PYTHONPATH` set to the project root (or `pip install -e .`).
+
+## Conventions
+
+- List-like CSV columns (e.g. `['music', 'dance']`) are parsed with tokenized set-based matching.
+- The `budget_col` is `None` by default since the data has no budget column.
+- Git branch for improvements: `dev-improvs`.

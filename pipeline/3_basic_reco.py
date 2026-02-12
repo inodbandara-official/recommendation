@@ -212,16 +212,33 @@ def main() -> None:
     print()
 
     # ── Visualise recommendation paths ───────────────────────
+    print_section("Graph Visualization")
+    print("    This 3-panel graph shows HOW recommendations are made:")
+    print("")
+    print("    LEFT   — Category matching: finds events sharing categories with what you attended")
+    print("    MIDDLE — Collaborative filtering: finds events that similar users enjoyed")
+    print("    RIGHT  — Artist discovery: finds artists matching your interests + similar users' follows")
+    print("")
+    print("    Each colored path traces the logic from YOU → to a specific recommendation.")
+    print("    Dashed edges show the final recommendation step.")
+    print()
+
     fig, axes = plt.subplots(1, 3, figsize=(24, 8))
     fig.suptitle(
-        f"Basic Recommendations for {sample_user}",
-        fontsize=14,
+        f"Three Recommendation Strategies for {sample_user}\n" +
+        "Visualizing the path from user profile to final recommendations",
+        fontsize=13,
         fontweight="bold",
     )
 
     # --- Left panel: category path ---
     ax = axes[0]
-    ax.set_title("Category-Path Recommendations", fontsize=11, fontweight="bold")
+    ax.set_title(
+        "Method 1: Category-Path Logic\n" +
+        "YOU → attended events → shared categories → NEW events",
+        fontsize=10,
+        fontweight="bold",
+    )
 
     G1 = nx.DiGraph()
     G1.add_node(sample_user, kind="user")
@@ -279,11 +296,27 @@ def main() -> None:
 
     labels1 = {n: n.replace("cat:", "") for n in G1.nodes()}
     nx.draw_networkx_labels(G1, pos1, labels1, font_size=7, font_weight="bold", ax=ax)
+    
+    # Add explanation text box
+    ax.text(
+        0.5, -0.08,
+        "Strategy: If you attended music events, recommend other music events\n" +
+        "you haven't seen yet (content-based filtering)",
+        transform=ax.transAxes,
+        fontsize=8,
+        ha="center",
+        bbox=dict(boxstyle="round,pad=0.5", facecolor="lightyellow", alpha=0.7),
+    )
     ax.axis("off")
 
-    # --- Right panel: similar-user path ---
+    # --- Middle panel: similar-user path ---
     ax = axes[1]
-    ax.set_title("Similar-User Recommendations", fontsize=11, fontweight="bold")
+    ax.set_title(
+        "Method 2: Collaborative Filtering\n" +
+        "YOU → shared events ← similar users → THEIR other events",
+        fontsize=10,
+        fontweight="bold",
+    )
 
     G2 = nx.DiGraph()
     G2.add_node(sample_user, kind="user")
@@ -323,11 +356,27 @@ def main() -> None:
     nx.draw_networkx_edges(G2, pos2, edgelist=reco_edges2, edge_color=RECO_COLOR, width=2.0, alpha=0.8, style="dashed", arrows=True, ax=ax)
 
     nx.draw_networkx_labels(G2, pos2, font_size=7, font_weight="bold", ax=ax)
+    
+    # Add explanation text box
+    ax.text(
+        0.5, -0.08,
+        "Strategy: Find users with similar taste (shared event attendance),\n" +
+        "then recommend events THEY enjoyed (social proof)",
+        transform=ax.transAxes,
+        fontsize=8,
+        ha="center",
+        bbox=dict(boxstyle="round,pad=0.5", facecolor="lightblue", alpha=0.7),
+    )
     ax.axis("off")
 
-    # --- Third panel: artist recommendations ---
+    # --- Right panel: artist recommendations ---
     ax = axes[2]
-    ax.set_title("Artist Recommendations", fontsize=11, fontweight="bold")
+    ax.set_title(
+        "Method 3: Artist Discovery\n" +
+        "YOU → interests/categories → matching artists + similar users' follows",
+        fontsize=10,
+        fontweight="bold",
+    )
 
     G3 = nx.DiGraph()
     G3.add_node(sample_user, kind="user")
@@ -377,6 +426,17 @@ def main() -> None:
 
     labels3 = {n: n.replace("cat:", "") for n in G3.nodes()}
     nx.draw_networkx_labels(G3, pos3, labels3, font_size=7, font_weight="bold", ax=ax)
+    
+    # Add explanation text box
+    ax.text(
+        0.5, -0.08,
+        "Strategy: Match your stated interests to artist profiles (profile matching)\n" +
+        "+ discover artists that similar users follow (collaborative)",
+        transform=ax.transAxes,
+        fontsize=8,
+        ha="center",
+        bbox=dict(boxstyle="round,pad=0.5", facecolor="peachpuff", alpha=0.7),
+    )
     ax.axis("off")
 
     # Legend

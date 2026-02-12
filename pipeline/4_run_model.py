@@ -77,6 +77,18 @@ def main() -> None:
 
     print_banner("4: Run the Actual Recommendation Model")
 
+    print("    This section runs the FULL recommendation pipeline for a single user:")
+    print("    1. Knowledge-Based  — matches user profile (interests, city) to event attributes")
+    print("    2. Graph-Based      — finds similar users via shared attendance, recommends their events")
+    print("    3. Trend-Based      — identifies events gaining popularity in a recent time window")
+    print("    4. Hybrid Blend     — combines all three scores using dynamic weights")
+    print("    5. Artist Recs      — profile matching + collaborative filtering for artist discovery")
+    print("    6. Evaluation       — measures accuracy (Precision, Recall, NDCG, Coverage)")
+    print()
+    print("    PURPOSE: Show the complete end-to-end pipeline from raw data to ranked recommendations")
+    print("    with human-readable explanations and offline accuracy metrics.")
+    print()
+
     print_section(f"Selected User: {sample_user}")
     print(f"    Name             :  {user_row['name']}")
     print(f"    Art interests    :  {user_row.get('art_interests', 'N/A')}")
@@ -87,7 +99,10 @@ def main() -> None:
     TOP_N = 10
 
     # ── 1) Knowledge-based scores ───────────────────────────
-    print_section("Model 1 — Knowledge-Based (Profile Matching)")
+    print_section("Model 1 — Knowledge-Based (Profile Matching)")    
+    print("    HOW: Compares user's art_interests & city with each event's art_forms, genres & city")
+    print("    WHY: Ensures recommendations match what the user is explicitly interested in")
+    print()    
     km = KnowledgeMatcher(budget_col=None)
     km.fit(users, events)
     knowledge_df = km.recommend(sample_user, top_n=len(events))
@@ -101,6 +116,9 @@ def main() -> None:
 
     # ── 2) Graph-based scores ───────────────────────────────
     print_section("Model 2 — Graph-Based (Similar Users)")
+    print("    HOW: Finds users who attended the same events (Jaccard similarity) and recommends THEIR events")
+    print("    WHY: Leverages collective behaviour — 'users like you also enjoyed these events'")
+    print()
     graph_df = recommend_from_similar_users(
         attends=train,
         follows=follows,
@@ -122,6 +140,9 @@ def main() -> None:
 
     # ── 3) Trend-based scores ───────────────────────────────
     print_section("Model 3 — Trend-Based (Recent Popularity)")
+    print("    HOW: Counts attendance in a 14-day window and measures growth rate")
+    print("    WHY: Captures momentum — events gaining popularity may be relevant right now")
+    print()
     trend_model = TrendWindowRecommender().fit(train)
     trend_df = trend_model.recommend(top_n=TOP_N * 3, window_days=14)
     trend_scores = trend_df[["event_id", "TrendScore"]]
@@ -134,6 +155,10 @@ def main() -> None:
 
     # ── 4) Hybrid blend ─────────────────────────────────────
     print_section("Hybrid Model — Weighted Combination")
+    print("    HOW: FinalScore = α·Knowledge + β·Graph + γ·Trend (weights depend on user activity)")
+    print("    WHY: No single model is best for all users — cold-start users rely more on knowledge,")
+    print("         active users benefit from collaborative filtering, trending boosts timely events")
+    print()
     candidates = pd.DataFrame({"event_id": pd.unique(
         pd.concat([
             knowledge_scores["event_id"],
@@ -175,8 +200,12 @@ def main() -> None:
             f"{r['FinalScore']:>7.3f}  {expl}"
         )
 
-    # ── 5) Accuracy metrics ─────────────────────────────────
+    # ── 5) Artist recommendations ───────────────────────────
     print_section("Artist Recommendations")
+    print("    HOW: Profile matching (user interests vs artist art_forms/genres)")
+    print("         + Collaborative (artists followed by similar users)")
+    print("    WHY: Artists are a natural discovery axis — finding new artists leads to new events")
+    print()
     print("    Combining profile matching + collaborative filtering for artists")
     print()
 
@@ -235,6 +264,14 @@ def main() -> None:
 
     # ── 6) Accuracy metrics ─────────────────────────────────
     print_section("Accuracy Metrics (Offline Evaluation)")
+    print("    HOW: Hold out each user's last interaction, run the model on the rest,")
+    print("         check if the held-out event appears in the top-N recommendations")
+    print("    METRICS:")
+    print("      • Precision@K  = fraction of top-K recs that are actually relevant")
+    print("      • Recall@K     = fraction of relevant items found in top-K")
+    print("      • NDCG@K       = rewards placing relevant items higher in the list")
+    print("      • Coverage     = fraction of catalog recommended to at least one user")
+    print()
 
     # Evaluate across a sample of users with holdout
     rec_map: dict[str, list[str]] = {}

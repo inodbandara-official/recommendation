@@ -301,6 +301,17 @@ def draw_artist_graph(G: nx.DiGraph, user_id: str, title: str, ax: plt.Axes) -> 
             labels[n] = str(n)
     nx.draw_networkx_labels(G, pos, labels, font_size=7, font_weight="bold", ax=ax)
     ax.set_title(title, fontsize=11, fontweight="bold")
+
+    # Add explanation text box
+    ax.text(
+        0.5, -0.06,
+        "YOUR interests/categories → matching artist profiles (profile matching)\n"
+        + "+ similar users' follows → discover new artists (collaborative filtering)",
+        transform=ax.transAxes,
+        fontsize=8,
+        ha="center",
+        bbox=dict(boxstyle="round,pad=0.4", facecolor="peachpuff", alpha=0.7),
+    )
     ax.axis("off")
 
 
@@ -357,6 +368,17 @@ def draw_graph(G: nx.DiGraph, user_id: str, title: str, ax: plt.Axes) -> None:
             labels[n] = str(n)
     nx.draw_networkx_labels(G, pos, labels, font_size=7, font_weight="bold", ax=ax)
     ax.set_title(title, fontsize=11, fontweight="bold")
+
+    # Add explanation text box
+    ax.text(
+        0.5, -0.06,
+        "YOU → attended events → shared categories → NEW recommended events\n"
+        + "Dashed edges = recommendation links | Solid edges = existing relationships",
+        transform=ax.transAxes,
+        fontsize=8,
+        ha="center",
+        bbox=dict(boxstyle="round,pad=0.4", facecolor="lightyellow", alpha=0.7),
+    )
     ax.axis("off")
 
 
@@ -380,11 +402,11 @@ def interactive_loop(
 
     while True:
         print_section("Choose an action")
-        print("    1) Recommend events for a user")
-        print("    2) Recommend events with category filter")
-        print("    3) Compare two users side-by-side")
-        print("    4) Show top active users")
-        print("    5) Recommend artists for a user")
+        print("    1) Recommend events for a user          — category-path graph")
+        print("    2) Recommend events with category filter — filtered category-path graph")
+        print("    3) Compare two users side-by-side        — see how tastes differ")
+        print("    4) Show top active users                 — pick users to explore")
+        print("    5) Recommend artists for a user          — artist discovery graph")
         print("    q) Quit")
         choice = input("\n    Your choice: ").strip().lower()
 
@@ -417,6 +439,11 @@ def interactive_loop(
                 )
 
             fig, ax = plt.subplots(figsize=(12, 8))
+            fig.suptitle(
+                f"Event Recommendations for {uid}\n"
+                + "Category-path logic: YOU → attended events → shared categories → NEW events",
+                fontsize=12, fontweight="bold",
+            )
             draw_graph(G, uid, f"Recommendations for {uid}", ax)
             legend_handles = [
                 mpatches.Patch(color=USER_COLOR, label="You"),
@@ -488,7 +515,8 @@ def interactive_loop(
 
             fig, axes = plt.subplots(1, 2, figsize=(20, 9))
             fig.suptitle(
-                f"Side-by-Side Comparison: {uid1} vs {uid2}",
+                f"Side-by-Side Comparison: {uid1} vs {uid2}\n"
+                + "Same algorithm applied to two different users — how do their taste profiles differ?",
                 fontsize=14, fontweight="bold",
             )
             draw_graph(G1, uid1, f"User: {uid1}", axes[0])
@@ -545,6 +573,11 @@ def interactive_loop(
                 )
 
             fig, ax = plt.subplots(figsize=(12, 8))
+            fig.suptitle(
+                f"Artist Recommendations for {uid}\n"
+                + "Profile matching + collaborative filtering: interests → artists + similar users' follows",
+                fontsize=12, fontweight="bold",
+            )
             draw_artist_graph(G, uid, f"Artist Recommendations for {uid}", ax)
             legend_handles = [
                 mpatches.Patch(color=USER_COLOR, label="You"),
@@ -572,9 +605,14 @@ def main() -> None:
     follows = pd.read_csv(DATA_DIR / "follows.csv")
 
     print_banner("6: Dynamic User Input")
-    print("    This interactive mode lets you choose users,")
-    print("    apply category filters, and compare recommendations")
-    print("    for both events and artists in real time.\n")
+    print("    This interactive mode lets you explore the recommendation")
+    print("    system in real time. Pick any user, apply filters, and see")
+    print("    how the graph-based recommendations change dynamically.")
+    print()
+    print("    PURPOSE: Demonstrate that the system works for ANY user,")
+    print("    not just pre-selected examples. Each graph shows the logic")
+    print("    path from the user to their personalized recommendations.")
+    print()
 
     interactive_loop(users, events, attends, artists, follows)
 

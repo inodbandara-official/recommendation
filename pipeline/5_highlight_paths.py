@@ -274,16 +274,36 @@ def main() -> None:
         print(f"       {via_user} ──follows──➤ {aid}")
         print()
     # ── Visualise highlighted paths ──────────────────────────
+    print_section("Graph Visualization — Path Highlighting")
+    print("    This 3-panel graph traces the EXACT PATH from YOU to each recommendation:")
+    print()
+    print("    LEFT   — Content-based paths: traces YOUR events → shared categories → NEW events")
+    print("             Each colored line = one recommendation's reasoning chain")
+    print("    MIDDLE — Collaborative paths: traces YOU ← shared events → similar users → THEIR events")
+    print("             Shows which similar user 'bridged' you to each recommendation")
+    print("    RIGHT  — Artist discovery paths: traces YOUR interests → categories → artists")
+    print("             + similar users → artists THEY follow (collaborative)")
+    print()
+    print("    WHY THIS MATTERS: Unlike Section 3 which shows the logic,")
+    print("    this graph highlights the specific evidence trail for each recommendation.")
+    print("    You can point to any colored path and explain exactly WHY that item was recommended.")
+    print()
+
     fig, axes = plt.subplots(1, 3, figsize=(28, 9))
     fig.suptitle(
-        f"Recommendation Paths for {sample_user}",
+        f"Recommendation Path Traces for {sample_user}\n"
+        + "Each colored line traces the exact evidence chain from YOU to a recommendation",
         fontsize=14,
         fontweight="bold",
     )
 
     # ---- LEFT: Category paths ----
     ax = axes[0]
-    ax.set_title("Category-Path Recommendations", fontsize=11, fontweight="bold")
+    ax.set_title(
+        "Path Type A: Content-Based Filtering\n"
+        + "YOU → attended event → shared category → NEW event",
+        fontsize=10, fontweight="bold",
+    )
 
     Gc = nx.DiGraph()
     Gc.add_node(sample_user, kind="user")
@@ -365,11 +385,26 @@ def main() -> None:
         else:
             lbl_c[n] = str(n)
     nx.draw_networkx_labels(Gc, pos_c, lbl_c, font_size=7, font_weight="bold", ax=ax)
+
+    # Add explanation text box
+    ax.text(
+        0.5, -0.08,
+        "Each colored path = one recommendation's evidence trail\n"
+        + "Path: YOU attended an event → that event has a category → NEW event shares that category",
+        transform=ax.transAxes,
+        fontsize=8,
+        ha="center",
+        bbox=dict(boxstyle="round,pad=0.5", facecolor="lightyellow", alpha=0.7),
+    )
     ax.axis("off")
 
-    # ---- RIGHT: Similar-user paths ----
+    # ---- MIDDLE: Similar-user paths ----
     ax = axes[1]
-    ax.set_title("Similar-User Path Recommendations", fontsize=11, fontweight="bold")
+    ax.set_title(
+        "Path Type B: Collaborative Filtering\n"
+        + "YOU → shared event ← similar user → THEIR other events",
+        fontsize=10, fontweight="bold",
+    )
 
     Gs = nx.DiGraph()
     Gs.add_node(sample_user, kind="user")
@@ -435,11 +470,26 @@ def main() -> None:
         else:
             lbl_s[n] = str(n)
     nx.draw_networkx_labels(Gs, pos_s, lbl_s, font_size=7, font_weight="bold", ax=ax)
+
+    # Add explanation text box
+    ax.text(
+        0.5, -0.08,
+        "Each colored path = one recommendation's social proof\n"
+        + "Path: YOU and a similar user both attended the same event → recommend THEIR other events",
+        transform=ax.transAxes,
+        fontsize=8,
+        ha="center",
+        bbox=dict(boxstyle="round,pad=0.5", facecolor="lightblue", alpha=0.7),
+    )
     ax.axis("off")
 
-    # ---- THIRD PANEL: Artist paths ----
+    # ---- RIGHT PANEL: Artist paths ----
     ax = axes[2]
-    ax.set_title("Artist Recommendation Paths", fontsize=11, fontweight="bold")
+    ax.set_title(
+        "Path Type C: Artist Discovery\n"
+        + "YOU → interests/categories → artists + similar users → THEIR follows",
+        fontsize=10, fontweight="bold",
+    )
 
     Ga = nx.DiGraph()
     Ga.add_node(sample_user, kind="user")
@@ -523,6 +573,17 @@ def main() -> None:
         else:
             lbl_a[n] = str(n)
     nx.draw_networkx_labels(Ga, pos_a, lbl_a, font_size=7, font_weight="bold", ax=ax)
+
+    # Add explanation text box
+    ax.text(
+        0.5, -0.08,
+        "Top paths: YOUR interests → matching artist categories (profile matching)\n"
+        + "Bottom paths: similar users → artists THEY follow (collaborative discovery)",
+        transform=ax.transAxes,
+        fontsize=8,
+        ha="center",
+        bbox=dict(boxstyle="round,pad=0.5", facecolor="peachpuff", alpha=0.7),
+    )
     ax.axis("off")
 
     # ── Legend ───────────────────────────────────────────────

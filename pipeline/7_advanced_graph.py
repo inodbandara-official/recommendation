@@ -358,16 +358,37 @@ def main() -> None:
         print(f"    {label:<25s}  {kind:<15s}  centrality={cent:.3f}")
 
     # ── Visualise ────────────────────────────────────────────
+    print_section("Graph Visualization — Advanced Combined View")
+    print("    This 2-panel visualization shows the COMPLETE recommendation picture:")
+    print()
+    print("    LEFT  — Multi-Path Graph: ALL recommendation paths overlaid on one graph")
+    print("            • Category paths (content-based) and similar-user paths (collaborative)")
+    print("            • Node SIZE reflects importance (degree centrality)")
+    print("            • Each colored path = one recommendation's full reasoning chain")
+    print("    RIGHT — Scoreboard: Ranked table of recommendations with individual scores")
+    print("            • Cat score = content overlap, Sim score = collaborative evidence")
+    print("            • Final score = combined ranking, Via = which path produced it")
+    print()
+    print("    WHY THIS MATTERS: This is the 'big picture' view that shows how the")
+    print("    system COMBINES multiple signals into a single ranked list, while the")
+    print("    graph reveals which nodes are most influential (larger = more connected).")
+    print()
+
     fig, axes = plt.subplots(1, 2, figsize=(22, 10))
     fig.suptitle(
-        f"Advanced Graph View for {sample_user}",
+        f"Advanced Graph View for {sample_user}\n"
+        + "Combined multi-path graph with centrality sizing + ranked scoreboard",
         fontsize=15,
         fontweight="bold",
     )
 
     # ---- LEFT: Full multi-path graph ----
     ax = axes[0]
-    ax.set_title("Multi-Path Recommendation Graph", fontsize=12, fontweight="bold")
+    ax.set_title(
+        "Multi-Path Recommendation Graph\n"
+        + "Combines category paths + user similarity paths | Node size = importance (centrality)",
+        fontsize=11, fontweight="bold",
+    )
 
     pos = nx.spring_layout(G, seed=42, k=2.0, iterations=50)
 
@@ -416,11 +437,26 @@ def main() -> None:
         else:
             labels[n] = str(n)
     nx.draw_networkx_labels(G, pos, labels, font_size=6, font_weight="bold", ax=ax)
+
+    # Add explanation text box
+    ax.text(
+        0.5, -0.06,
+        "Larger nodes = higher degree centrality (more connections = more important)\n"
+        + "Each colored line = one event's full path from YOU to recommendation",
+        transform=ax.transAxes,
+        fontsize=8,
+        ha="center",
+        bbox=dict(boxstyle="round,pad=0.4", facecolor="lightyellow", alpha=0.7),
+    )
     ax.axis("off")
 
     # ---- RIGHT: Scoreboard + top paths ----
     ax2 = axes[1]
-    ax2.set_title("Recommendation Scoreboard", fontsize=12, fontweight="bold")
+    ax2.set_title(
+        "Recommendation Scoreboard\n"
+        + "Final ranked list: Cat (content) + Sim (collaborative) = Final blended score",
+        fontsize=11, fontweight="bold",
+    )
     ax2.axis("off")
 
     # Draw table-style scoreboard

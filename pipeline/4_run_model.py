@@ -80,7 +80,7 @@ def main() -> None:
     print_section(f"Selected User: {sample_user}")
     print(f"    Name             :  {user_row['name']}")
     print(f"    Art interests    :  {user_row.get('art_interests', 'N/A')}")
-    print(f"    Region pref      :  {user_row.get('region_preference', 'N/A')}")
+    print(f"    City             :  {user_row.get('city', 'N/A')}")
     print(f"    Train interactions:  {len(train.loc[train['user_id'] == sample_user])}")
     print(f"    Held-out event   :  {test.loc[test['user_id'] == sample_user, 'event_id'].iloc[0]}")
 
@@ -160,8 +160,8 @@ def main() -> None:
 
     # Attach explanations
     interests = to_tokens(user_row.get("art_interests"))
-    region = user_row.get("region_preference") if pd.notna(user_row.get("region_preference")) else None
-    ranked = attach_explanations(ranked, events=events, user_interests=interests, user_region=region)
+    city = user_row.get("city") if pd.notna(user_row.get("city")) else None
+    ranked = attach_explanations(ranked, events=events, user_interests=interests, user_city=city)
 
     print(f"    {'Rank':<5} {'Event':<8} {'Name':<38} {'K':>5} {'G':>7} {'T':>7} {'Final':>7}  Explanation")
     print("    " + "-" * 110)

@@ -11,7 +11,7 @@
 ## Architecture
 
 Three recommendation models are blended by a hybrid ranker:
-- **Knowledge-based** (`src/knowledge_based/`): Profile matching using art_interests, region_preference vs event art_forms, genres, region.
+- **Knowledge-based** (`src/knowledge_based/`): Profile matching using art_interests, city vs event art_forms, genres, city.
 - **Graph-based** (`src/graph_based/`): Heterogeneous graph with PageRank + Jaccard/Adamic-Adar user similarity.
 - **Trend-based** (`src/trend_based/`): Windowed attendance counts and growth rate scoring.
 - **Hybrid** (`src/hybrid/`): Dynamic weight selection (cold_start / active / trending strategies), explanations.
@@ -21,11 +21,11 @@ Three recommendation models are blended by a hybrid ranker:
 
 | File | Rows | Key Columns |
 |------|------|-------------|
-| users.csv | 1,501 | user_id, name, art_interests, region_preference, culture_preferences |
-| events.csv | 1,001 | event_id, name, art_forms, genres, region, ticket_price |
-| artists.csv | 501 | artist_id, name, art_forms, genres, popularity |
-| attends.csv | 7,197 | user_id, event_id, timestamp, rsvp_status, compatibility_score |
-| follows.csv | 12,961 | user_id, artist_id, timestamp, compatibility_score |
+| users.csv | 150 | user_id, name, art_interests, city, culture_preferences |
+| events.csv | 120 | event_id, name, art_forms, genres, city, ticket_price |
+| artists.csv | 60 | artist_id, name, art_forms, genres, popularity |
+| attends.csv | 731 | user_id, event_id, timestamp, rsvp_status, compatibility_score |
+| follows.csv | 1,238 | user_id, artist_id, timestamp, compatibility_score |
 
 **Important:** Do not add or modify CSV files. Use actual column names from the data (not generic names).
 
@@ -33,7 +33,7 @@ Three recommendation models are blended by a hybrid ranker:
 
 ```bash
 python -m venv .venv
-.venv\Scripts\activate        # Windows
+.venv\Scripts\activate        # Windows 
 pip install -e .[dev]
 python run_recommend.py        # Interactive menu
 ```

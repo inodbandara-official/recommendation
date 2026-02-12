@@ -23,18 +23,18 @@ def attach_explanations(
     recommendations: pd.DataFrame,
     events: Optional[pd.DataFrame] = None,
     user_interests: Optional[Iterable[str]] = None,
-    user_region: Optional[str] = None,
+    user_city: Optional[str] = None,
 ) -> pd.DataFrame:
     """Attach human-readable reasons to each recommended event.
 
     recommendations: DataFrame with at least 'event_id' and score columns (KnowledgeScore, GraphScore, TrendScore).
-    events: optional DataFrame with event metadata (art_forms, genres, region) keyed by event_id.
+    events: optional DataFrame with event metadata (art_forms, genres, city) keyed by event_id.
     """
     if "event_id" not in recommendations:
         raise ValueError("recommendations must include 'event_id'")
 
     interests_tokens = {i.strip().lower() for i in user_interests} if user_interests else set()
-    user_region_norm = user_region.strip().lower() if user_region else None
+    user_city_norm = user_city.strip().lower() if user_city else None
 
     event_meta = None
     if events is not None and "event_id" in events.columns:
@@ -57,15 +57,15 @@ def attach_explanations(
         if row.get("GraphScore", 0) > 0:
             reasons.append("Popular among similar users")
 
-        # Trending signal with regional hint if present
+        # Trending signal with city hint if present
         if row.get("TrendScore", 0) > 0:
             if event_meta is not None and row["event_id"] in event_meta.index:
                 meta_row = event_meta.loc[row["event_id"]]
-                region_val = meta_row.get("region") if isinstance(meta_row, pd.Series) else None
-                region_token = None
-                if pd.notna(region_val):
-                    region_token = str(region_val).strip().lower()
-                if user_region_norm and region_token and user_region_norm == region_token:
+                city_val = meta_row.get("city") if isinstance(meta_row, pd.Series) else None
+                city_token = None
+                if pd.notna(city_val):
+                    city_token = str(city_val).strip().lower()
+                if user_city_norm and city_token and user_city_norm == city_token:
                     reasons.append("Trending this week near you")
                 else:
                     reasons.append("Trending this week")

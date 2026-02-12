@@ -43,11 +43,11 @@ Ensure these 5 CSV files exist in the `data/` folder:
 
 | File | Description |
 |------|-------------|
-| `users.csv` | 1,501 users with art_interests, region_preference |
-| `events.csv` | 1,001 events with art_forms, genres, region, ticket_price |
-| `artists.csv` | 501 artists with art_forms, genres, popularity |
-| `attends.csv` | 7,197 user-event attendance records |
-| `follows.csv` | 12,961 user-artist follow records |
+| `users.csv` | 150 users with art_interests, city |
+| `events.csv` | 120 events with art_forms, genres, city, ticket_price |
+| `artists.csv` | 60 artists with art_forms, genres, popularity |
+| `attends.csv` | 731 user-event attendance records |
+| `follows.csv` | 1,238 user-artist follow records |
 
 ### Step 6 — Run the System
 

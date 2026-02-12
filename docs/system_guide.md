@@ -21,7 +21,7 @@
 
 ## Overview
 
-This system recommends cultural events in Sri Lanka by combining three independent recommendation models into a single hybrid output. The dataset contains **1,501 users**, **1,001 events**, **501 artists**, **7,197 attendance records**, and **12,961 follow relationships**.
+This system recommends cultural events in Sri Lanka by combining three independent recommendation models into a single hybrid output. The dataset contains **150 users**, **120 events**, **60 artists**, **731 attendance records**, and **1,238 follow relationships**.
 
 The system can be used in two ways:
 
@@ -46,7 +46,7 @@ The interactive menu exposes four distinct recommendation modes. Each mode promp
 
 **How it works:**
 
-1. **Knowledge-Based Scoring** — The `KnowledgeMatcher` compares the target user's profile (`art_interests`, `region_preference`) against every event's metadata (`art_forms`, `genres`, `region`, `ticket_price`). It uses tokenized set-intersection to measure category overlap and region match, producing a `KnowledgeScore` between 0 and 1 for each event. This model requires **no past activity**, making it effective for cold-start users.
+1. **Knowledge-Based Scoring** — The `KnowledgeMatcher` compares the target user's profile (`art_interests`, `city`) against every event's metadata (`art_forms`, `genres`, `city`, `ticket_price`). It uses tokenized set-intersection to measure category overlap and city match, producing a `KnowledgeScore` between 0 and 1 for each event. This model requires **no past activity**, making it effective for cold-start users.
 
 2. **Graph-Based Scoring** — The system identifies users who are behaviourally similar to the target user using two complementary metrics:
    - **Jaccard Similarity** — Treats each user as a set of attended events and followed artists, then computes the Jaccard index (intersection over union) between the target user and every other user.
@@ -104,9 +104,9 @@ The interactive menu exposes four distinct recommendation modes. Each mode promp
 
 ### Option 4: Hybrid with Custom Explanations
 
-**What it does:** Runs the full hybrid pipeline (same as Option 1), then generates enriched, context-aware explanations using **user-provided interests and region**.
+**What it does:** Runs the full hybrid pipeline (same as Option 1), then generates enriched, context-aware explanations using **user-provided interests and city**.
 
-**How it works:** After computing the hybrid scores, the `attach_explanations()` function cross-references each recommended event's metadata (art forms, genres, region) against the interests and region you provide at the prompt. This produces more personalised explanations than Option 1, where explanations are derived only from the stored user profile.
+**How it works:** After computing the hybrid scores, the `attach_explanations()` function cross-references each recommended event's metadata (art forms, genres, city) against the interests and city you provide at the prompt. This produces more personalised explanations than Option 1, where explanations are derived only from the stored user profile.
 
 **Explanation types generated:**
 
@@ -114,12 +114,12 @@ The interactive menu exposes four distinct recommendation modes. Each mode promp
 |---|---|
 | "Matches your interests" | Event art forms/genres overlap with the interests you entered |
 | "Popular among similar users" | Event has a non-zero GraphScore |
-| "Trending this week near you" | Event has a non-zero TrendScore and is in your region |
-| "Trending this week" | Event has a non-zero TrendScore but is in a different region |
+| "Trending this week near you" | Event has a non-zero TrendScore and is in your city |
+| "Trending this week" | Event has a non-zero TrendScore but is in a different city |
 
 **When to use:** When you want to simulate how the system would explain recommendations for a user with specific interests, or when presenting the system to demonstrate its explainability capabilities.
 
-**Input:** User ID, number of results, comma-separated interests (e.g., `music,dance`), and region (e.g., `north_western`).
+**Input:** User ID, number of results, comma-separated interests (e.g., `music,dance`), and city (e.g., `Colombo`).
 
 **Output columns:** `event_id`, `FinalScore`, `Explanations`
 
@@ -142,7 +142,7 @@ Loads all five CSV datasets (users, events, artists, attends, follows) and print
 - **Node counts** — Number of unique users, events, and artists in the system.
 - **Edge counts** — Number of attendance records (user→event links) and follow relationships (user→artist links).
 - **Sample rows** — Displays the first few rows of each dataset so you can see the structure and column types.
-- **Category discovery** — Extracts and lists all unique art forms, genres, and regions found across users, events, and artists. This shows the cultural taxonomy the system works with.
+- **Category discovery** — Extracts and lists all unique art forms, genres, and cities found across users, events, and artists. This shows the cultural taxonomy the system works with.
 
 **Purpose:** Establishes confidence that the data is loaded correctly and gives the audience a clear picture of the dataset's scale and structure before any processing begins.
 
@@ -261,5 +261,5 @@ The final capstone section combining advanced graph analysis with a consolidated
 | `python run_recommend.py` → Option 1 | Full hybrid recommendations for one user |
 | `python run_recommend.py` → Option 2 | Global trending events (no user needed) |
 | `python run_recommend.py` → Option 3 | Graph-only collaborative filtering for one user |
-| `python run_recommend.py` → Option 4 | Hybrid + custom interest/region explanations |
+| `python run_recommend.py` → Option 4 | Hybrid + custom interest/city explanations |
 | `python run_pipeline.py` → Sections 1–7 | Complete system walkthrough with visuals and metrics |

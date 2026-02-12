@@ -112,6 +112,6 @@ def recommend_events(user_id: str, top_n: int = 10, data_dir: Path = Path("data"
     # Explanations
     user_row = users.loc[users["user_id"] == user_id].head(1)
     interests = _tokens(user_row.iloc[0]["art_interests"]) if not user_row.empty and "art_interests" in user_row else None
-    region = user_row.iloc[0]["region_preference"] if not user_row.empty and "region_preference" in user_row else None
-    ranked = attach_explanations(ranked, events=events, user_interests=interests, user_region=region)
+    city = user_row.iloc[0]["city"] if not user_row.empty and "city" in user_row else None
+    ranked = attach_explanations(ranked, events=events, user_interests=interests, user_city=city)
     return ranked

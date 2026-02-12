@@ -74,7 +74,7 @@ def main() -> None:
     print_section(f"Selected User: {sample_user}")
     print(f"    Name             :  {user_row['name']}")
     print(f"    Art interests    :  {user_row.get('art_interests', 'N/A')}")
-    print(f"    Region pref      :  {user_row.get('region_preference', 'N/A')}")
+    print(f"    City             :  {user_row.get('city', 'N/A')}")
     print(f"    Culture prefs    :  {user_row.get('culture_preferences', 'N/A')}")
 
     # ── Items already interacted with ───────────────────────

@@ -95,11 +95,11 @@ def main() -> None:
 
     # ── User snapshot ───────────────────────────────────────
     print_section("Sample Users (first 5)")
-    print(users[["user_id", "name", "art_interests", "region_preference"]].head(5).to_string(index=False))
+    print(users[["user_id", "name", "art_interests", "city"]].head(5).to_string(index=False))
 
     # ── Event snapshot ──────────────────────────────────────
     print_section("Sample Events (first 5)")
-    print(events[["event_id", "name", "art_forms", "genres", "region"]].head(5).to_string(index=False))
+    print(events[["event_id", "name", "art_forms", "genres", "city"]].head(5).to_string(index=False))
 
     # ── Artist snapshot ─────────────────────────────────────
     print_section("Sample Artists (first 5)")

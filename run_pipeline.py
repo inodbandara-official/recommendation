@@ -26,7 +26,7 @@ SECTIONS = {
     "2": {
         "file": "pipeline/2_build_graph.py",
         "title": "Build & Visualise Graph",
-        "desc": "Builds heterogeneous graph (2,527 nodes, 10,417 edges). Saves pipeline/2_graph.png.",
+        "desc": "Builds heterogeneous graph with users, events, artists, categories. Saves pipeline/2_graph.png.",
     },
     "3": {
         "file": "pipeline/3_basic_reco.py",

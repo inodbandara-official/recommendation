@@ -54,12 +54,12 @@ def run_with_explanations() -> None:
     top_n = int(input("Enter top_n (default 10): ").strip() or "10")
     interests_raw = input("Enter interests (comma-separated, e.g. music,dance): ").strip()
     user_interests = [i.strip() for i in interests_raw.split(",") if i.strip()] or None
-    user_region = input("Enter region (e.g. north_western, leave blank to skip): ").strip() or None
+    user_city = input("Enter city (e.g. Colombo, leave blank to skip): ").strip() or None
 
     print(f"\nGenerating recommendations with custom explanations for {user_id}...\n")
     recs = recommend_events(user_id=user_id, top_n=top_n, data_dir=DATA_DIR)
     events = pd.read_csv(DATA_DIR / "events.csv")
-    out = attach_explanations(recs, events=events, user_interests=user_interests, user_region=user_region)
+    out = attach_explanations(recs, events=events, user_interests=user_interests, user_city=user_city)
     print(out[["event_id", "FinalScore", "Explanations"]].to_string())
 
 

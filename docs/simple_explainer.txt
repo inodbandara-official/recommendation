@@ -14,7 +14,7 @@ The data it reads
 
 Three brains working together
 1) Knowledge brain (profile match):
-   - Matches your interests (like music or dance) and your region to event types and regions.
+   - Matches your interests (like music or dance) and your city to event types and cities.
    - Gives each event a KnowledgeScore.
 
 2) Graph brain (friends-of-friends):
@@ -107,7 +107,7 @@ System Pipeline Sections
 - Tip: If the picture window blocks, set MPLBACKEND=Agg before running.
 
 What you can change
-- Add more user interests or regions in users.csv.
+- Add more user interests or cities in users.csv.
 - Tune the weights in the hybrid blender if you want a different mix.
 - Change the time window for trends to be shorter or longer.
 

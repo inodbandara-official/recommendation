@@ -1,6 +1,6 @@
 """
 =============================================================
-  🎭 Cultural Event Recommendation System — Sri Lanka
+  🎭 Cultural Event Recommendation System for Sri Lanka
   Streamlit Dashboard
 =============================================================
   Run:  streamlit run app.py
@@ -833,7 +833,7 @@ def draw_graph_on_ax(G, user_id, ax, title):
 
 # ── Page Configuration ──────────────────────────────────────
 st.set_page_config(
-    page_title="Cultural Event Recommender — Sri Lanka",
+    page_title="Cultural Event Recommender for Sri Lanka",
     page_icon="🎭",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -912,8 +912,8 @@ users, events, artists, attends, follows = load_data()
 # ── Header ──────────────────────────────────────────────────
 st.markdown("""
 <div class="main-header">
-    <h1>🎭 Cultural Event Recommender — Sri Lanka</h1>
-    <p>Hybrid recommendation system blending Knowledge, Graph, and Trend models
+    <h1>🎭 Cultural Event Recommender for Sri Lanka</h1>
+    <p>Hybrid recommendation system blending Knowledge, Graph and Trend models
        for personalized cultural event &amp; artist discovery</p>
 </div>
 """, unsafe_allow_html=True)
@@ -2118,7 +2118,7 @@ st.markdown(
     '<div style="text-align:center; color:#888; font-size:0.85rem;">'
     '🎭 Cultural Event Recommendation System — Sri Lanka &nbsp;|&nbsp; '
     'Hybrid Model: Knowledge + Graph + Trend &nbsp;|&nbsp; '
-    'Built with Streamlit'
+    'Built with ❤️ for the Arts Community<br>'
     '</div>',
     unsafe_allow_html=True,
 )

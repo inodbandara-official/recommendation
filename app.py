@@ -833,7 +833,7 @@ def draw_graph_on_ax(G, user_id, ax, title):
 
 # ── Page Configuration ──────────────────────────────────────
 st.set_page_config(
-    page_title="Cultural Event Recommender for Sri Lanka",
+    page_title="Cultural Event Recommender for Rasaswadaya",
     page_icon="🎭",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -912,7 +912,7 @@ users, events, artists, attends, follows = load_data()
 # ── Header ──────────────────────────────────────────────────
 st.markdown("""
 <div class="main-header">
-    <h1>🎭 Cultural Event Recommender for Sri Lanka</h1>
+    <h1>🎭 Cultural Event Recommender for Rasaswadaya</h1>
     <p>Hybrid recommendation system blending Knowledge, Graph and Trend models
        for personalized cultural event &amp; artist discovery</p>
 </div>
@@ -1527,12 +1527,12 @@ elif page == "🎨 Artist Discovery":
 **How to read this graph :**
 
 - The **blue circle** in the middle is **you** (the selected user).
-- The **green circles** are your **interest categories** — things like music, dance, painting, etc. Lines connect you to each category you're interested in.
+- The **green circles** are your **interest categories** — things like music, dance, drama, film, etc. Lines connect you to each category you're interested in.
 - The **orange circles** are the **recommended artists**. Each artist is connected to the categories they work in.
 
 **What this tells you:** If you see an artist connected to the same categories you like, that's *why* the system recommended them. Artists with more connections to your interests are a stronger match.
 
-*Example:* If you're interested in "music" and "dance", and an artist performs in both, you'll see two lines connecting that artist to your interests — making it a great match!
+*Example:* If you're interested in "music" and "drama", and an artist performs in both, you'll see two lines connecting that artist to your interests — making it a great match!
 """)
 
         # ── Similar Users Comparison ────────────────────────

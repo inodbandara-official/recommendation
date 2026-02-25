@@ -96,6 +96,12 @@ Just type a number and press Enter — no need to type full file paths.
 
 ---
 
+#### Option C: Run the sample UI
+
+```bash
+.venv\Scripts\activate; streamlit run app.py
+```
+
 ## System Pipeline (1–7)
 
 The `pipeline/` folder contains a 7-section walkthrough for the recommendation engine. Use the **pipeline navigator** to run any section by number:

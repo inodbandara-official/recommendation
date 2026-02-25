@@ -113,7 +113,7 @@ def main() -> None:
     print("                     Has genre, city, venue, and price.")
     print()
     print("    CATEGORY (green) — An art form or genre label such as")
-    print("                     'music', 'dance', 'kandyan', 'fusion'.")
+    print("                     'music', 'dance', 'drama', 'film'.")
     print("                     Shared categories link events together.")
 
     print_section("What Each Edge Represents")

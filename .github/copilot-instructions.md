@@ -21,11 +21,11 @@ Three recommendation models are blended by a hybrid ranker:
 
 | File | Rows | Key Columns |
 |------|------|-------------|
-| users.csv | 150 | user_id, name, art_interests, city, culture_preferences |
-| events.csv | 120 | event_id, name, art_forms, genres, city, ticket_price |
-| artists.csv | 60 | artist_id, name, art_forms, genres, popularity |
-| attends.csv | 731 | user_id, event_id, timestamp, rsvp_status, compatibility_score |
-| follows.csv | 1,238 | user_id, artist_id, timestamp, compatibility_score |
+| users.csv | 200 | user_id, name, ethnicity, language_preferences, city, art_interests, culture_preferences, mood_preferences, activity_level, join_date |
+| events.csv | 150 | event_id, name, artist_ids, art_forms, genres, language, city, venue, style, mood_tags, festival, festivals, event_type, date, capacity, ticket_price, status |
+| artists.csv | 100 | artist_id, name, art_forms, genres, styles, language, city, style, mood_tags, festivals, popularity, follower_count, verified |
+| attends.csv | 973 | user_id, event_id, timestamp, rsvp_status, compatibility_score |
+| follows.csv | 1,684 | user_id, artist_id, timestamp, compatibility_score |
 
 **Important:** Do not add or modify CSV files. Use actual column names from the data (not generic names).
 
@@ -56,6 +56,6 @@ Section 4 requires `PYTHONPATH` set to the project root (or `pip install -e .`).
 
 ## Conventions
 
-- List-like CSV columns (e.g. `['music', 'dance']`) are parsed with tokenized set-based matching.
+- List-like CSV columns (e.g. `['music', 'dance']`) are parsed with tokenized set-based matching. Art forms in the data: music, dance, drama, film.
 - The `budget_col` is `None` by default since the data has no budget column.
 - Git branch for improvements: `dev-improvs`.

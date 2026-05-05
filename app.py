@@ -32,6 +32,7 @@ from src.trend_based import TrendWindowRecommender
 from src.hybrid.hybrid_ranker import HybridRanker, DEFAULT_WEIGHTS
 from src.hybrid.explanations import attach_explanations
 from src.evaluation.metrics import precision_at_k, recall_at_k, ndcg_at_k, coverage
+from src.data_io import load_users, load_events, load_artists, load_attends, load_follows
 
 # ── Constants ───────────────────────────────────────────────
 DATA_DIR = ROOT / "data"
@@ -514,11 +515,11 @@ def render_user_comparison(
 # ── Data Loading (cached) ──────────────────────────────────
 @st.cache_data(show_spinner=False)
 def load_data():
-    users = pd.read_csv(DATA_DIR / "users.csv")
-    events = pd.read_csv(DATA_DIR / "events.csv")
-    artists = pd.read_csv(DATA_DIR / "artists.csv")
-    attends = pd.read_csv(DATA_DIR / "attends.csv")
-    follows = pd.read_csv(DATA_DIR / "follows.csv")
+    users = load_users(DATA_DIR)
+    events = load_events(DATA_DIR)
+    artists = load_artists(DATA_DIR)
+    attends = load_attends(DATA_DIR)
+    follows = load_follows(DATA_DIR)
     attends["timestamp"] = pd.to_datetime(attends["timestamp"])
     return users, events, artists, attends, follows
 

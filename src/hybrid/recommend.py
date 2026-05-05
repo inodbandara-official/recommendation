@@ -8,21 +8,9 @@ import pandas as pd
 from src.graph_based import recommend_from_similar_users
 from src.knowledge_based import KnowledgeMatcher
 from src.trend_based import TrendWindowRecommender
+from src.data_io import load_dataset
 from .hybrid_ranker import HybridRanker
 from .explanations import attach_explanations
-
-
-def _load_csv(path: Path) -> Optional[pd.DataFrame]:
-    if path.exists():
-        return pd.read_csv(path)
-    return None
-
-
-def _load_csv_prefer_cleaned(data_dir: Path, name: str) -> Optional[pd.DataFrame]:
-    cleaned = _load_csv(data_dir / f"cleaned_{name}.csv")
-    if cleaned is not None:
-        return cleaned
-    return _load_csv(data_dir / f"{name}.csv")
 
 
 def _tokens(val: object) -> set[str]:
@@ -44,17 +32,18 @@ def recommend_events(user_id: str, top_n: int = 10, data_dir: Path = Path("data"
 
     Loads cleaned CSVs if present, otherwise raw CSVs.
     """
-    users = _load_csv_prefer_cleaned(data_dir, "users")
-    events = _load_csv_prefer_cleaned(data_dir, "events")
-    attends = _load_csv_prefer_cleaned(data_dir, "attends")
-    follows = _load_csv_prefer_cleaned(data_dir, "follows")
+    ds = load_dataset(data_dir)
+    users = ds["users"]
+    events = ds["events"]
+    attends = ds["attends"]
+    follows = ds["follows"]
 
-    if users is None or events is None:
+    if users.empty or events.empty:
         raise FileNotFoundError("Users and events data are required.")
 
-    if attends is None:
+    if attends.empty:
         attends = pd.DataFrame(columns=["user_id", "event_id", "timestamp"])
-    if follows is None:
+    if follows.empty:
         follows = pd.DataFrame(columns=["user_id", "artist_id", "timestamp"])
 
     # Knowledge-based scores

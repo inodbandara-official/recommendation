@@ -5,25 +5,15 @@ from typing import Dict, Iterable
 
 import pandas as pd
 
-DATA_FILES = {
-    "users": "users.csv",
-    "events": "events.csv",
-    "artists": "artists.csv",
-    "attends": "attends.csv",
-    "follows": "follows.csv",
-}
+from .data_io import load_dataset
 
 
 def load_datasets(data_dir: Path = Path("data")) -> Dict[str, pd.DataFrame]:
-    datasets: Dict[str, pd.DataFrame] = {}
-    for name, filename in DATA_FILES.items():
-        path = data_dir / filename
-        if not path.exists():
-            print(f"[skip] {path} not found")
-            continue
-        df = pd.read_csv(path)
-        datasets[name] = df
-    return datasets
+    try:
+        return load_dataset(data_dir)
+    except FileNotFoundError as exc:
+        print(f"[skip] {exc}")
+        return {}
 
 
 def detect_primary_keys(df: pd.DataFrame) -> list[str]:

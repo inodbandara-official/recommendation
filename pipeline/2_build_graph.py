@@ -8,6 +8,7 @@ Run:  python pipeline/2_build_graph.py
 """
 from __future__ import annotations
 
+import sys
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -15,7 +16,13 @@ import matplotlib.patches as mpatches
 import networkx as nx
 import pandas as pd
 
-DATA_DIR = Path("data")
+ROOT = Path(__file__).resolve().parent.parent
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from src.data_io import load_users, load_events, load_attends, load_follows, load_artists  # noqa: E402
+
+DATA_DIR = ROOT / "data"
 
 # ── Colour palette ──────────────────────────────────────────
 USER_COLOR = "#4A90D9"       # blue
@@ -48,9 +55,9 @@ def print_section(title: str) -> None:
 
 def main() -> None:
     # ── Load data ───────────────────────────────────────────
-    users = pd.read_csv(DATA_DIR / "users.csv")
-    events = pd.read_csv(DATA_DIR / "events.csv")
-    attends = pd.read_csv(DATA_DIR / "attends.csv")
+    users = load_users(DATA_DIR)
+    events = load_events(DATA_DIR)
+    attends = load_attends(DATA_DIR)
 
     # ── Build full graph ────────────────────────────────────
     G = nx.Graph()

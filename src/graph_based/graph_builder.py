@@ -142,21 +142,16 @@ def load_graph_from_csvs(
     follows_file: str = "follows.csv",
     events_file: str = "events.csv",
 ) -> HeteroGraphRecommender:
-    """Utility to load CSVs and build the heterogeneous graph."""
-    attends_df = None
-    follows_df = None
-    events_df = None
+    """Build the heterogeneous graph from the JSON dataset.
 
-    attends_path = data_dir / attends_file
-    follows_path = data_dir / follows_file
-    events_path = data_dir / events_file
+    File-name kwargs are ignored (kept for backwards compatibility); data is
+    loaded from the project's central JSON dataset via `src.data_io`.
+    """
+    from src.data_io import load_attends, load_follows, load_events
 
-    if attends_path.exists():
-        attends_df = pd.read_csv(attends_path)
-    if follows_path.exists():
-        follows_df = pd.read_csv(follows_path)
-    if events_path.exists():
-        events_df = pd.read_csv(events_path)
+    attends_df = load_attends(data_dir)
+    follows_df = load_follows(data_dir)
+    events_df = load_events(data_dir)
 
     recommender = HeteroGraphRecommender()
     recommender.build_from_frames(attends=attends_df, follows=follows_df, events=events_df)

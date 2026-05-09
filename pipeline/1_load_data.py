@@ -8,25 +8,22 @@ Run:  python pipeline/1_load_data.py
 """
 from __future__ import annotations
 
+import sys
 from pathlib import Path
 
 import pandas as pd
 
-DATA_DIR = Path("data")
+ROOT = Path(__file__).resolve().parent.parent
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from src.data_io import load_dataset  # noqa: E402
+
+DATA_DIR = ROOT / "data"
 
 
 def load_all() -> dict[str, pd.DataFrame]:
-    files = {
-        "users": "users.csv",
-        "events": "events.csv",
-        "artists": "artists.csv",
-        "attends": "attends.csv",
-        "follows": "follows.csv",
-    }
-    frames: dict[str, pd.DataFrame] = {}
-    for name, filename in files.items():
-        frames[name] = pd.read_csv(DATA_DIR / filename)
-    return frames
+    return load_dataset(DATA_DIR)
 
 
 def to_tokens(val: object) -> set[str]:
@@ -82,15 +79,15 @@ def main() -> None:
 
     # ── Edge / interaction summary ──────────────────────────
     print_section("Interaction Edges")
-    print(f"    Attends (user ➜ event)    :  {len(attends):,}")
-    print(f"    Follows (user ➜ artist)   :  {len(follows):,}")
+    print(f"    Attends (user -> event)    :  {len(attends):,}")
+    print(f"    Follows (user -> artist)   :  {len(follows):,}")
 
     # event→artist links from artist_ids column
     event_artist_count = 0
     if "artist_ids" in events.columns:
         for val in events["artist_ids"].dropna():
             event_artist_count += len(to_tokens(val))
-    print(f"    Performs (event ➜ artist)  :  {event_artist_count:,}")
+    print(f"    Performs (event -> artist)  :  {event_artist_count:,}")
     print(f"    Total edges               :  {len(attends) + len(follows) + event_artist_count:,}")
 
     # ── User snapshot ───────────────────────────────────────

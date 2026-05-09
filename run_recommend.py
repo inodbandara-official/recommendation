@@ -6,6 +6,7 @@ import pandas as pd
 from src.hybrid import recommend_events, attach_explanations
 from src.trend_based import TrendWindowRecommender
 from src.graph_based import recommend_from_similar_users
+from src.data_io import load_attends, load_follows, load_events
 
 
 DATA_DIR = Path("data")
@@ -27,7 +28,7 @@ def run_trend_only() -> None:
     window_days = int(input("Enter window_days (default 14): ").strip() or "14")
 
     print(f"\nGenerating top {top_n} trending events (last {window_days} days)...\n")
-    attends = pd.read_csv(DATA_DIR / "attends.csv")
+    attends = load_attends(DATA_DIR)
     trend = TrendWindowRecommender().fit(attends)
     result = trend.recommend(top_n=top_n, window_days=window_days)
     print(result.to_string())
@@ -39,8 +40,8 @@ def run_graph_only() -> None:
     top_n = int(input("Enter top_n (default 10): ").strip() or "10")
 
     print(f"\nGenerating top {top_n} graph-based recommendations for {user_id}...\n")
-    attends = pd.read_csv(DATA_DIR / "attends.csv")
-    follows = pd.read_csv(DATA_DIR / "follows.csv")
+    attends = load_attends(DATA_DIR)
+    follows = load_follows(DATA_DIR)
     result = recommend_from_similar_users(attends, follows, target_user=user_id, top_n=top_n)
     if result.empty:
         print("No recommendations found (user may have no interactions).")
@@ -58,7 +59,7 @@ def run_with_explanations() -> None:
 
     print(f"\nGenerating recommendations with custom explanations for {user_id}...\n")
     recs = recommend_events(user_id=user_id, top_n=top_n, data_dir=DATA_DIR)
-    events = pd.read_csv(DATA_DIR / "events.csv")
+    events = load_events(DATA_DIR)
     out = attach_explanations(recs, events=events, user_interests=user_interests, user_city=user_city)
     print(out[["event_id", "FinalScore", "Explanations"]].to_string())
 

@@ -12,6 +12,7 @@ Run:  python pipeline/6_dynamic_input.py
 """
 from __future__ import annotations
 
+import sys
 from pathlib import Path
 
 import matplotlib.patches as mpatches
@@ -19,7 +20,13 @@ import matplotlib.pyplot as plt
 import networkx as nx
 import pandas as pd
 
-DATA_DIR = Path("data")
+ROOT = Path(__file__).resolve().parent.parent
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from src.data_io import load_users, load_events, load_attends, load_follows, load_artists  # noqa: E402
+
+DATA_DIR = ROOT / "data"
 
 USER_COLOR = "#4A90D9"
 EVENT_COLOR = "#E8A838"
@@ -598,11 +605,11 @@ def interactive_loop(
 
 
 def main() -> None:
-    users = pd.read_csv(DATA_DIR / "users.csv")
-    events = pd.read_csv(DATA_DIR / "events.csv")
-    attends = pd.read_csv(DATA_DIR / "attends.csv")
-    artists = pd.read_csv(DATA_DIR / "artists.csv")
-    follows = pd.read_csv(DATA_DIR / "follows.csv")
+    users = load_users(DATA_DIR)
+    events = load_events(DATA_DIR)
+    attends = load_attends(DATA_DIR)
+    artists = load_artists(DATA_DIR)
+    follows = load_follows(DATA_DIR)
 
     print_banner("6: Dynamic User Input")
     print("    This interactive mode lets you explore the recommendation")

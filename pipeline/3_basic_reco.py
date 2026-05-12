@@ -16,6 +16,11 @@ import matplotlib.pyplot as plt
 import networkx as nx
 import pandas as pd
 
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+except (AttributeError, ValueError):
+    pass
+
 ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
@@ -23,6 +28,8 @@ if str(ROOT) not in sys.path:
 from src.data_io import load_users, load_events, load_attends, load_follows, load_artists  # noqa: E402
 
 DATA_DIR = ROOT / "data"
+FIG_DIR = ROOT / "reports" / "figures"
+FIG_DIR.mkdir(parents=True, exist_ok=True)
 
 USER_COLOR = "#4A90D9"
 EVENT_COLOR = "#E8A838"
@@ -458,7 +465,7 @@ def main() -> None:
     fig.legend(handles=legend_handles, loc="lower center", ncol=6, fontsize=9, framealpha=0.9)
     plt.tight_layout(rect=[0, 0.06, 1, 0.95])
 
-    out_path = Path("pipeline") / "3_basic_reco.png"
+    out_path = (ROOT / "reports" / "figures") / "3_basic_reco.png"
     fig.savefig(out_path, dpi=150, bbox_inches="tight")
     print(f"    Graph saved to:  {out_path}")
 

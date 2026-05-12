@@ -16,6 +16,12 @@ import matplotlib.patches as mpatches
 import networkx as nx
 import pandas as pd
 
+# Force UTF-8 stdout so box-drawing/arrow chars don't crash on Windows cp1252
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+except (AttributeError, ValueError):
+    pass
+
 ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
@@ -23,6 +29,8 @@ if str(ROOT) not in sys.path:
 from src.data_io import load_users, load_events, load_attends, load_follows, load_artists  # noqa: E402
 
 DATA_DIR = ROOT / "data"
+FIG_DIR = ROOT / "reports" / "figures"
+FIG_DIR.mkdir(parents=True, exist_ok=True)
 
 # ── Colour palette ──────────────────────────────────────────
 USER_COLOR = "#4A90D9"       # blue
@@ -75,7 +83,7 @@ def main() -> None:
         eid = row["event_id"]
         cats = set()
         for col in ("art_forms", "genres"):
-            if col in row and pd.notna(row[col]):
+            if col in row:
                 cats.update(to_tokens(row[col]))
         for cat in cats:
             cat_node = f"cat:{cat}"
@@ -105,8 +113,8 @@ def main() -> None:
     print(f"    Category nodes      :  {len(cat_nodes):,}")
     print(f"    Total nodes         :  {G.number_of_nodes():,}")
     print()
-    print(f"    Attended edges      :  {len(attend_edges):,}   (user ➜ event)")
-    print(f"    Belongs-to edges    :  {len(belongs_edges):,}   (event ➜ category)")
+    print(f"    Attended edges      :  {len(attend_edges):,}   (user -> event)")
+    print(f"    Belongs-to edges    :  {len(belongs_edges):,}   (event -> category)")
     print(f"    Total edges         :  {G.number_of_edges():,}")
 
     # ── What each element represents ────────────────────────
@@ -124,11 +132,11 @@ def main() -> None:
     print("                     Shared categories link events together.")
 
     print_section("What Each Edge Represents")
-    print("    USER ──attended──➜ EVENT")
+    print("    USER ──attended──-> EVENT")
     print("        The user RSVP'd or went to that event.")
     print("        This is our primary interaction signal.")
     print()
-    print("    EVENT ──belongs_to──➜ CATEGORY")
+    print("    EVENT ──belongs_to──-> CATEGORY")
     print("        The event is tagged with that art form or genre.")
     print("        This lets us discover similar events through")
     print("        shared categories.")
@@ -183,7 +191,7 @@ def main() -> None:
         row = row.iloc[0]
         cats = set()
         for col in ("art_forms", "genres"):
-            if col in row and pd.notna(row[col]):
+            if col in row:
                 cats.update(to_tokens(row[col]))
         for cat in list(cats)[:2]:
             cat_node = f"cat:{cat}"
@@ -254,7 +262,7 @@ def main() -> None:
     ax.axis("off")
     plt.tight_layout()
 
-    out_path = Path("pipeline") / "2_graph.png"
+    out_path = (ROOT / "reports" / "figures") / "2_graph.png"
     fig.savefig(out_path, dpi=150, bbox_inches="tight")
     print(f"\n    Graph saved to:  {out_path}")
 

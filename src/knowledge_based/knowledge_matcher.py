@@ -2,119 +2,173 @@ from __future__ import annotations
 
 from typing import Iterable, Optional, Sequence
 
+import numpy as np
 import pandas as pd
 
 
+def _to_tokens(val: object) -> set[str]:
+    """Normalize a cell value into a lowercase token set."""
+    if val is None:
+        return set()
+    if isinstance(val, float) and pd.isna(val):
+        return set()
+    if isinstance(val, (list, tuple, set)):
+        out: set[str] = set()
+        for v in val:
+            if v is None:
+                continue
+            try:
+                if pd.isna(v):
+                    continue
+            except (TypeError, ValueError):
+                pass
+            s = str(v).strip().lower()
+            if s:
+                out.add(s)
+        return out
+    if isinstance(val, str):
+        s = val.strip()
+        if s.startswith("[") and s.endswith("]"):
+            s = s[1:-1]
+        parts = [p.strip().strip("'\" ").lower() for p in s.split(",")]
+        return {p for p in parts if p}
+    return {str(val).strip().lower()}
+
+
 class KnowledgeMatcher:
-    """Knowledge-based recommender using user profile fields (no past activity required)."""
+    """Knowledge-based recommender with graded multi-field matching.
+
+    Uses Jaccard-style overlap counts (not binary) across multiple user/event
+    fields. Honors `activity_level` for budget proxy and adds a popularity
+    prior so brand-new low-attendance events aren't tied at zero.
+    """
+
+    DEFAULT_FIELD_PAIRS: tuple[tuple[str, str, float], ...] = (
+        # (user_field, event_field, weight)
+        ("art_interests", "art_forms", 0.25),
+        ("culture_preferences", "genres", 0.20),
+        ("mood_preferences", "moods", 0.20),
+        ("language_preferences", "languages", 0.10),
+        ("city", "city", 0.10),
+    )
+    BUDGET_WEIGHT = 0.10
+    POPULARITY_WEIGHT = 0.05
+
+    # Used when user has no explicit budget
+    ACTIVITY_BUDGET_PERCENTILE = {"low": 25, "medium": 50, "high": 75}
 
     def __init__(
         self,
         user_id_col: str = "user_id",
-        user_category_fields: Sequence[str] = ("art_interests",),
-        user_location_fields: Sequence[str] = ("city",),
-        event_category_fields: Sequence[str] = ("art_forms", "genres"),
-        event_location_fields: Sequence[str] = ("city",),
         price_col: str = "ticket_price",
         budget_col: Optional[str] = None,
-        weights: tuple[float, float, float] = (0.4, 0.3, 0.3),
+        field_pairs: Sequence[tuple[str, str, float]] | None = None,
     ) -> None:
         self.user_id_col = user_id_col
-        self.user_category_fields = tuple(user_category_fields)
-        self.user_location_fields = tuple(user_location_fields)
-        self.event_category_fields = tuple(event_category_fields)
-        self.event_location_fields = tuple(event_location_fields)
         self.price_col = price_col
         self.budget_col = budget_col
-        self.weights = weights
+        self.field_pairs = tuple(field_pairs) if field_pairs is not None else self.DEFAULT_FIELD_PAIRS
         self.users: Optional[pd.DataFrame] = None
         self.events: Optional[pd.DataFrame] = None
+        self._event_tokens: dict[str, list[set[str]]] = {}
+        self._popularity: Optional[np.ndarray] = None
 
     def fit(self, users: pd.DataFrame, events: pd.DataFrame) -> "KnowledgeMatcher":
-        missing_user_cols = [c for c in [self.user_id_col] if c not in users.columns]
-        missing_event_cols = [c for c in [self.price_col] if c not in events.columns]
-        if missing_user_cols:
-            raise ValueError(f"Users data is missing required columns: {missing_user_cols}")
-        if missing_event_cols:
-            raise ValueError(f"Events data is missing required columns: {missing_event_cols}")
+        if self.user_id_col not in users.columns:
+            raise ValueError(f"Users data missing required column: {self.user_id_col}")
+        if "event_id" not in events.columns:
+            raise ValueError("Events data missing required column: event_id")
 
         self.users = users.copy()
-        self.events = events.copy()
+        self.events = events.copy().reset_index(drop=True)
+
+        # Pre-tokenize event fields once (vectorization key)
+        self._event_tokens = {}
+        for _, event_field, _ in self.field_pairs:
+            if event_field in self.events.columns:
+                self._event_tokens[event_field] = [
+                    _to_tokens(v) for v in self.events[event_field].tolist()
+                ]
+            else:
+                self._event_tokens[event_field] = [set()] * len(self.events)
+
+        # Popularity prior from capacity (or follower_count if joined later)
+        if "capacity" in self.events.columns:
+            cap = pd.to_numeric(self.events["capacity"], errors="coerce").fillna(0).to_numpy(dtype=float)
+            if cap.max() > 0:
+                self._popularity = cap / cap.max()
+            else:
+                self._popularity = np.zeros(len(self.events))
+        else:
+            self._popularity = np.zeros(len(self.events))
+
         return self
+
+    def _resolve_budget(self, user_row: pd.Series) -> Optional[float]:
+        if self.budget_col and self.budget_col in user_row and pd.notna(user_row[self.budget_col]):
+            try:
+                return float(user_row[self.budget_col])
+            except (TypeError, ValueError):
+                pass
+        # Activity-level proxy on global price distribution
+        if self.events is None or self.price_col not in self.events.columns:
+            return None
+        activity = str(user_row.get("activity_level", "")).strip().lower() if "activity_level" in user_row else ""
+        pct = self.ACTIVITY_BUDGET_PERCENTILE.get(activity, 50)
+        prices = pd.to_numeric(self.events[self.price_col], errors="coerce").dropna()
+        if prices.empty:
+            return None
+        return float(np.percentile(prices, pct))
+
+    def _popularity_fallback(self, top_n: int) -> pd.DataFrame:
+        """Cold-start fallback: rank by popularity prior with non-zero score."""
+        events = self.events.copy()
+        events["KnowledgeScore"] = self._popularity * (
+            sum(w for _, _, w in self.field_pairs) + self.BUDGET_WEIGHT + self.POPULARITY_WEIGHT
+        )
+        return events.sort_values("KnowledgeScore", ascending=False).head(top_n)
 
     def recommend(self, user_id: str, top_n: int = 10) -> pd.DataFrame:
         if self.users is None or self.events is None:
             raise RuntimeError("Call fit() before recommend().")
 
-        user_row = self.users[self.users[self.user_id_col] == user_id].head(1)
-        if user_row.empty:
-            # Fallback: no profile found, return top events by lowest price
-            events = self.events.copy()
-            events["KnowledgeScore"] = 0.0
-            return events.sort_values(self.price_col, ascending=True).head(top_n)
+        user_row_df = self.users[self.users[self.user_id_col] == user_id].head(1)
+        if user_row_df.empty:
+            return self._popularity_fallback(top_n)
 
-        user_categories = self._collect_tokens(user_row, self.user_category_fields)
-        user_locations = self._collect_tokens(user_row, self.user_location_fields)
-        user_budget = self._first_budget(user_row, self.budget_col) if self.budget_col else None
+        user_row = user_row_df.iloc[0]
+        n_events = len(self.events)
+        scores = np.zeros(n_events, dtype=float)
 
-        cat_w, loc_w, price_w = self.weights
-        events = self.events.copy()
-
-        def score_row(row: pd.Series) -> float:
-            score = 0.0
-
-            event_categories = self._collect_tokens(row.to_frame().T, self.event_category_fields)
-            if user_categories and event_categories and user_categories.intersection(event_categories):
-                score += cat_w
-
-            event_locations = self._collect_tokens(row.to_frame().T, self.event_location_fields)
-            if user_locations and event_locations and user_locations.intersection(event_locations):
-                score += loc_w
-
-            price = row.get(self.price_col)
-            if user_budget is not None and pd.notna(price):
-                try:
-                    if float(price) <= user_budget:
-                        score += price_w
-                except (TypeError, ValueError):
-                    pass
-
-            return score
-
-        events["KnowledgeScore"] = events.apply(score_row, axis=1)
-        return events.sort_values(["KnowledgeScore", self.price_col], ascending=[False, True]).head(top_n)
-
-    @staticmethod
-    def _collect_tokens(df: pd.DataFrame, columns: Iterable[str]) -> set[str]:
-        tokens: set[str] = set()
-        for col in columns:
-            if col not in df.columns:
+        # Field-based graded scoring (Jaccard-like: |∩| / max(1, |user|))
+        for user_field, event_field, weight in self.field_pairs:
+            if user_field not in user_row.index:
                 continue
-            val = df.iloc[0][col]
-            tokens.update(KnowledgeMatcher._to_tokens(val))
-        return tokens
+            user_tokens = _to_tokens(user_row[user_field])
+            if not user_tokens:
+                continue
+            denom = max(1, len(user_tokens))
+            event_token_lists = self._event_tokens.get(event_field, [])
+            for i, ev_tokens in enumerate(event_token_lists):
+                if not ev_tokens:
+                    continue
+                overlap = len(user_tokens & ev_tokens)
+                if overlap:
+                    scores[i] += weight * (overlap / denom)
 
-    @staticmethod
-    def _to_tokens(val: object) -> set[str]:
-        if val is None or (isinstance(val, float) and pd.isna(val)):
-            return set()
-        if isinstance(val, str):
-            cleaned = val.strip()
-            if cleaned.startswith("[") and cleaned.endswith("]"):
-                cleaned = cleaned[1:-1]
-            parts = [p.strip().strip("'\" ") for p in cleaned.split(",")]
-            return {p.lower() for p in parts if p}
-        if isinstance(val, Iterable) and not isinstance(val, (bytes, bytearray)):
-            return {str(v).strip().lower() for v in val if pd.notna(v)}
-        return {str(val).strip().lower()}
+        # Budget signal
+        budget = self._resolve_budget(user_row)
+        if budget is not None and self.price_col in self.events.columns:
+            prices = pd.to_numeric(self.events[self.price_col], errors="coerce").to_numpy(dtype=float)
+            within_budget = np.where(np.isnan(prices), 0.0, (prices <= budget).astype(float))
+            scores += self.BUDGET_WEIGHT * within_budget
 
-    @staticmethod
-    def _first_budget(df: pd.DataFrame, budget_col: str) -> Optional[float]:
-        if budget_col in df.columns:
-            val = df.iloc[0][budget_col]
-            if pd.notna(val):
-                try:
-                    return float(val)
-                except (TypeError, ValueError):
-                    return None
-        return None
+        # Popularity prior tie-breaker
+        scores += self.POPULARITY_WEIGHT * self._popularity
+
+        events = self.events.copy()
+        events["KnowledgeScore"] = scores
+        # Stable secondary sort on price (cheaper first when tied)
+        if self.price_col in events.columns:
+            return events.sort_values(["KnowledgeScore", self.price_col], ascending=[False, True]).head(top_n)
+        return events.sort_values("KnowledgeScore", ascending=False).head(top_n)

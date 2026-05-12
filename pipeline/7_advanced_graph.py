@@ -21,6 +21,11 @@ import networkx as nx
 import numpy as np
 import pandas as pd
 
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+except (AttributeError, ValueError):
+    pass
+
 ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
@@ -28,6 +33,8 @@ if str(ROOT) not in sys.path:
 from src.data_io import load_users, load_events, load_attends, load_follows, load_artists  # noqa: E402
 
 DATA_DIR = ROOT / "data"
+FIG_DIR = ROOT / "reports" / "figures"
+FIG_DIR.mkdir(parents=True, exist_ok=True)
 
 # ── Palette ─────────────────────────────────────────────────
 USER_COLOR = "#4A90D9"
@@ -585,7 +592,7 @@ def main() -> None:
     )
     plt.tight_layout(rect=[0, 0.07, 1, 0.94])
 
-    out_path = Path("pipeline") / "7_advanced_graph.png"
+    out_path = (ROOT / "reports" / "figures") / "7_advanced_graph.png"
     fig.savefig(out_path, dpi=150, bbox_inches="tight")
     print(f"\n    Graph saved to:  {out_path}")
 

@@ -1,0 +1,18 @@
+{
+  "mode": "baseline",
+  "graph_mode": "similarity",
+  "trend_window": 14,
+  "top_k": 10,
+  "holdout_frac": 0.2,
+  "max_users": 200,
+  "elapsed_seconds": 31.15228843688965,
+  "metrics": {
+    "precision@k": 0.006000000000000001,
+    "recall@k": 0.0525,
+    "map": 0.026694444444444444,
+    "ndcg": 0.03370899463692542,
+    "coverage": 0.314,
+    "diversity": 0.8809999781827698,
+    "users_evaluated": 200
+  }
+}

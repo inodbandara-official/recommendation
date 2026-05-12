@@ -4,24 +4,23 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hybrid-recommender"
-version = "0.1.0"
-description = "Hybrid recommendation system scaffold"
+version = "0.2.0"
+description = "Hybrid cultural-event recommendation system (knowledge + graph + trend)"
 readme = "README.md"
-authors = [{ name = "Your Name" }]
+authors = [{ name = "Rasaswadaya" }]
 requires-python = ">=3.10"
 dependencies = [
-    "pandas",
-    "numpy",
-    "scikit-learn",
-    "networkx",
-    "scipy",
+    "pandas>=2.0",
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "scikit-learn>=1.2",
+    "networkx>=3.0",
+    "matplotlib>=3.7",
 ]
 
 [project.optional-dependencies]
-dev = ["pytest"]
-
-[tool.setuptools]
-package-dir = {"" = "src"}
+dev = ["pytest>=7.0"]
+ui = ["streamlit>=1.30"]
 
 [tool.setuptools.packages.find]
-where = ["src"]
+include = ["src*"]

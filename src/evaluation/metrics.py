@@ -58,6 +58,42 @@ def ndcg_at_k(recommended: Sequence[str], relevant: Set[str], k: int) -> float:
     return dcg / idcg
 
 
+def hit_rate_at_k(rec_map: Mapping[str, Sequence[str]], rel_map: Mapping[str, Set[str]], k: int) -> float:
+    """Fraction of users with at least one relevant item in their top-K.
+
+    This is the closest single number to "accuracy" for top-K recommendation:
+    it answers "what % of users got a useful recommendation".
+    """
+    if not rec_map:
+        return 0.0
+    hits = 0
+    for u, recs in rec_map.items():
+        rel = rel_map.get(u, set())
+        if not rel:
+            continue
+        if any(r in rel for r in recs[:k]):
+            hits += 1
+    return hits / len(rec_map)
+
+
+def mrr_at_k(rec_map: Mapping[str, Sequence[str]], rel_map: Mapping[str, Set[str]], k: int) -> float:
+    """Mean reciprocal rank of the first relevant item within top-K."""
+    if not rec_map:
+        return 0.0
+    rrs: List[float] = []
+    for u, recs in rec_map.items():
+        rel = rel_map.get(u, set())
+        if not rel:
+            continue
+        rr = 0.0
+        for idx, item in enumerate(recs[:k]):
+            if item in rel:
+                rr = 1.0 / (idx + 1)
+                break
+        rrs.append(rr)
+    return sum(rrs) / len(rrs) if rrs else 0.0
+
+
 def coverage(rec_map: Mapping[str, Sequence[str]], catalog: Set[str]) -> float:
     if not catalog:
         return 0.0
@@ -132,6 +168,8 @@ def evaluate(
         "recall@k": sum(recalls) / len(recalls),
         "map": mean_average_precision(rec_map, rel_map, k),
         "ndcg": sum(ndcgs) / len(ndcgs),
+        "hit_rate@k": hit_rate_at_k(rec_map, rel_map, k),
+        "mrr@k": mrr_at_k(rec_map, rel_map, k),
     }
 
     if catalog is not None:

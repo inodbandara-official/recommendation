@@ -20,6 +20,11 @@ import matplotlib.pyplot as plt
 import networkx as nx
 import pandas as pd
 
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+except (AttributeError, ValueError):
+    pass
+
 ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
@@ -27,6 +32,8 @@ if str(ROOT) not in sys.path:
 from src.data_io import load_users, load_events, load_attends, load_follows, load_artists  # noqa: E402
 
 DATA_DIR = ROOT / "data"
+FIG_DIR = ROOT / "reports" / "figures"
+FIG_DIR.mkdir(parents=True, exist_ok=True)
 
 USER_COLOR = "#4A90D9"
 EVENT_COLOR = "#E8A838"
@@ -461,7 +468,7 @@ def interactive_loop(
             fig.legend(handles=legend_handles, loc="lower center", ncol=4, fontsize=9)
             plt.tight_layout(rect=[0, 0.06, 1, 0.96])
 
-            out = Path("pipeline") / f"6_{uid}.png"
+            out = (ROOT / "reports" / "figures") / f"6_{uid}.png"
             fig.savefig(out, dpi=150, bbox_inches="tight")
             print(f"\n    Graph saved to:  {out}")
             plt.show()
@@ -505,7 +512,7 @@ def interactive_loop(
             fig, ax = plt.subplots(figsize=(12, 8))
             draw_graph(G, uid, f"Filtered Recommendations for {uid} [{filter_label}]", ax)
             plt.tight_layout()
-            out = Path("pipeline") / f"6_{uid}_filtered.png"
+            out = (ROOT / "reports" / "figures") / f"6_{uid}_filtered.png"
             fig.savefig(out, dpi=150, bbox_inches="tight")
             print(f"\n    Graph saved to:  {out}")
             plt.show()
@@ -530,7 +537,7 @@ def interactive_loop(
             draw_graph(G2, uid2, f"User: {uid2}", axes[1])
             plt.tight_layout(rect=[0, 0, 1, 0.94])
 
-            out = Path("pipeline") / f"6_compare_{uid1}_{uid2}.png"
+            out = (ROOT / "reports" / "figures") / f"6_compare_{uid1}_{uid2}.png"
             fig.savefig(out, dpi=150, bbox_inches="tight")
             print(f"\n    Graph saved to:  {out}")
             plt.show()
@@ -595,7 +602,7 @@ def interactive_loop(
             fig.legend(handles=legend_handles, loc="lower center", ncol=4, fontsize=9)
             plt.tight_layout(rect=[0, 0.06, 1, 0.96])
 
-            out = Path("pipeline") / f"6_{uid}_artists.png"
+            out = (ROOT / "reports" / "figures") / f"6_{uid}_artists.png"
             fig.savefig(out, dpi=150, bbox_inches="tight")
             print(f"\n    Graph saved to:  {out}")
             plt.show()

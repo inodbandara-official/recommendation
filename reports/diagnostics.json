@@ -1,0 +1,36 @@
+{
+  "users_with_correlation": {
+    "knowledge": 200,
+    "graph": 200,
+    "trend": 200
+  },
+  "correlation_with_relevance": {
+    "knowledge": {
+      "name": "knowledge",
+      "n": 200,
+      "mean": 0.019865216223790973,
+      "median": 0.0225580652482612,
+      "p25": 0.0070549903312808505,
+      "p75": 0.034183999558578516
+    },
+    "graph": {
+      "name": "graph",
+      "n": 200,
+      "mean": 0.050771477370226636,
+      "median": -0.004426232127989436,
+      "p25": -0.004928149662532642,
+      "p75": 0.08841575796269976
+    },
+    "trend": {
+      "name": "trend",
+      "n": 200,
+      "mean": 0.00414546448033248,
+      "median": -0.010225815533514484,
+      "p25": -0.010225815533514489,
+      "p75": 0.02049515243832233
+    }
+  },
+  "interpretation": {
+    "knowledge_mean": "Near zero -> stated profile is decoupled from attendance (data issue). Positive -> Knowledge is informative; weighting issue or scoring still too uniform."
+  }
+}

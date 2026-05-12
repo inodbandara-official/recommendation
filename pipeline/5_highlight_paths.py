@@ -23,6 +23,11 @@ import matplotlib.pyplot as plt
 import networkx as nx
 import pandas as pd
 
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+except (AttributeError, ValueError):
+    pass
+
 ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
@@ -30,6 +35,8 @@ if str(ROOT) not in sys.path:
 from src.data_io import load_users, load_events, load_attends, load_follows, load_artists  # noqa: E402
 
 DATA_DIR = ROOT / "data"
+FIG_DIR = ROOT / "reports" / "figures"
+FIG_DIR.mkdir(parents=True, exist_ok=True)
 
 # ── Palette ─────────────────────────────────────────────────
 USER_COLOR = "#4A90D9"
@@ -210,9 +217,9 @@ def main() -> None:
                 break
         shared = cats[0] if cats else "?"
         print(f"    {rank}. {ev_name}  (score={score:.2f})")
-        print(f"       {sample_user} ──attended──➜ {bridge_event}")
-        print(f"       {bridge_event} ──belongs_to──➜ cat:{shared}")
-        print(f"       cat:{shared} ──belongs_to──➜ {eid}")
+        print(f"       {sample_user} ──attended──-> {bridge_event}")
+        print(f"       {bridge_event} ──belongs_to──-> cat:{shared}")
+        print(f"       cat:{shared} ──belongs_to──-> {eid}")
         print()
 
     print_section("Similar-User Path Traces (User → Event ← SimUser → Rec)")
@@ -224,9 +231,9 @@ def main() -> None:
             shared_event = ae
             break
         print(f"    {rank}. {ev_name}  (similarity={sim:.3f})")
-        print(f"       {sample_user} ──attended──➜ {shared_event}")
-        print(f"       {via_user} ──attended──➜ {shared_event}  (shared)")
-        print(f"       {via_user} ──attended──➜ {eid}  (recommendation)")
+        print(f"       {sample_user} ──attended──-> {shared_event}")
+        print(f"       {via_user} ──attended──-> {shared_event}  (shared)")
+        print(f"       {via_user} ──attended──-> {eid}  (recommendation)")
         print()
     # ── Artist path traces ─────────────────────────────────
     followed_ids = set(follows.loc[follows["user_id"] == sample_user, "artist_id"])
@@ -612,7 +619,7 @@ def main() -> None:
     )
     plt.tight_layout(rect=[0, 0.08, 1, 0.94])
 
-    out_path = Path("pipeline") / "5_paths.png"
+    out_path = (ROOT / "reports" / "figures") / "5_paths.png"
     fig.savefig(out_path, dpi=150, bbox_inches="tight")
     print(f"\n    Graph saved to:  {out_path}")
 

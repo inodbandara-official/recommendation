@@ -78,11 +78,9 @@ def _build_events(raw: dict) -> pd.DataFrame:
     df = pd.DataFrame(raw.get("events", []))
     if df.empty:
         return df
-    # Split `date` (ISO timestamp) into legacy `date` (YYYY-MM-DD) + `time` (HH:MM)
+    # Normalize `date` to YYYY-MM-DD for filtering/comparisons
     if "date" in df.columns:
         parsed = pd.to_datetime(df["date"], errors="coerce")
-        if "time" not in df.columns:
-            df["time"] = parsed.dt.strftime("%H:%M").fillna("")
         df["date"] = parsed.dt.strftime("%Y-%m-%d").fillna(df["date"].astype(str))
     return df
 
